@@ -7,37 +7,47 @@ Debido a la crisis económica del 2008 la sanidad española no ha parado de reci
 \href{https://www.consalud.es/politica/decada-recortes-2009-2018-efectos-infrafinanciacion-sanidad_87083_102.html}{artículo} donde
 se estudia la financiación de la sanidad desde entonces. Esto provoca que se disminuya el número de sanitarios en España, 
 esta situación que se lleva dando desde hace más de una década produce una sobrecarga de trabajo para los sanitarios y un retardo 
-en todas las listas de esperas, tanto en cirugias como en la atención primaria. 
+en todas las listas de esperas, tanto en cirugías como en la atención primaria. 
 Con la llegada de la pandemia y del covid-19 todo empeoró llegando a colapsar totalmente la atención primaria debido a la demanda
-de citas previas y a la escasez de profesionales enfocados a este servicio ya que también desde hace años los sanitarios se aglomeran
+de citas previas y a la escasez de profesionales enfocados a este servicio, ya que, también desde hace años los sanitarios se aglomeran
 en los Hospitales por mejores situaciones laborales y salarios. En las siguientes links podemos observar la situación que he descrito.
 \begin{itemize}
     \item \url{https://elpais.com/sociedad/2021-02-08/la-pandemia-sume-a-la-atencion-primaria-en-una-saturacion-permanente.html} 
     \item \url{https://www.lavanguardia.com/vida/20211225/7952109/atencion-primaria-colapso-pacientes-medico-dias-espera.html}
     \item \url{https://www.lavozdegalicia.es/noticia/galicia/2022/01/16/dejando-atender-casos/0003_202201G16P2993.htm}
 
-El problema que trato de abordar se escapa a mis posibilidades, sin embargo mediante la herramienta que voy a desarrollar 
+El problema que trato de abordar se escapa a mis posibilidades, sin embargo, mediante la herramienta que voy a desarrollar 
 durante el proyecto podré aportar una gran ayuda para los sanitarios centrados en la atención primaria.
 Mi principal motivación es aportar mediante el uso de sistemas informáticos mi grano de arena en este gran problema con el que 
-tenemos que lidiar a día de hoy, construyendo una aplicación de citas médicas el cuál tiene integrado un sistema de triage. 
-Además estará centrado para el uso de todas las personas y sanitarios, haciendo incapié en la accesibilidad de la app.
+tenemos que lidiar a día de hoy, construyendo una aplicación de citas médicas el cual tiene integrado un sistema de triage. 
+Además, estará centrado para el empleo de todas las personas y sanitarios, haciendo hincapié en la accesibilidad de la app.
 
 \section{Objetivos}
 
 \textbf{Crear el triage inteligente de las consultas médicas}. El objetivo del sistema es minimizar las repercusiones negativas 
-de las listas de espera saturadas ya que realmente es un problema económico de la sanidad pública. De forma que el triage de consultas
-priorizá las personas con mayores riesgos en las que las consecuencias de la saturación de colas puedan ser críticas.
+de las listas de espera saturadas, ya que, realmente es un problema económico de la sanidad pública.
 
-El sistema informática consistirá en un triage de consultas médicas ; el triage en el ámbito de la sanidad es un proceso que permite gestionar
+El sistema informático consistirá en un triage de consultas médicas; el triage en el ámbito de la sanidad es un proceso que permite gestionar
 el flujo de los pacientes teniendo en cuenta el riesgo cuando la demanda y necesidades clínicas superan los recursos, es muy importante en urgencias clínicas
 \href{https://scielo.isciii.es/scielo.php?script=sci_arttext&pid=S1137-66272010000200008}{Aquí} se puede encontrar más información
-El triage tiene un gran potencial que no se aprovecha en los sistemas de citas de la sanidad actual.
+
+El triage inteligente en consultas médicas consiste en clasificar los pacientes en diferentes estados de riesgo y priorizar las citas 
+de los pacientes con mayores riesgos en la lista de espera. De forma que priorizará las personas en las que las consecuencias de la 
+saturación de colas puedan ser críticas, al mismo tiempo se minimizará todo lo posible la saturación en las colas de espera.
+
+La asignación de riesgo se realizará mediante un formulario que deben rellenar el paciente al registrarse, esta prioridad provisional
+se comprobará y modificará si es necesario por los sanitarios. De este modo se establece un riesgo dinámico. 
+
+El triage tiene un gran potencial que no se aprovecha en los sistemas de citas de la sanidad actual, durante todo el desarollo 
+el sistema se comparará con el sistema de citas \href{https://www.sspa.juntadeandalucia.es/servicioandaluzdesalud/clicsalud/pages/portada.jsf?caducada=1}{ClicSalud+},
+ al igual que los tiempos medios de espera de los pacientes para afirmar que el desarollo del sistema implica una mejora real.
 
 \subsection{Proyecto a futuro}
-El principal proyecto a futuro sería integrar el triage como tal a los sistemas instaurados en la sanidad como si se tratase de 
-una librería de código. Además puedrían desarrollarse los siguientes puntos:
+El principal proyecto a futuro sería extraer la utilidad del triage inteligente convirtiendo el sistema en una librería de código 
+que se pueda acoplar al sistema de citas del cliente que lo solicite, aunque conlleve mucho trabajo.
+Además, podrían desarrollarse los siguientes puntos:
 
 \begin{itemize}
-    \item Aplicar la aplicación para consultas especializadas (Neurología, Urología, Ginecología \dots) 
-    \item Construir e integrar un plugin para acceder a las recetas de los medicamentos de una consulta
-    \item Crear consultas automatizadas para enfermedades crónicas
+    \item Un paciente necesita tener prioridad para consultas especializadas (Neurología, Urología, Ginecología\dots) 
+    \item Un paciente necesita acceder a las recetas de los medicamentos de una consulta.
+    \item Un paciente necesita consultas periódicas por una enfermedade crónicas.
