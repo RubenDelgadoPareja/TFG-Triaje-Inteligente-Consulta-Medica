@@ -1,0 +1,81 @@
+\chapter{Metodología}
+
+Para comenzar el desarrollo de un proyecto primero necesitamos una planificación inicial de la que partir.
+
+\section{Planificación}
+
+La planificación que se va a utilizar está basada en los {\href{https://agilemanifesto.org/iso/es/principles.html}{principios del manifiesto ágil}}
+Buscamos un tipo de planificación que se centre en el usuario, para que el propio usuario nos aporte retroalimentación.
+Una planificación ágil nos permite adaptarnos al cambio de requisitios haciendo uso de las iteraciones y 
+evitando caer en una documentación excesiva llena de diagramas y requisitos innecesarios.
+El desarrollo ágil construye el sistema por medio de aportaciones frecuentes de código que aportan valor 
+al usuario, es necesario organizar las funcionalidades en bloques y que los cambios siempre surgen de una 
+necesidad del usuario.
+Para cualquier tipo de planificación es indispensable una herramienta de control de versiones, para ello voy a utilizar  git
+y GitHub como repositorio para hacer un seguimiento de todas las tareas.
+He de mencionar que todos los commits deben de hacer referencia a las tareas preestablecidas, por lo tanto 
+podremos saber cuando leyamos el código hacia que historia de usuario o issue se refiere.
+y poder observar el desarrollo en conjunto del proyecto 
+
+\section{Hitos}
+Los hitos pueden definirse como metas a las que debemos de llegar durante el desarrollo del proyecto.
+Los hitos son una buena forma de limitar los bloques de trabajo del desarrollo y su principal intención es que 
+al final de cada hito consiguamos un producto mínimamente viable (\textit{PMV}) para que sea independiente e iterativo 
+Los hitos que se deben de cumplir están reflejados en el GitHub y son los siguientes: 
+
+\subsection*{\href{https://github.com/RubenDelgadoPareja/TFG-Triage-Inteligente-Consulta-Medica/milestone/1}{Hito 0: Infraestructura inicial y documentación}}
+
+El primer PMV consiste en alcanzar un repositorio inicial donde compenzar a forjar toda la arquitectura del proyecto con una planificación inicial.
+Para aceptar el PMV, el repositorio debe de contener:
+
+\begin{itemize}
+    \item{User Journeys.}
+    \item{Hitos.}
+    \item{Historias de Usuario.}
+    \item{Comprobadores de gramática y ortografía.}
+    \item{Comprobadores de compilación de Latex para la documentación.}
+    \item{Documentar las secciones de Motivación, Objetivos y Planificación}
+\end{itemize}
+
+\subsection*{\href{https://github.com/RubenDelgadoPareja/TFG-Triage-Inteligente-Consulta-Medica/milestone/7}{Hito 1: Modelado del Problema con DDD}}
+
+Este PMV consiste en modularizar el dominio del problema para facilitar el diseño e implementación.
+Para acpetar el PMV la memoria debe de recoger una sección especifica sobre cómo se aplicará el DDD la cual incluya: 
+
+\begin{itemize}
+    \item {Definición del dominio}
+    \item {Definir el lenguaje ubicuo}
+    \item {Identificar Entities, Value Objects, Aggregates}
+    \item {Definir los Repositories y Services necesarios}
+\end{itemize}
+
+
+\subsection*{\href{https://github.com/RubenDelgadoPareja/TFG-Triage-Inteligente-Consulta-Medica/milestone/2}{Hito 2: Arquitectura básica del sistema de colas de citas}}
+
+Este PMV consiste en diseñar las clases y funciones necesarias para crear citas, almacenarlas en colas y priorizarlas mediante una heurística.
+
+Los criterios de aceptación de este PMV son los tests de cada clase y sus funciones, además de reflejar en la memoria las decisiones tomadas
+
+\section{Historias de Usuarios}
+Las historias de usuario son la unidad mínima de funcionalidad que el usuario necesita del sistema, es decir, 
+expresa lo que quiere el usuario del sistema por esto lo hace tan importante, se centra completamente en el 
+usuario. Encontraremos las Historias de Usuario repartidas por los Hitos del desarrollo del software .
+
+\noindent{Se han definido las siguientes historias de usuario:}
+
+\subsection*{\href{https://github.com/RubenDelgadoPareja/TFG-Triage-Inteligente-Consulta-Medica/issues/19}{[HU-01] Triage Inteligente - Priorizar una cita.}}
+
+Como paciente quiero tener prioridad en el orden de citas médicas.
+
+\subsection*{\href{https://github.com/RubenDelgadoPareja/TFG-Triage-Inteligente-Consulta-Medica/issues/5}{[HU-02] Triage Inteligente - Establecer riesgo.}}
+
+Como sanitario quiero asignarle una prioridad o riesgo a un paciente
+
+\section{Issues}
+Las Issues son simples tareas que hay que realizar para completar los Hitos. 
+Una historia de Usuario podría ser un conjunto de Sssues , aunque en GitHub las he englobado en una sola Issue
+Todas las Issues que solucionaré durante el desarrollo para construir el sistema están descritas en GitHub 
+
+
+\section{Control de calidad}
+
