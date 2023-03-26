@@ -3,10 +3,10 @@
 Este proyecto es software libre, y está liberado con la licencia \cite{gplv3}.
 
 \section{Motivación}
-Debido a la crisis económica del 2008 la sanidad española no ha parado de recibir recortes desde entonces, puede observarse en este
+Debido a la crisis económica del 2008 la sanidad española no ha parado de recibir recortes, puede observarse en este
 \href{https://www.consalud.es/politica/decada-recortes-2009-2018-efectos-infrafinanciacion-sanidad_87083_102.html}{artículo} donde
-se estudia la financiación de la sanidad desde entonces. Esto provoca que se disminuya el número de sanitarios en España, 
-esta situación que se lleva dando desde hace más de una década produce una sobrecarga de trabajo para los sanitarios y un retardo 
+se estudia la financiación de la sanidad desde entonces. Esto provoca que se disminuya el número de sanitarios en España.
+Esta situación que se lleva dando desde hace más de una década produce una sobrecarga de trabajo para los sanitarios y un retardo 
 en todas las listas de esperas, tanto en cirugías como en la atención primaria. 
 Con la llegada de la pandemia y del covid-19 todo empeoró llegando a colapsar totalmente la atención primaria debido a la demanda
 de citas previas y a la escasez de profesionales enfocados a este servicio, ya que, también desde hace años los sanitarios se aglomeran
@@ -17,10 +17,9 @@ en los Hospitales por mejores situaciones laborales y salarios. En las siguiente
     \item \url{https://www.lavozdegalicia.es/noticia/galicia/2022/01/16/dejando-atender-casos/0003_202201G16P2993.htm}
 
 El problema que trato de abordar se escapa a mis posibilidades, sin embargo, mediante la herramienta que voy a desarrollar 
-durante el proyecto podré aportar una gran ayuda para los sanitarios centrados en la atención primaria.
+durante el proyecto podré ofrecer una gran ayuda para los sanitarios centrados en la atención primaria.
 Mi principal motivación es aportar mediante el uso de sistemas informáticos mi grano de arena en este gran problema con el que 
-tenemos que lidiar a día de hoy, construyendo una aplicación de citas médicas el cual tiene integrado un sistema de triage. 
-Además, estará centrado para el empleo de todas las personas y sanitarios, haciendo hincapié en la accesibilidad de la app.
+tenemos que lidiar a día de hoy, construyendo una aplicación de citas médicas el cual tiene integrada un sistema de triage. 
 
 \section{Objetivos}
 
@@ -38,16 +37,7 @@ saturación de colas puedan ser críticas, al mismo tiempo se minimizará todo l
 La asignación de riesgo se realizará mediante un formulario que deben rellenar el paciente al registrarse, esta prioridad provisional
 se comprobará y modificará si es necesario por los sanitarios. De este modo se establece un riesgo dinámico. 
 
-El triage tiene un gran potencial que no se aprovecha en los sistemas de citas de la sanidad actual, durante todo el desarollo 
+El triage tiene un gran potencial que no se aprovecha en los sistemas de citas de la sanidad actual, durante todo el desarrollo 
 el sistema se comparará con el sistema de citas \href{https://www.sspa.juntadeandalucia.es/servicioandaluzdesalud/clicsalud/pages/portada.jsf?caducada=1}{ClicSalud+},
- al igual que los tiempos medios de espera de los pacientes para afirmar que el desarollo del sistema implica una mejora real.
+ al igual que los tiempos medios de espera de los pacientes para afirmar que el desarrollo del sistema implica una mejora real.
 
-\subsection{Proyecto a futuro}
-El principal proyecto a futuro sería extraer la utilidad del triage inteligente convirtiendo el sistema en una librería de código 
-que se pueda acoplar al sistema de citas del cliente que lo solicite, aunque conlleve mucho trabajo.
-Además, podrían desarrollarse los siguientes puntos:
-
-\begin{itemize}
-    \item Un paciente necesita tener prioridad para consultas especializadas (Neurología, Urología, Ginecología\dots) 
-    \item Un paciente necesita acceder a las recetas de los medicamentos de una consulta.
-    \item Un paciente necesita consultas periódicas por una enfermedade crónicas.
