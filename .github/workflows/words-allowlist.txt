@@ -7,3 +7,11 @@ triage
 commits 
 Testing
 git
+User 
+Journeys
+Entities
+Value 
+Objects
+Aggregates
+Repositories
+Services
