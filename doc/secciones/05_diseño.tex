@@ -28,3 +28,51 @@ desarrolladores al discutir y codificar las reglas de negocio.
 \item \textbf{Receta:} Una prescripción médica para medicamentos o terapias específicas para ser administradas al paciente.
 \item \textbf{Expediente médico:} Un conjunto de registros y documentos relacionados con la atención médica de un paciente, incluyendo historias clínicas, resultados de exámenes, informes de consultas y otros datos importantes.
 \end{itemize}
+
+
+
+Dentro del Diseño Dirigido por el Dominio debemos abstraer distintos módulos para disgregar el problema en pequeñas partes
+y componerlo desde los trozos más pequeños posibles de código hasta formar el diseño que resuelva este problema. 
+Por esto es necesario dividir en diferentes secciones cada uno de estos módulos y explicarlos por separado.
+
+\section*{Objetos de Valor}
+Son un objeto inmutable, usado para representar un valor. Pueden compararse con otros objetos de valor para comprobar 
+si tienen los mismos valores representados y no tienen identidad propia. 
+Suelen ser la combinación de atributos primitivos que adquieren un significado al leerse juntos, por ello deben encapsularse
+en un único objeto de valor, por ejemplo las coordenadas geográficas (latitud y longitud). A veces tiene sentido convertir
+un atributo primitivo a objeto de valor, dependiendo del dominio del problema.
+Los Objetos de Valor identificados son los siguientes: DNI, N.º de seguridad social, Riesgo, Coordenadas, Código Postal.
+Utilizaré el DNI como ejemplo principal: 
+
+\begin{lstlisting}
+# app/models/dni.rb
+class DNI
+    attr_reader :number
+  
+    def initialize(number)
+      validate_number!(number)
+      @number = number
+    end
+  
+    def ==(other)
+      self.class == other.class && number == other.number
+    end
+  
+    def to_s
+      number
+    end
+  
+    private
+  
+    def validate_number!(number)
+      raise ArgumentError, 'Número de DNI inválido' unless 
+      valid_format?(number)
+    end
+  
+    def valid_format?(number)
+      /^[0-9]{8}[A-Z]$/ === number
+    end
+  end
+\end{lstlisting}
+
+  
