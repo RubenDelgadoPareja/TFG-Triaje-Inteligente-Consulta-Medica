@@ -29,6 +29,22 @@ desarrolladores al discutir y codificar las reglas de negocio.
 \item \textbf{Expediente médico:} Un conjunto de registros y documentos relacionados con la atención médica de un paciente, incluyendo historias clínicas, resultados de exámenes, informes de consultas y otros datos importantes.
 \end{itemize}
 
+\section{Mapa Contextual}
+Mediante la comunicación entre el equipo de desarrollo y los expertos del dominio se dividirá la complejidad del problema
+en distintas áreas de las cuales se deben de distinguir: dominio, subdominio y un contexto acotado. Disgregando el dominio 
+conseguimos una visión más amplia y simple para cada contexto acotado, de esta forma, podemos enfocarnos en el modelado de
+cada dominio diminuyendo la complejidad del dominio principal. A continuación presentaré el mapa contextual ya disgreado con 
+las relaciones entre entornos:
+
+\includegraphics{contextual_map.pdf}
+
+Como podemos observar en la imágen he diferencidado entre tres diferentes contextos que se relacionan entre ellos. 
+El principal contexto es la Agenda Sanitaria, la cuál actúa de \textit{(Open Host Service)} para el Historial Clínico del paciente, 
+esto implica que el historial vendrá alimentado por el Agenda Sanitaria. Por otra parte el Historial Clínico actúa como 
+\textit{(Anticorruption Layer)}, esto significa que se crea una capa extra en el modelado del problema para evitar la corrupción
+de datos. Finalmente el Sistema de Autenticación y la Agenda Sanitaria tienen una relación de \textit{(Shared Kernel)}, esto significa
+que a pesar de estar en diferentes subdominios comparten parte del código y se retroalimentan. 
+
 
 
 Dentro del Diseño Dirigido por el Dominio debemos abstraer distintos módulos para disgregar el problema en pequeñas partes
@@ -43,6 +59,7 @@ en un único objeto de valor, por ejemplo las coordenadas geográficas (latitud 
 un atributo primitivo a objeto de valor, dependiendo del dominio del problema.
 Los Objetos de Valor identificados son los siguientes: DNI, N.º de seguridad social, Riesgo, Coordenadas, Código Postal.
 Utilizaré el DNI como ejemplo principal: 
+
 
 \begin{lstlisting}
 # app/models/dni.rb
@@ -76,3 +93,4 @@ class DNI
 \end{lstlisting}
 
   
+
