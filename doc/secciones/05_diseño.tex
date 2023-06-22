@@ -52,47 +52,80 @@ y componerlo desde los trozos más pequeños posibles de código hasta formar el
 Por esto es necesario dividir en diferentes secciones cada uno de estos módulos y explicarlos por separado.
 
 \section*{Objetos de Valor}
+Ejemplo de Objeto de Valor: Clase DNI
+\begin{lstlisting}
+  # app/models/dni.rb
+  class DNI
+      attr_reader :number
+    
+      def initialize(number)
+        validate_number!(number)
+        @number = number
+      end
+    
+      def ==(other)
+        self.class == other.class && number == other.number
+      end
+    
+      def to_s
+        number
+      end
+    
+      private
+    
+      def validate_number!(number)
+        raise ArgumentError, 'Número de DNI inválido' unless 
+        valid_format?(number)
+      end
+    
+      def valid_format?(number)
+        /^[0-9]{8}[A-Z]$/ === number
+      end
+    end
+  \end{lstlisting}
+
 Son un objeto inmutable, usado para representar un valor. Pueden compararse con otros objetos de valor para comprobar 
 si tienen los mismos valores representados y no tienen identidad propia. 
 Suelen ser la combinación de atributos primitivos que adquieren un significado al leerse juntos, por ello deben encapsularse
 en un único objeto de valor, por ejemplo las coordenadas geográficas (latitud y longitud). A veces tiene sentido convertir
 un atributo primitivo a objeto de valor, dependiendo del dominio del problema.
 Los Objetos de Valor identificados son los siguientes: DNI, N.º de seguridad social, Riesgo, Coordenadas, Código Postal.
-Utilizaré el DNI como ejemplo principal: 
 
-
-\begin{lstlisting}
-# app/models/dni.rb
-class DNI
-    attr_reader :number
-  
-    def initialize(number)
-      validate_number!(number)
-      @number = number
-    end
-  
-    def ==(other)
-      self.class == other.class && number == other.number
-    end
-  
-    def to_s
-      number
-    end
-  
-    private
-  
-    def validate_number!(number)
-      raise ArgumentError, 'Número de DNI inválido' unless 
-      valid_format?(number)
-    end
-  
-    def valid_format?(number)
-      /^[0-9]{8}[A-Z]$/ === number
-    end
-  end
-\end{lstlisting}
 
 \section*{Entidades}
+Ejemplo de Entidad: Clase Paciente
+\begin{lstlisting}
+# app/models/paciente.rb
+class Paciente < ApplicationRecord
+  # Relaciones
+  belongs_to :medico
+
+  # Validaciones
+  validates :dni, presence: true, uniqueness: true
+  validates :numero_seguridad_social, presence: true, uniqueness: true
+  validates :nombre, presence: true
+  validates :apellidos, presence: true
+  validates :lugar_cita, presence: true
+  validates :riesgo, presence: true
+  validates :historial_clinico, presence: true
+
+  # Métodos de instancia
+  def nombre_completo
+    "#{nombre} #{apellidos}"
+  end
+
+  def cambiar_medico(nuevo_medico)
+    self.medico = nuevo_medico
+    save
+  end
+
+  def cambiar_consultorio(nuevo_consultorio)
+    self.lugar_cita = nuevo_consultorio
+    save
+  end
+end  
+\end{lstlisting}
+
 Las entidades en DDD se definen por su identidad, lo que significa que son distintas y reconocibles a lo largo del tiempo,
 independientemente de los cambios en sus atributos. Por ejemplo, si estás construyendo un sistema de gestión de bibliotecas, 
 una entidad podría ser un libro. Aunque cambien su estado, título o ubicación, sigue siendo el mismo libro con la misma identidad.
@@ -104,9 +137,8 @@ el costo total de una orden o reservar un libro en una biblioteca.
 
 El diseño de las entidades en DDD se enfoca en capturar el conocimiento del dominio y representar las reglas y 
 restricciones del problema de manera adecuada. Se busca construir un modelo rico y expresivo que refleje de cerca 
-la realidad del dominio y permita una implementación más eficiente y mantenible.
+la realidad del dominio y permita una implementación más eficiente y mantenible. 
 Las Entidades identificados son los siguientes: Paciente, Médico, Consultorio, Historial Médico.
-Utilizaré el Paciente como ejemplo principal:  
 
   
 
