@@ -138,7 +138,27 @@ el costo total de una orden o reservar un libro en una biblioteca.
 El diseño de las entidades en DDD se enfoca en capturar el conocimiento del dominio y representar las reglas y 
 restricciones del problema de manera adecuada. Se busca construir un modelo rico y expresivo que refleje de cerca 
 la realidad del dominio y permita una implementación más eficiente y mantenible. 
-Las Entidades identificados son los siguientes: Paciente, Médico, Consultorio, Historial Médico.
+Las Entidades identificadas son los siguientes: Paciente, Médico, Consultorio, Historial Médico.
 
-  
+\section*{Asociaciones}
+Una vez que tenemos identificadas los principales objetos del dominio (Entidades y Objetos de Valor), debemos de saber
+que estos objetos interaccionan y se relacionan entré sí. Identificar este tipo de comportamientos es primordial para 
+el diseño del sistema y conocer cómo debe funcionar. Una asociación entre objetos representa una conexión semántica o funcional entre ellos. 
+Puede ser un vínculo simple o complejo, y se utiliza para describir cómo se relacionan los objetos en el dominio.
+Las asociaciones pueden ser unidireccionales o bidireccionales, y pueden tener multiplicidad, lo que indica la cantidad 
+de objetos que están involucrados en la relación.
+En el ejemplo anterior de la entidad Paciente, tenemos un claro ejemplo: Un paciente tiene un médico asignado. 
+Las asociaciones principales que he identificado son las siguientes: 
 
+\begin{itemize}
+  \item Un paciente tiene un médico asignado. Un médico tiene varios pacientes asignados.
+  \item Un paciente tiene un consultorio asociado. Un consultorio tiene varios pacientes asignados.
+  \item Un paciente tiene un historial médico. Un historial médico tiene un solo paciente asignado.
+  \item Un paciente puede tener varias citas. Una cita tiene un solo paciente. 
+  \item Un médico puede tener varias citas. Una cita tiene un solo médico.
+  \item Un médico trabaja en un consultorio asociado. Un consultorio tiene varios médicos asociados.
+  \item Un médico puede tener varios historiales clínicos. Un historial clínico pertenece a un solo médico.
+  \item Una cita se dará en un solo consultorio. Un consultorio tendrá varias citas. 
+\end{itemize}
+
+Es posible que de esta enumeración de asociaciones acaben siendo simplificadas algunas en Agregaciones, como puede ser Cita. 
