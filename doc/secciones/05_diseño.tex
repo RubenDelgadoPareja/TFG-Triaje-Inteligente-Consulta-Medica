@@ -96,31 +96,30 @@ Los Objetos de Valor identificados son los siguientes: DNI, N.º de seguridad so
 Ejemplo de Entidad: Clase Paciente
 \begin{lstlisting}
 # app/models/paciente.rb
-class Paciente < ApplicationRecord
+class Patient < ApplicationRecord
   # Relaciones
-  belongs_to :medico
+  belongs_to :doctor, presence: true
+  belongs_to :medical_center, presence: true
+  has_one :medical_history
 
   # Validaciones
   validates :dni, presence: true, uniqueness: true
-  validates :numero_seguridad_social, presence: true, uniqueness: true
-  validates :nombre, presence: true
-  validates :apellidos, presence: true
-  validates :lugar_cita, presence: true
-  validates :riesgo, presence: true
-  validates :historial_clinico, presence: true
+  validates :ssn, presence: true, uniqueness: true
+  validates :name, presence: true
+  validates :last_name, presence: true
 
   # Métodos de instancia
-  def nombre_completo
-    "#{nombre} #{apellidos}"
+  def full_name
+    "#{name} #{last_name}"
   end
 
-  def cambiar_medico(nuevo_medico)
-    self.medico = nuevo_medico
+  def change_doctor(new_doctor)
+    self.doctor = new_doctor
     save
   end
 
-  def cambiar_consultorio(nuevo_consultorio)
-    self.lugar_cita = nuevo_consultorio
+  def change_medical_center(new_medical_center)
+    self.medical_center = new_medical_center
     save
   end
 end  
