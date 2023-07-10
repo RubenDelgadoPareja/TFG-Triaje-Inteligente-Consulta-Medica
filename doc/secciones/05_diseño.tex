@@ -1,20 +1,20 @@
 \chapter{Diseño Dirigido por el Dominio}
 
-Para el diseño del software he elegido aplicar DDD\textit{(Domain Driven Design)} para enfocar el 
-desarrollo del producto en el dominio del problema, de forma que, el sistema contemple el lenguaje y reglas 
+Para el diseño del software he elegido aplicar DDD\textit{(Domain Driven Design)} para enfocar el
+desarrollo del producto en el dominio del problema, de forma que, el sistema contemple el lenguaje y reglas
 del dominio. Este tipo de diseño se centra en el usuario al igual que la metodología ágil, la cual,
 también se usa en el proyecto. El potencial de este diseño reside en que se alinea estrechamente el producto
 con los conceptos y términos clave del dominio. Sin embargo, tiene algunos inconvenientes para un TFG como
 necesitar una comunicación continua e iterativa con expertos del dominio.
 
 \section{Lenguaje Ubicuo}
-He creado un glosario con un conjunto de términos pertenecientes al dominio que se emplearán dentro del desarrollo del producto, 
-de esta manera cuando se den las reuniones entre los desarrolladores y los expertos de dominios no dará lugar a confusiones, 
+He creado un glosario con un conjunto de términos pertenecientes al dominio que se emplearán dentro del desarrollo del producto,
+de esta manera cuando se den las reuniones entre los desarrolladores y los expertos de dominios no dará lugar a confusiones,
 ya que, habremos definido con anterioridad las palabras claves.
 
 Estas son algunas definiciones que ayudarán a establecer un lenguaje común entre los expertos de dominio y los
 desarrolladores al discutir y codificar las reglas de negocio.
- 
+
 \begin{itemize}
 \item \textbf{Cita:} Una cita se refiere a una programación de tiempo para que un paciente se encuentre con un médico o profesional de atención primaria en un centro de salud.
 \item \textbf{Paciente:} Una persona que busca atención médica en el sistema de atención primaria.
@@ -31,61 +31,46 @@ desarrolladores al discutir y codificar las reglas de negocio.
 
 \section{Mapa Contextual}
 Mediante la comunicación entre el equipo de desarrollo y los expertos del dominio se dividirá la complejidad del problema
-en distintas áreas de las cuales se deben de distinguir: dominio, subdominio y un contexto acotado. Disgregando el dominio 
+en distintas áreas de las cuales se deben de distinguir: dominio, subdominio y un contexto acotado. Disgregando el dominio
 conseguimos una visión más amplia y simple para cada contexto acotado, de esta forma, podemos enfocarnos en el modelado de
-cada dominio diminuyendo la complejidad del dominio principal. A continuación presentaré el mapa contextual ya disgreado con 
+cada dominio diminuyendo la complejidad del dominio principal. A continuación presentaré el mapa contextual ya disgreado con
 las relaciones entre entornos:
 
 \includegraphics{contextual_map.pdf}
 
-Como podemos observar en la imágen he diferencidado entre tres diferentes contextos que se relacionan entre ellos. 
-El principal contexto es la Agenda Sanitaria, la cuál actúa de \textit{(Open Host Service)} para el Historial Clínico del paciente, 
-esto implica que el historial vendrá alimentado por el Agenda Sanitaria. Por otra parte el Historial Clínico actúa como 
+Como podemos observar en la imagen he diferenciado entre tres diferentes contextos que se relacionan entre ellos.
+El principal contexto es la Agenda Sanitaria, la cual actúa de \textit{(Open Host Service)} para el Historial Clínico del paciente,
+esto implica que el historial vendrá alimentado por la Agenda Sanitaria. Por otra parte, el Historial Clínico actúa como
 \textit{(Anticorruption Layer)}, esto significa que se crea una capa extra en el modelado del problema para evitar la corrupción
-de datos. Finalmente el Sistema de Autenticación y la Agenda Sanitaria tienen una relación de \textit{(Shared Kernel)}, esto significa
-que a pesar de estar en diferentes subdominios comparten parte del código y se retroalimentan. 
+de datos. Finalmente,  el Sistema de Autenticación y la Agenda Sanitaria tienen una relación de \textit{(Shared Kernel)}, esto significa
+que a pesar de estar en diferentes subdominios comparten parte del código y se retroalimentan.
 
 
 
 Dentro del Diseño Dirigido por el Dominio debemos abstraer distintos módulos para disgregar el problema en pequeñas partes
-y componerlo desde los trozos más pequeños posibles de código hasta formar el diseño que resuelva este problema. 
+y componerlo desde los trozos más pequeños posibles de código hasta formar el diseño que resuelva este problema.
 Por esto es necesario dividir en diferentes secciones cada uno de estos módulos y explicarlos por separado.
 
 \section*{Objetos de Valor}
 Ejemplo de Objeto de Valor: Clase DNI
 \begin{lstlisting}
-  # app/models/dni.rb
-  class DNI
-      attr_reader :number
-    
-      def initialize(number)
-        validate_number!(number)
-        @number = number
-      end
-    
-      def ==(other)
-        self.class == other.class && number == other.number
-      end
-    
-      def to_s
-        number
-      end
-    
-      private
-    
-      def validate_number!(number)
-        raise ArgumentError, 'Número de DNI inválido' unless 
-        valid_format?(number)
-      end
-    
-      def valid_format?(number)
-        /^[0-9]{8}[A-Z]$/ === number
-      end
-    end
-  \end{lstlisting}
+  module Domain
+    module ValueObject
+      class Auth
+          attr_accessor :dni, :ssn, :password
 
-Son un objeto inmutable, usado para representar un valor. Pueden compararse con otros objetos de valor para comprobar 
-si tienen los mismos valores representados y no tienen identidad propia. 
+          def initialize(dni, ssn, password)
+              @dni = dni
+              @ssn = ssn
+              @password = password
+          end
+
+      end
+  end
+end{lstlisting}
+
+Son un objeto inmutable, usado para representar un valor. Pueden compararse con otros objetos de valor para comprobar
+si tienen los mismos valores representados y no tienen identidad propia.
 Suelen ser la combinación de atributos primitivos que adquieren un significado al leerse juntos, por ello deben encapsularse
 en un único objeto de valor, por ejemplo las coordenadas geográficas (latitud y longitud). A veces tiene sentido convertir
 un atributo primitivo a objeto de valor, dependiendo del dominio del problema.
@@ -95,49 +80,39 @@ Los Objetos de Valor identificados son los siguientes: DNI, N.º de seguridad so
 \section*{Entidades}
 Ejemplo de Entidad: Clase Paciente
 \begin{lstlisting}
-# app/models/paciente.rb
-class Patient < ApplicationRecord
-  # Relaciones
-  belongs_to :doctor, presence: true
-  belongs_to :medical_center, presence: true
-  has_one :medical_history
+module Domain
+  module Entity
+    class Patient
+        attr_accessor :auth, :personal_info, :risk
 
-  # Validaciones
-  validates :dni, presence: true, uniqueness: true
-  validates :ssn, presence: true, uniqueness: true
-  validates :name, presence: true
-  validates :last_name, presence: true
+        def initialize(auth, personal_info, risk)
+          @auth = auth
+          @personal_info = personal_info
+          @risk = risk
+        end
 
-  # Métodos de instancia
-  def full_name
-    "#{name} #{last_name}"
+        def save()
+          #Llamar Use Case de guardar -> Repositorio -> Data access -> Base de Datos
+        end
+
+    end
   end
-
-  def change_doctor(new_doctor)
-    self.doctor = new_doctor
-    save
-  end
-
-  def change_medical_center(new_medical_center)
-    self.medical_center = new_medical_center
-    save
-  end
-end  
-\end{lstlisting}
+end
+{lstlisting}
 
 Las entidades en DDD se definen por su identidad, lo que significa que son distintas y reconocibles a lo largo del tiempo,
-independientemente de los cambios en sus atributos. Por ejemplo, si estás construyendo un sistema de gestión de bibliotecas, 
+independientemente de los cambios en sus atributos. Por ejemplo, si estás construyendo un sistema de gestión de bibliotecas,
 una entidad podría ser un libro. Aunque cambien su estado, título o ubicación, sigue siendo el mismo libro con la misma identidad.
 
-En DDD, las entidades se modelan como objetos que encapsulan su estado y comportamiento relacionados. Por lo tanto, 
-las entidades no solo tienen atributos, sino que también tienen métodos o funciones que definen cómo interactúan y 
-responden en el dominio. Estos métodos pueden reflejar las operaciones que se realizan en las entidades, como calcular 
+En DDD, las entidades se modelan como objetos que encapsulan su estado y comportamiento relacionados. Por lo tanto,
+las entidades no solo tienen atributos, sino que también tienen métodos o funciones que definen cómo interactúan y
+responden en el dominio. Estos métodos pueden reflejar las operaciones que se realizan en las entidades, como calcular
 el costo total de una orden o reservar un libro en una biblioteca.
 
-El diseño de las entidades en DDD se enfoca en capturar el conocimiento del dominio y representar las reglas y 
-restricciones del problema de manera adecuada. Se busca construir un modelo rico y expresivo que refleje de cerca 
-la realidad del dominio y permita una implementación más eficiente y mantenible. 
+El diseño de las entidades en DDD se enfoca en capturar el conocimiento del dominio y representar las reglas y
+restricciones del problema de manera adecuada. Se busca construir un modelo rico y expresivo que refleje de cerca
+la realidad del dominio y permita una implementación más eficiente y mantenible.
 Las Entidades identificados son los siguientes: Paciente, Médico, Consultorio, Historial Médico.
 
-  
+
 
