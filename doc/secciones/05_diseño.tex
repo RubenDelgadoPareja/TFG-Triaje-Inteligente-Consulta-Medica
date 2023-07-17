@@ -52,67 +52,39 @@ y componerlo desde los trozos más pequeños posibles de código hasta formar el
 Por esto es necesario dividir en diferentes secciones cada uno de estos módulos y explicarlos por separado.
 
 \section*{Objetos de Valor}
-Ejemplo de Objeto de Valor: Clase DNI
-\begin{lstlisting}
-  module Domain
-    module ValueObject
-      class Auth
-          attr_accessor :dni, :ssn, :password
-
-          def initialize(dni, ssn, password)
-              @dni = dni
-              @ssn = ssn
-              @password = password
-          end
-
-      end
-  end
-end{lstlisting}
 
 Son un objeto inmutable, usado para representar un valor. Pueden compararse con otros objetos de valor para comprobar
 si tienen los mismos valores representados y no tienen identidad propia.
 Suelen ser la combinación de atributos primitivos que adquieren un significado al leerse juntos, por ello deben encapsularse
 en un único objeto de valor, por ejemplo las coordenadas geográficas (latitud y longitud). A veces tiene sentido convertir
-un atributo primitivo a objeto de valor, dependiendo del dominio del problema.
-Los Objetos de Valor identificados son los siguientes: DNI, N.º de seguridad social, Riesgo, Coordenadas, Código Postal.
+un atributo primitivo a objeto de valor, dependiendo del dominio del problema. Las principales características de los objetos de valor son:
+
+\begin{itemize}
+  \item \textbf{Inmutabilidad:} Los Objetos de Valor no pueden cambiar después de su creación.
+  \item \textbf{Igualdad por valor:} Dos Objetos de Valor son considerados iguales si tienen el mismo valor en todos sus atributos.
+  \item \textbf{Composición:} Los Objetos de Valor se pueden componer de otros Objetos de Valor o tipos de datos simples.
+  \item \textbf{Independencia de ciclo de vida:}  Los Objetos de Valor no tienen una identidad propia y no se asocian directamente con el ciclo de vida del sistema.
+\end{itemize}
 
 
 \section*{Entidades}
-Ejemplo de Entidad: Clase Paciente
-\begin{lstlisting}
-module Domain
-  module Entity
-    class Patient
-        attr_accessor :auth, :personal_info, :risk
-
-        def initialize(auth, personal_info, risk)
-          @auth = auth
-          @personal_info = personal_info
-          @risk = risk
-        end
-
-        def save()
-          #Llamar Use Case de guardar -> Repositorio -> Data access -> Base de Datos
-        end
-
-    end
-  end
-end
-{lstlisting}
 
 Las entidades en DDD se definen por su identidad, lo que significa que son distintas y reconocibles a lo largo del tiempo,
 independientemente de los cambios en sus atributos. Por ejemplo, si estás construyendo un sistema de gestión de bibliotecas,
 una entidad podría ser un libro. Aunque cambien su estado, título o ubicación, sigue siendo el mismo libro con la misma identidad.
+Las principales características de las entidades son:
 
-En DDD, las entidades se modelan como objetos que encapsulan su estado y comportamiento relacionados. Por lo tanto,
-las entidades no solo tienen atributos, sino que también tienen métodos o funciones que definen cómo interactúan y
-responden en el dominio. Estos métodos pueden reflejar las operaciones que se realizan en las entidades, como calcular
-el costo total de una orden o reservar un libro en una biblioteca.
+\begin{itemize}
+  \item \textbf{Identidad:} Las Entidades tienen una identidad única que las diferencia de otras entidades en el sistema.
+  \item \textbf{Mutabilidad:} A diferencia de los Objetos de Valor, las Entidades pueden cambiar su estado a lo largo del tiempo.
+  \item \textbf{Ciclo de vida:} Las Entidades tienen un ciclo de vida que abarca desde su creación hasta su eliminación o finalización.
+  \item \textbf{Relaciones y asociaciones:} Las Entidades pueden estar relacionadas y asociadas con otras Entidades o con Objetos de Valor.
+  \item \textbf{Persistencia:} Las Entidades a menudo se almacenan y persisten en una base de datos u otro medio de almacenamiento.
+\end{itemize}
 
 El diseño de las entidades en DDD se enfoca en capturar el conocimiento del dominio y representar las reglas y
 restricciones del problema de manera adecuada. Se busca construir un modelo rico y expresivo que refleje de cerca
 la realidad del dominio y permita una implementación más eficiente y mantenible.
-Las Entidades identificados son los siguientes: Paciente, Médico, Consultorio, Historial Médico.
 
 
 
