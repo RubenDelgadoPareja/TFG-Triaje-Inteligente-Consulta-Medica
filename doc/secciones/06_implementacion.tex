@@ -1,6 +1,50 @@
 \chapter{Implementación}
 
-La implementación del software se ha dividido en hitos. Estos, han sido definidos en Github
-y cada uno de ellos contiene un grupo de \textit{issues} que se corresponden con las distintas
-mejoras que se han ido incorporando al software a lo largo de su desarrollo.\\
+La implementación del software se ha dividido en hitos. Cada hito representa cada \textit{PVM} que se obtendrá.
+Los hitos han sido definidos en GitHub y cada uno de ellos contiene un grupo de \textit{issues} que se corresponden
+con las distintas mejoras que se han ido incorporando al software a lo largo de su desarrollo.
+
+A lo largo de este capítulo se pretende reflejar las herramientas usadas durante todo el proceso de desarrollo y
+se argumentará por qué se han tomado estas decisiones, al igual que en el capítulo \ref*{ch:Metodología} explicamos
+la planificación y forma de trabajo.
+
+\section{Hito 0: Montar repositorio inicial}
+
+\subsection{Entorno de Desarrollo Integrado}
+He decidido elegir Visual Studio Code para el desarrollo del proyecto debido a una serie de ventajas. La principal ventaja
+es que tengo una gran experiencia utilizándola y me siento cómodo desarrollando. Además, tiene una amplia comunidad y
+extensiones que mejoran la experiencia de desarrollo y permite adaptar el IDE al proyecto, también es gratuita frente
+a otras opciones, es ligero, multiplataforma y muy personalizable.
+
+\subsection{Memoria}
+
+\paragraph*{Compilación de LaTeX}
+La memoria se ha escrito usando el lenguaje LaTeX, que es un sistema de composición de documentos bastante utilizado
+en el ámbito académico y científico, es necesario para poder generar la documentación final, agrupando cada capítulo, sección y
+gráfica. Para generar este archivo final, se necesita ejecutar el comando \textit{all} del Makefile
+
+\paragraph*{Corrector ortográfico semántico}
+Para comprobar activamente que lo escrito en la memoria esté correcto se ha empleado una herramienta de LaTeX llamada \href{https://github.com/sylvainhalle/textidote}{TeXtidote}.
+Esta herramienta nos permite corregir la ortografía, gramática y semántica de la documentación escrita. Se puede ejecutar la corrección a través del comando \textit{check} del Makefile,
+generando un borrador con la documentación marcando los errores y posibles cambios. Además, se ha añadido este comando a los hooks de GitHub para ejecutarlo antes de cada commit.
+
+\subsection{Código}
+
+\paragraph*{Lenguaje de Programación}
+He optado por escoger Ruby como el lenguaje principal para desarrollar este trabajo debido a las numerosas ventajas que me ofrece.
+Es un lenguaje que conozco con anterioridad y he trabajado con él, tiene una gran simplicidad sintáctica, lo que facilita
+la escritura de código limpio y legible. Cuenta con una gran batería de librerías o gemas que agiliza el desarrollo y permite la
+implementación rápida de características. Finalmente, nos aporta un framework como Ruby on Rails que favorece el desarrollo ágil que
+me permitirá centrarme en la lógica del negocio y en el diseño dirigido al dominio.
+
+\paragraph*{Análisis estático}
+Es necesario tener un constante análisis estático para mantener un código limpio, coherente y libre de errores, de esta forma garantizar la calidad, la eficiencia y sostenibilidad a largo
+del tiempo. Se ha decidido elegir Rubocop, ya que es un \textit{linter} que se utiliza para el lenguaje de Ruby, tiene una gran comunidad de desarrolladores, la he utilizado con anterioridad
+y es la más recomendada. Las otras opciones que se han barajado son Reek, Standard y Solargraph
+
+\paragraph*{Test unitarios e integración}
+Como framework de pruebas he decidido escoger RSpec por su potencia y simplicidad. Esta herramienta tiene una gran popularidad en el desarrollo
+del software con lenguajes como Ruby on Rails, gracias a su legibilidad y capacidad de expresar claramente las especificaciones del código con una sintaxis
+muy cercana al lenguaje natural. Permite crear escenarios de prueba y fáciles de mantener y su amplia comunidad nos aporta un valioso soporte y recursos.
+
 
