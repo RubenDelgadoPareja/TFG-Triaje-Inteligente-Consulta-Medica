@@ -37,9 +37,14 @@ la escritura de código limpio y legible. Cuenta con una gran batería de librer
 implementación rápida de características. Finalmente, nos aporta un framework como Ruby on Rails que favorece el desarrollo ágil que
 me permitirá centrarme en la lógica del negocio y en el diseño dirigido al dominio.
 
+\paragraph*{Integración Continua}
+Para la automatización de procesos de integración se ha escogido usar los workflows de GitHub, debido a que es un servicio gratuito, fácil de configurar y escalabilidad.
+Gracias a esta tecnología podemos automatizar la ejecución de test, linter y corrector ortográfico, de esta manera comprobaremos antes de ciertas acciones con los hooks de GitHub que todo está
+correctamente. También se había sopesado la opción de utilizar una gema llamada \textit{overcommit}. Sin embargo, no se ha escogido porque sería una carga innecesaria del sistema.
+
 \paragraph*{Análisis estático}
 Es necesario tener un constante análisis estático para mantener un código limpio, coherente y libre de errores, de esta forma garantizar la calidad, la eficiencia y sostenibilidad a largo
-del tiempo. Se ha decidido elegir Rubocop, ya que es un \textit{linter} que se utiliza para el lenguaje de Ruby, tiene una gran comunidad de desarrolladores, la he utilizado con anterioridad
+del tiempo. Se ha decidido elegir Rubocop, ya que es un \textit{linter} que se emplea para el lenguaje de Ruby, tiene una gran comunidad de desarrolladores, la he utilizado con anterioridad
 y es la más recomendada. Las otras opciones que se han barajado son Reek, Standard y Solargraph
 
 \paragraph*{Test unitarios e integración}

@@ -33,3 +33,5 @@ Reek
 Standard
 RSpec
 IDE
+workflows
+overcommit
