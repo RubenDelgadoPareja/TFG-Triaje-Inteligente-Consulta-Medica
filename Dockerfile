@@ -1,16 +1,29 @@
-FROM ruby:3.0.2
+# Dockerfile
 
-RUN apt-get update && apt-get install -y nano
+# Utilizar la imagen oficial de Ruby como imagen base
+FROM ruby:alpine
 
-RUN mkdir TFG-Triage-Inteligente-Consulta-Medica
+# Establecemos el directorio de trabajo dentro del contenedor
+WORKDIR $HOME/TFG-Triage-Inteligente-Consulta-Medica
 
-WORKDIR /TFG-Triage-Inteligente-Consulta-Medica
+# Copiamos las dependencias necesarias y las instalamos (Gemfile)
+COPY Gemfile Gemfile.lock ./
 
-COPY . /TFG-Triage-Inteligente-Consulta-Medica
-
+# Añadimos al Gemfile la gema bundler para instalar el resto
 RUN gem install bundler
 
+# Ejecutamos las dependencias
 RUN bundler install
 
+# Copiamos el resto
+COPY . .
 
+# Crear un usuario no privilegiado
+RUN adduser -D usertfg
+
+# Cambiar al usuario no privilegiado
+USER usertfg
+
+# Comandos para ejecutar el servidor cuando se construya la imagen
+CMD ["ruby", "app.rb"]
 
