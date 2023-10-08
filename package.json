@@ -1,7 +1,7 @@
 {
     "name": "TFG-plantilla",
     "version": "0.0.1",
-    "description": "Plantilla para un TFG",
+    "description": "TODO: Descripcion del proyecto",
     "main": "app.js",
     "license": "GPL-3.0",
     "directories": {
@@ -9,12 +9,25 @@
         "test": "test"
     },
     "scripts": {
+        "build:docker": "docker build -t triage-inteligente-node-ts .",
+        "start:docker": "docker run -p 3000:3000 triage-inteligente-node-ts",
+        "lint": "eslint . --ext .ts",
+        "lint:fix": "eslint . --ext .ts --fix",
         "test": "mocha test/test_app.js --exit"
     },
     "dependencies": {
-        "mocha": "^5.1.1"
+        "express": "^4.18.2",
+        "mocha": "^10.2.0",
+        "typescript": "^5.2.2"
     },
     "devDependencies": {
-        "chai": "^4.2.0"
+        "@typescript-eslint/eslint-plugin": "^6.7.4",
+        "@typescript-eslint/parser": "^6.7.4",
+        "chai": "^4.2.0",
+        "eslint": "^8.51.0",
+        "eslint-config-prettier": "^9.0.0",
+        "eslint-plugin-prettier": "^5.0.0",
+        "prettier": "^3.0.3",
+        "ts-node": "^10.9.1"
     }
 }
