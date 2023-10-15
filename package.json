@@ -9,8 +9,8 @@
         "test": "test"
     },
     "scripts": {
-        "build:docker": "docker build -t triage-inteligente-node-ts .",
-        "start:docker": "docker run -p 3000:3000 triage-inteligente-node-ts",
+        "start": "node build/index.js",
+        "tsc": "tsc",
         "lint": "eslint . --ext .ts",
         "lint:fix": "eslint . --ext .ts --fix",
         "test": "mocha test/test_app.js --exit"
@@ -21,6 +21,7 @@
         "typescript": "^5.2.2"
     },
     "devDependencies": {
+        "@types/express": "^4.17.19",
         "@typescript-eslint/eslint-plugin": "^6.7.4",
         "@typescript-eslint/parser": "^6.7.4",
         "chai": "^4.2.0",
