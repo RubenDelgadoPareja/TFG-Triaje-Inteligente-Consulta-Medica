@@ -1,23 +1,23 @@
 name: Build latex
 on:
-    push:
-    pull_request:
-        branches:
-            - master
+  push:
+  pull_request:
+    branches:
+      - master
 jobs:
-    build_latex:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Set up Git repository
-              uses: actions/checkout@v2
-            - name: Compile LaTeX document
-              uses: xu-cheng/latex-action@v2
-              with:
-                  working_directory: doc/
-                  root_file: proyecto.tex
-            - name: Upload PDF as artifact
-              if: github.base_ref == 'master' || github.ref_name == 'master'
-              uses: actions/upload-artifact@v3
-              with:
-                  name: report-pdf
-                  path: doc/proyecto.pdf
+  build_latex:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v4.1.1
+      - name: Compile LaTeX document
+        uses: xu-cheng/latex-action@v2
+        with:
+          working_directory: doc/
+          root_file: proyecto.tex
+      - name: Upload PDF as artifact
+        if: github.base_ref == 'master' || github.ref_name == 'master'
+        uses: actions/upload-artifact@v3
+        with:
+          name: report-pdf
+          path: doc/proyecto.pdf

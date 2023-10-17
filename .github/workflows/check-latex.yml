@@ -3,24 +3,24 @@ on: push
 env:
   TEXTIDOTE_URL: https://github.com/sylvainhalle/textidote/releases/download/v0.8.3/textidote_0.8.3_all.deb
 jobs:
-    check_latex:
-        runs-on: ubuntu-latest
-        defaults:
-          run:
-            working-directory: ./doc
-        steps:
-            - name: Set up Git repository
-              uses: actions/checkout@v2
-            - name: Download textidote
-              run: wget $TEXTIDOTE_URL
-            - name: Install textidote
-              run: sudo apt-get install ./textidote_*_all.deb
-            - name: Check spanish text
-              id: check_es
-              run: make es-check
-            - name: Upload report artifact
-              if: success() || failure()
-              uses: actions/upload-artifact@v3
-              with:
-                name: textidote_report
-                path: doc/report_*.html
+  check_latex:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./doc
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v4.1.1
+      - name: Download textidote
+        run: wget $TEXTIDOTE_URL
+      - name: Install textidote
+        run: sudo apt-get install ./textidote_*_all.deb
+      - name: Check spanish text
+        id: check_es
+        run: make es-check
+      - name: Upload report artifact
+        if: success() || failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: textidote_report
+          path: doc/report_*.html
