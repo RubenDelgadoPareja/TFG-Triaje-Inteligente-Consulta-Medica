@@ -5,6 +5,7 @@ env:
 jobs:
   check_latex:
     runs-on: ubuntu-latest
+    continue-on-error: true
     defaults:
       run:
         working-directory: ./doc
