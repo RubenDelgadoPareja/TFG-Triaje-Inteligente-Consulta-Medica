@@ -1,7 +1,11 @@
 name: Build latex
 on:
   push:
+    paths:
+      - '/doc/**'
   pull_request:
+    paths:
+      - '/doc/**'
     branches:
       - master
 jobs:

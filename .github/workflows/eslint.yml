@@ -1,5 +1,8 @@
 name: ESLint
-on: push
+on:
+  push:
+    paths:
+      - '/src/**.ts'
 jobs:
   lint:
     runs-on: ubuntu-latest
@@ -7,11 +10,11 @@ jobs:
       - name: Set up Git repository
         uses: actions/checkout@v4
       - name: Set up Node version
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 16
           check-latest: true
       - name: Install dependencies
-        run: npm install
+        run: npm ci
       - name: Lint
         run: npm run lint
