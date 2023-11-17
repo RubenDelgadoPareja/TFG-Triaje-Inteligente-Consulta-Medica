@@ -2,10 +2,10 @@ name: Build latex
 on:
   push:
     paths:
-      - '/doc/**'
+      - 'doc/**'
   pull_request:
     paths:
-      - '/doc/**'
+      - 'doc/**'
     branches:
       - master
 jobs:
