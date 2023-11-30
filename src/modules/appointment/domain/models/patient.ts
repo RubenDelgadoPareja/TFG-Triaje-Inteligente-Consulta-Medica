@@ -22,4 +22,8 @@ export class Patient {
     const regexSocialSecurity: RegExp = /^[0-9]{12}$/;
     return regexSocialSecurity.test(this.socialSecurityNumber.toString());
   }
+
+  private getName(): string {
+    return this.fullName;
+  }
 }
