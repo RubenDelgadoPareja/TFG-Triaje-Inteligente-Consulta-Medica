@@ -26,4 +26,8 @@ export class Patient {
   private getName(): string {
     return this.fullName;
   }
+
+  private getRisk(): HealthRiskEnum {
+    return this.risk;
+  }
 }
