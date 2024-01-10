@@ -5,6 +5,10 @@ type Right<T> = { kind: 'right'; rightValue: T };
 
 type EitherValue<L, R> = Left<L> | Right<R>;
 
+/**
+ * @description
+ * Either is a type that represents a value of one of two possible types (a disjoint union).
+ */
 export class Either<L, R> {
   private constructor(private readonly value: EitherValue<L, R>) {}
 

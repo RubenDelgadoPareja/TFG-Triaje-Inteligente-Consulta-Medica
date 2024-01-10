@@ -4,6 +4,10 @@ const isEntity = (v: unknown): v is Entity<unknown> => {
   return v instanceof Entity;
 };
 
+/**
+ * @description
+ * Entity represents anything that has own identity, which is defined by UniqueEntityID.
+ */
 export abstract class Entity<T> {
   protected readonly _id: UniqueEntityID;
   public readonly props: T;

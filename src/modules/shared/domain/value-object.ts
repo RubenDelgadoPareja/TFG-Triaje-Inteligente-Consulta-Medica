@@ -4,8 +4,8 @@ interface ValueObjectProps {
 }
 
 /**
- * @desc ValueObjects are objects that we determine their
- * equality through their structrual property.
+ * @desc
+ * ValueObjects do not have an identity. They are defined by their attributes.
  */
 
 export abstract class ValueObject<T extends ValueObjectProps> {
