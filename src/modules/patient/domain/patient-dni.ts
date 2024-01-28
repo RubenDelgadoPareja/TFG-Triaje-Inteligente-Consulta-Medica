@@ -11,15 +11,15 @@ export class PatientDni extends ValueObject<PatientDniProps> {
     super(params);
   }
 
-  public static create(dni: string): PatientDni {
-    if (!PatientDni.isValid(dni)) {
-      throw new Error(`Invalid DNI: ${dni}`);
+  public static create(props: PatientDniProps): PatientDni {
+    if (!PatientDni.isValid(props.dni)) {
+      throw new Error(`Invalid DNI: ${props.dni}`);
     }
 
-    return new PatientDni({ dni });
+    return new PatientDni(props);
   }
 
-  getValue(): string {
+  get value(): string {
     return this.props.dni;
   }
 

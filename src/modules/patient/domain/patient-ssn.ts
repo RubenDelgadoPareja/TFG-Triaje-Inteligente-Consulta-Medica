@@ -12,19 +12,19 @@ export class PatientSsn extends ValueObject<PatientSsnProps> {
     super(props);
   }
 
-  public static create(ssn: number): PatientSsn {
-    if (!PatientSsn.isValid(ssn)) {
-      throw new Error(`Invalid SSN: ${ssn}`);
+  public static create(props: PatientSsnProps): PatientSsn {
+    if (!PatientSsn.isValid(props.ssn)) {
+      throw new Error(`Invalid SSN: ${props.ssn}`);
     }
 
-    return new PatientSsn({ ssn });
+    return new PatientSsn(props);
   }
 
-  getValue(): number {
+  get value(): number {
     return this.props.ssn;
   }
 
-  getValueString(): string {
+  get valueString(): string {
     return this.props.ssn.toString();
   }
 

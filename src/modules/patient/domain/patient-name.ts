@@ -12,19 +12,15 @@ export class PatientName extends ValueObject<PatientNameProps> {
     super(props);
   }
 
-  public static create(name: string): PatientName {
-    if (!PatientName.isValid(name)) {
-      throw new Error(`Invalid name: ${name}`);
+  public static create(props: PatientNameProps): PatientName {
+    if (!PatientName.isValid(props.name)) {
+      throw new Error(`Invalid name: ${props.name}`);
     }
 
-    return new PatientName({ name });
+    return new PatientName(props);
   }
 
-  getValue(): string {
-    return this.props.name;
-  }
-
-  getValueString(): string {
+  get value(): string {
     return this.props.name;
   }
 

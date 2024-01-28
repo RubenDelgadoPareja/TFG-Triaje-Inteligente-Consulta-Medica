@@ -10,11 +10,11 @@ export class PatientId extends ValueObject<{ value: UniqueEntityID }> {
     return new PatientId(id);
   }
 
-  getValue(): UniqueEntityID {
+  get value(): UniqueEntityID {
     return this.props.value;
   }
 
-  getValueString(): string {
+  get valueString(): string {
     return this.props.value.toString();
   }
 }
