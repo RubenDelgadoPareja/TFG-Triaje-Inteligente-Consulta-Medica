@@ -1,9 +1,8 @@
 import { Entity } from '../../shared/domain/entity';
 import { UniqueEntityID } from '../../shared/domain/unique-entity-id';
-import { AppointmentId } from './appointment-id';
 
 export interface AppointmentProps {
-  id: AppointmentId;
+  id: UniqueEntityID;
 }
 
 export class Appointment extends Entity<AppointmentProps> {
