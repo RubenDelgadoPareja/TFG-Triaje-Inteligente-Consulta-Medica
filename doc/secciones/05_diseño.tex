@@ -34,6 +34,25 @@ Dentro del Diseño Dirigido por el Dominio debemos abstraer distintos módulos p
 y componerlo desde los trozos más pequeños posibles de código hasta formar el diseño que resuelva este problema.
 Por esto es necesario dividir en diferentes secciones cada uno de estos módulos y explicarlos por separado.
 
+Podemos disgregar el dominio del problema de dos maneras diferentes, en subdominio o contexto acotado.
+Un subdominio representa una parte del dominio del problema que se puede separar del resto y que tiene sentido por sí mismo.
+Dentro de este dominio no tiene sentido dividir en subdominios más pequeños, ya que el dominio de por si es pequeño.
+
+Por otro lado, un contexto acotado desde el ámbito del desarrollo puede verse como un módulo cohesivo dentro de un sistema más grande.
+Representa un límite claro de un área específica de funcionalidad, junto con reglas de negocio, termonología y procesos asociados.
+Los contextos acotados que podemos encontrar son:
+\begin{itemize}
+    \item Autenticación
+    \item Gestión de Citas con prioridad
+    \item Gestión de Pacientes
+    \item Seguridad y Privacidad
+\end{itemize}
+
+Para cada uno de estos contextos acotados se creará un modelo de dominio que refleje las reglas de negocio y la terminología asociada.
+Estos modelos de dominio se utilizarán para guiar el diseño y la implementación del sistema, y se reflejarán en el código fuente.
+Los modelos de dominio se componen de entidades, objetos de valor y agregados, que representan los conceptos clave y las relaciones.
+Dichos modulos podrán comunicarse entre ellos en caso de ser necesario.
+
 \section*{Objetos de Valor}
 
 Son un objeto inmutable, usado para representar un valor. Pueden compararse con otros objetos de valor para comprobar
