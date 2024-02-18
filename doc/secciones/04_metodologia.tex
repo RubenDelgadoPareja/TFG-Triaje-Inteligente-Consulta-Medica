@@ -78,36 +78,18 @@ Una historia de Usuario podría ser un conjunto de Issues, aunque en GitHub las 
 Todas las Issues que solucionaré durante el desarrollo para construir el sistema están descritas en GitHub.
 
 \section{Diseño}
-El diseño es una parte fundamental del desarrollo de software, ya que, es la base de la que partiremos para implementar el sistema.
+Durante todo el capítulo destaca la importancia de un planificación adecuada que permita adaptarse a los cambios de forma ágil y eficiente.
+La elección del diseño del sistema se basa en esta metodología, buscando una estructura que permita una implementación flexible y centrada en las necesidades del usuario.
+
+El diseño del sistema es una parte fundamental del proceso de desarrollo de software, ya que proporciona la estructura sobre la cual se construirá el sistema.
 Los diseños que conozco son Modelo Vista Controlador, Programación Orientada a Objetos, Diseño Basado en Servicios o Diseño Dirigido por el Dominio.
-He escogido DDD, puesto que se centra en el usuario al igual que la planificación y el desarrollo ágil. Además, DDD es buena opción cuando los desarrolladores no conocen
-el dominio, porque mediante la comunicación constante con los expertos de dominio se puede llegar a un entendimiento común.
+En este proyecto, se ha elegido el Diseño Dirigido por el Dominio (DDD) \cite{domain-drive-design} como enfoque principal, en línea con el desarrollo ágil debido a que ambos se centran en el usuario.
+Además, DDD es buena opción cuando los desarrolladores no conocen el dominio, porque mediante la comunicación constante con los expertos de dominio se puede llegar a un entendimiento común.
 De esta comunicación surgirán los términos y conceptos que se utilizarán para describir el dominio del problema que se usarán para describir el dominio del problema, también conocido como lenguaje ubicuo.
 También coge pequeñas cosas de otros diseños como la Programación Orientada a Objetos para la creación de clases y objetos, y me parece una buena oportunidad para investigar y aprender nuevos diseños.
 
-\subsection{Modelo de Dominio}
-Dentro del Diseño Dirigido por el Dominio debemos abstraer distintos módulos para disgregar el problema en pequeñas partes
-y componerlo desde los trozos más pequeños posibles de código hasta formar el diseño que resuelva este problema.
-Por esto es necesario dividir en diferentes secciones cada uno de estos módulos y explicarlos por separado.
-
-Podemos disgregar el dominio del problema de dos maneras diferentes, en subdominio o contexto acotado.
-Un subdominio representa una parte del dominio del problema que se puede separar del resto y que tiene sentido por sí mismo.
-En este caso, no es necesario dividir en subdominios, sino directamente hacerlo en contextos acotados.
-
-Por otro lado, un contexto acotado desde el ámbito del desarrollo puede verse como un módulo cohesivo dentro de un sistema más grande.
-Representa un límite claro de un área específica de funcionalidad, junto con reglas de negocio propias, terminología y procesos asociados.
-Los contextos acotados que podemos se han encontrado son los siguientes, aunque pueden aparecer más a medida que avance el desarrollo:
-\begin{itemize}
-    \item Autenticación
-    \item Gestión de citas con prioridad
-    \item Gestión de pacientes
-    \item Seguridad y privacidad
-\end{itemize}
-
-Para cada uno de estos contextos acotados se creará un módulo de dominio que modele las reglas de negocio y la terminología asociada.
-Estos módulos de dominio se utilizarán para guiar el diseño, el modelado y la implementación del sistema, se verá reflejado en el código
-y serán explicados en el capítulo de Implementación.
-
+Cabe mencionar que el diseño entra en juego a partir del Milestone 1 y se reflejará en la sección de Implementación,
+más especificamente en el capitulo de diseño, donde se explicará cómo se ha aplicado el DDD en el proyecto.
 
 \section{Control de calidad}
 
