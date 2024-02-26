@@ -1,10 +1,10 @@
 \UseRawInputEncoding
 \chapter{Metodología}
-
-Para comenzar el desarrollo de un proyecto primero necesitamos una planificación inicial de la que partir.
+En este capítulo se describirá la forma en la que se ha trabajado durante el desarrollo del proyecto.
+La metodología se centrará en el usuario, por lo que se utilizará una planificación ágil, con el objetivo
+de conseguir un software de calidad y flexible. Esto debe estar presente constantemente en el desarrollo del proyecto.
 
 \section{Planificación}
-
 La planificación que se va a utilizar está basada en los {\href{https://agilemanifesto.org/iso/es/principles.html}{principios del manifiesto ágil}}
 Buscamos un tipo de planificación que se centre en el usuario, para que el propio usuario nos aporte retroalimentación.
 Una planificación ágil nos permite adaptarnos al cambio de requisitos haciendo uso de las iteraciones y
@@ -12,13 +12,20 @@ evitando caer en una documentación excesiva llena de diagramas y requisitos inn
 El desarrollo ágil construye el sistema por medio de aportaciones frecuentes de código que aportan valor
 al usuario, es necesario organizar las funcionalidades en bloques y que los cambios siempre surgen de una
 necesidad del usuario.
-Para cualquier tipo de planificación es indispensable una herramienta de control de versiones, para ello voy a emplear  git
-y GitHub como repositorio para hacer un seguimiento de todas las tareas.
-He de mencionar que todos los commits deben de hacer referencia a las tareas preestablecidas, por lo tanto,
-podremos saber cuando leamos el código hacía que historia de usuario o issue se refiere
-y poder observar el desarrollo en conjunto del proyecto
+
+\section{Análisis de Usuarios}
+Dentro del marco de desarrollo ágil, comprender las necesidades y experiencias de los usuarios es fundamental para el éxito del proyecto.
+En esta sección, nos adentramos en el concepto de User Journeys, una herramienta invaluable para entender cómo interactúan los usuarios con nuestro producto o servicio a lo largo de su ciclo de vida.
+
+\input{secciones/07_user-journey.tex}
+
+\section{Control de versiones}
+Una herramienta de control de versiones ayuda a un desarrollo iterativo, en el que se compruebe el trabajo constantemente indispensable para el desarrollo ágil.
+La herramienta que yo he escogido es git y GitHub por su facilidad de uso y por su integración con otras herramientas.
+Soy consciente de que existen otras herramientas como GitLab o Bitbucket, pero GitHub es muy buena opción, ya que, es gratuita, la más utilizada y tiene una gran comunidad.
 
 \section{Hitos}
+El desarrollo ágil debe ser incremental y para ello se debe dividir la carga de trabajo de diferentes hitos.
 Los hitos pueden definirse como metas a las que debemos de llegar durante el desarrollo del proyecto.
 Los hitos son una buena forma de limitar los bloques de trabajo del desarrollo y su principal intención es que
 al final de cada hito consigamos un producto mínimamente viable (\textit{PMV}) para que sea independiente e iterativo
@@ -58,6 +65,7 @@ Este PMV consiste en diseñar las clases y funciones necesarias para crear citas
 Los criterios de aceptación de este PMV son los tests de cada clase y sus funciones, además de reflejar en la memoria las decisiones tomadas
 
 \section{Historias de Usuarios}
+Este concepto es fundamental en el desarrollo ágil, ya que, resume las necesidades del usuario.
 Las historias de usuario son la unidad mínima de funcionalidad que el usuario necesita del sistema, es decir,
 expresa lo que quiere el usuario del sistema por esto lo hace tan importante, se centra completamente en el
 usuario. Encontraremos las Historias de Usuario repartidas por los Hitos del desarrollo del software .
@@ -73,23 +81,29 @@ Como paciente quiero tener prioridad en el orden de citas médicas.
 Como sanitario quiero asignarle una prioridad o riesgo a un paciente
 
 \section{Issues}
-Las Issues son simples tareas que hay que realizar para completar los Hitos.
-Una historia de Usuario podría ser un conjunto de Issues, aunque en GitHub las he englobado en una sola Issue
-Todas las Issues que solucionaré durante el desarrollo para construir el sistema están descritas en GitHub.
+Las issues son problemas que van surgiendo durante el desarrollo del hito o historia de usuario y
+el cojunto de las soluciones de las issues de un hito deben conformar el PMV que satisfazca la necesidad del usuario.
+Las issues deben hacer referencia a una historia de usuario, ya sea para solucionar un problema de la propia historia o para añadir una funcionalidad.
+Todas las Issues que solucionaré durante el desarrollo para construir el sistema están descritas en GitHub. Cada issue debe tener mínimo un commit asociado a su
+etiqueta y debe tener una pull request asociada para poder revisar el código.
+
+\section{Control de calidad}
+Para crear un software de calidad debemos de comprobar constantemente que lo desarrollado, para ello hemos usado la integración continua.
+Necesitamos pasar todos los tests antes de poder mezclar el código con la rama principal, para ello usamos GitHub Actions.
+Los tests se ejecutan automáticamente cada vez que se suben nuevos cambios. Se han definido los siguientes tests:
+
+\begin{itemize}
+    \item{Compilacion de la documentación de LaTeX.}
+    \item{Corrector ortográfico y gramatical.}
+    \item{Análisis estático de código de Typescript - ESLint.}
+\end{itemize}
 
 \section{Diseño}
 Durante todo el capítulo destaca la importancia de una planificación adecuada que permita adaptarse a los cambios de forma ágil y eficiente.
-La elección del diseño del sistema se basa en esta metodología, buscando una estructura que permita una implementación flexible y centrada en las necesidades del usuario.
+La metodología que se va a usar en el diseño busca una estructura que permita una implementación flexible y centrada en las necesidades del usuario.
 
 El diseño del sistema es una parte fundamental del proceso de desarrollo de software, ya que proporciona la estructura sobre la cual se construirá el sistema.
-Los diseños que conozco son Modelo Vista Controlador, Programación Orientada a Objetos, Diseño Basado en Servicios o Diseño Dirigido por el Dominio.
 En este proyecto, se ha elegido el Diseño Dirigido por el Dominio (DDD) \cite{domain-drive-design} como enfoque principal, en línea con el desarrollo ágil debido a que ambos se centran en el usuario.
 Además, DDD es buena opción cuando los desarrolladores no conocen el dominio, porque mediante la comunicación constante con los expertos de dominio se puede llegar a un entendimiento común.
 De esta comunicación surgirán los términos y conceptos que se utilizarán para describir el dominio del problema que se usarán para describir el dominio del problema, también conocido como lenguaje ubicuo.
-También coge pequeñas cosas de otros diseños como la Programación Orientada a Objetos para la creación de clases y objetos, y me parece una buena oportunidad para investigar y aprender nuevos diseños.
-
-Cabe mencionar que el diseño entra en juego a partir del Hito 1 y se reflejará en la sección de Implementación,
-más específicamente en el capítulo de diseño, donde se explicará cómo se ha aplicado el DDD en el proyecto.
-
-\section{Control de calidad}
 
