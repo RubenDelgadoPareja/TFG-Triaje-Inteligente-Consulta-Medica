@@ -4,7 +4,7 @@ on:
     paths:
       - 'src/tests/**.test.ts'
 jobs:
-  lint:
+  test:
     runs-on: ubuntu-latest
     steps:
       - name: Set up Git repository
