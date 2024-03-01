@@ -1,10 +1,12 @@
 \UseRawInputEncoding
 \chapter{Metodología}
+\label{ch:metodología}
 En este capítulo se describirá la forma en la que se ha trabajado durante el desarrollo del proyecto.
 La metodología se centrará en el usuario, por lo que se utilizará una planificación ágil, con el objetivo
 de conseguir un software de calidad y flexible. Esto debe estar presente constantemente en el desarrollo del proyecto.
 
 \section{Planificación}
+\label{sc:planificación}
 La planificación que se va a utilizar está basada en los {\href{https://agilemanifesto.org/iso/es/principles.html}{principios del manifiesto ágil}}
 Buscamos un tipo de planificación que se centre en el usuario, para que el propio usuario nos aporte retroalimentación.
 Una planificación ágil nos permite adaptarnos al cambio de requisitos haciendo uso de las iteraciones y
@@ -25,6 +27,7 @@ La herramienta que yo he escogido es git y GitHub por su facilidad de uso y por 
 Soy consciente de que existen otras herramientas como GitLab o Bitbucket, pero GitHub es muy buena opción, ya que, es gratuita, la más utilizada y tiene una gran comunidad.
 
 \section{Hitos}
+\label{sec:hitos}
 El desarrollo ágil debe ser incremental y para ello se debe dividir la carga de trabajo de diferentes hitos.
 Los hitos pueden definirse como metas a las que debemos de llegar durante el desarrollo del proyecto.
 Los hitos son una buena forma de limitar los bloques de trabajo del desarrollo y su principal intención es que
@@ -32,6 +35,7 @@ al final de cada hito consigamos un producto mínimamente viable (\textit{PMV}) 
 Los hitos que se deben de cumplir están reflejados en el GitHub y son los siguientes:
 
 \subsection*{\href{https://github.com/RubenDelgadoPareja/TFG-Triage-Inteligente-Consulta-Medica/milestone/1}{Hito 0: Infraestructura inicial y documentación}}
+\label{sb:hito0}
 
 El primer PMV consiste en alcanzar un repositorio inicial donde comenzar a forjar toda la arquitectura del proyecto con una planificación inicial.
 Para aceptar el PMV, el repositorio debe de contener:
@@ -46,6 +50,7 @@ Para aceptar el PMV, el repositorio debe de contener:
 \end{itemize}
 
 \subsection*{\href{https://github.com/RubenDelgadoPareja/TFG-Triage-Inteligente-Consulta-Medica/milestone/7}{Hito 1: Modelado del Problema con DDD}}
+\label{sb:hito1}
 
 Este PMV consiste en modular el dominio del problema para facilitar el diseño e implementación.
 Para aceptar el PMV la memoria debe de recoger una sección específica sobre cómo se aplicará el DDD la cual incluya:
@@ -88,6 +93,7 @@ Todas las Issues que solucionaré durante el desarrollo para construir el sistem
 etiqueta y debe tener una pull request asociada para poder revisar el código.
 
 \section{Control de calidad}
+\label{sc:control-calidad}
 Para crear un software de calidad debemos de comprobar constantemente que lo desarrollado, para ello hemos usado la integración continua.
 Necesitamos pasar todos los tests antes de poder mezclar el código con la rama principal, para ello usamos GitHub Actions.
 Los tests se ejecutan automáticamente cada vez que se suben nuevos cambios. Se han definido los siguientes tests:
@@ -99,6 +105,7 @@ Los tests se ejecutan automáticamente cada vez que se suben nuevos cambios. Se 
 \end{itemize}
 
 \section{Diseño}
+\label{sc:diseño}
 Durante todo el capítulo destaca la importancia de una planificación adecuada que permita adaptarse a los cambios de forma ágil y eficiente.
 La metodología que se va a usar en el diseño busca una estructura que permita una implementación flexible y centrada en las necesidades del usuario.
 

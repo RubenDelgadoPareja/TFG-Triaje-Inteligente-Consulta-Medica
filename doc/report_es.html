@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>TeXtidote analysis</title>
+<style type="text/css">
+body {
+  font-family: sans-serif;
+}
+.highlight, .highlight-sh, .highlight-spelling {
+  padding: 2pt;
+  border-radius: 4pt;
+  cursor: help;
+  opacity: 0.7;
+  border: dashed 1px;
+}
+.highlight {
+  background-color: orange;
+  color: black;
+}
+.highlight-sh {
+  background-color: yellow;
+  color: black;
+}
+.highlight-spelling {
+  background-color: red;
+  color: white;
+}
+div.original-file {
+  font-family: monospace;
+  font-size: 11pt;
+  background-color: #f8f8ff;
+  padding: 20pt;
+  border-radius: 6pt;
+}
+.textidote {
+  	background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+PHN2ZyAgIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIgICB4bWxuczpjYz0iaHR0cDovL2NyZWF0aXZlY29tbW9ucy5vcmcvbnMjIiAgIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyIgICB4bWxuczpzdmc9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiAgIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgICB4bWxuczpzb2RpcG9kaT0iaHR0cDovL3NvZGlwb2RpLnNvdXJjZWZvcmdlLm5ldC9EVEQvc29kaXBvZGktMC5kdGQiICAgeG1sbnM6aW5rc2NhcGU9Imh0dHA6Ly93d3cuaW5rc2NhcGUub3JnL25hbWVzcGFjZXMvaW5rc2NhcGUiICAgd2lkdGg9IjEwMC4wOTEwNW1tIiAgIGhlaWdodD0iMTguMjA5MDk5bW0iICAgdmlld0JveD0iMCAwIDEwMC4wOTEwNSAxOC4yMDkwOTkiICAgdmVyc2lvbj0iMS4xIiAgIGlkPSJzdmc4IiAgIGlua3NjYXBlOnZlcnNpb249IjAuOTEgcjEzNzI1IiAgIHNvZGlwb2RpOmRvY25hbWU9InRleHRpZG90ZS5zdmciPiAgPGRlZnMgICAgIGlkPSJkZWZzMiIgLz4gIDxzb2RpcG9kaTpuYW1lZHZpZXcgICAgIGlkPSJiYXNlIiAgICAgcGFnZWNvbG9yPSIjZmZmZmZmIiAgICAgYm9yZGVyY29sb3I9IiM2NjY2NjYiICAgICBib3JkZXJvcGFjaXR5PSIxLjAiICAgICBpbmtzY2FwZTpwYWdlb3BhY2l0eT0iMC4wIiAgICAgaW5rc2NhcGU6cGFnZXNoYWRvdz0iMiIgICAgIGlua3NjYXBlOnpvb209IjEiICAgICBpbmtzY2FwZTpjeD0iLTI1NC4yNTMwOSIgICAgIGlua3NjYXBlOmN5PSItMjc4LjM3NTkxIiAgICAgaW5rc2NhcGU6ZG9jdW1lbnQtdW5pdHM9Im1tIiAgICAgaW5rc2NhcGU6Y3VycmVudC1sYXllcj0ibGF5ZXIxIiAgICAgc2hvd2dyaWQ9ImZhbHNlIiAgICAgZml0LW1hcmdpbi10b3A9IjAiICAgICBmaXQtbWFyZ2luLWxlZnQ9IjAiICAgICBmaXQtbWFyZ2luLXJpZ2h0PSIwIiAgICAgZml0LW1hcmdpbi1ib3R0b209IjAiICAgICBpbmtzY2FwZTp3aW5kb3ctd2lkdGg9IjE5MjAiICAgICBpbmtzY2FwZTp3aW5kb3ctaGVpZ2h0PSIxMDIxIiAgICAgaW5rc2NhcGU6d2luZG93LXg9IjAiICAgICBpbmtzY2FwZTp3aW5kb3cteT0iMjY1IiAgICAgaW5rc2NhcGU6d2luZG93LW1heGltaXplZD0iMSIgLz4gIDxtZXRhZGF0YSAgICAgaWQ9Im1ldGFkYXRhNSI+ICAgIDxyZGY6UkRGPiAgICAgIDxjYzpXb3JrICAgICAgICAgcmRmOmFib3V0PSIiPiAgICAgICAgPGRjOmZvcm1hdD5pbWFnZS9zdmcreG1sPC9kYzpmb3JtYXQ+ICAgICAgICA8ZGM6dHlwZSAgICAgICAgICAgcmRmOnJlc291cmNlPSJodHRwOi8vcHVybC5vcmcvZGMvZGNtaXR5cGUvU3RpbGxJbWFnZSIgLz4gICAgICAgIDxkYzp0aXRsZSAvPiAgICAgIDwvY2M6V29yaz4gICAgPC9yZGY6UkRGPiAgPC9tZXRhZGF0YT4gIDxnICAgICBpbmtzY2FwZTpsYWJlbD0iTGF5ZXIgMSIgICAgIGlua3NjYXBlOmdyb3VwbW9kZT0ibGF5ZXIiICAgICBpZD0ibGF5ZXIxIiAgICAgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTI5LjczODA5NSwtNzAuNTc3NzUxKSI+ICAgIDxnICAgICAgIHN0eWxlPSJmb250LXN0eWxlOm5vcm1hbDtmb250LXdlaWdodDpub3JtYWw7Zm9udC1zaXplOjIwLjkyODk0NTU0cHg7bGluZS1oZWlnaHQ6MS4yNTtmb250LWZhbWlseTpzYW5zLXNlcmlmO2xldHRlci1zcGFjaW5nOjBweDt3b3JkLXNwYWNpbmc6MHB4O2ZpbGw6I2ZmZmZmZjtmaWxsLW9wYWNpdHk6MTtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6MS45Nzc1MzgyMztzdHJva2UtbWl0ZXJsaW1pdDo0O3N0cm9rZS1kYXNoYXJyYXk6bm9uZSIgICAgICAgaWQ9InRleHQ4MzYiPiAgICAgIDxwYXRoICAgICAgICAgZD0ibSAzMC43MjY4NjQsNzEuNTY2NTIgNS4yMzIyMzYsMCAwLDQuMjA5MDQ0IDUuODEzNTk2LDAgMCwzLjYwNDQyOSAtNS44MTM1OTYsMCAwLDQuODEzNjU4IDUuODEzNTk2LDAgMCwzLjYwNDQyOSAtMTEuMDQ1ODMyLDAgMCwtMTYuMjMxNTYgeiIgICAgICAgICBzdHlsZT0iZm9udC1zdHlsZTpub3JtYWw7Zm9udC12YXJpYW50Om5vcm1hbDtmb250LXdlaWdodDpub3JtYWw7Zm9udC1zdHJldGNoOm5vcm1hbDtmb250LWZhbWlseTpUdXRvcjstaW5rc2NhcGUtZm9udC1zcGVjaWZpY2F0aW9uOlR1dG9yO2ZpbGw6I2ZmZmZmZjtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6MS45Nzc1MzgyMztzdHJva2UtbWl0ZXJsaW1pdDo0O3N0cm9rZS1kYXNoYXJyYXk6bm9uZSIgICAgICAgICBpZD0icGF0aDMzODYiIC8+ICAgICAgPHBhdGggICAgICAgICBkPSJtIDQyLjMzNTg4OCw3NS43NzU1NjQgMTEuMDQ1ODMyLDAgMCw3LjgxMzQ3MyAtNS44MTM1OTYsMCAwLDAuNjA0NjE0IDUuODEzNTk2LDAgMCwzLjYwNDQyOSAtMTEuMDQ1ODMyLDAgMCwtMTIuMDIyNTE2IHogbSA1LjIzMjIzNiw0LjIwOTA0MyAwLjU4MTM2LDAgMCwtMC42MDQ2MTQgLTAuNTgxMzYsMCAwLDAuNjA0NjE0IHoiICAgICAgICAgc3R5bGU9ImZvbnQtc3R5bGU6bm9ybWFsO2ZvbnQtdmFyaWFudDpub3JtYWw7Zm9udC13ZWlnaHQ6bm9ybWFsO2ZvbnQtc3RyZXRjaDpub3JtYWw7Zm9udC1mYW1pbHk6VHV0b3I7LWlua3NjYXBlLWZvbnQtc3BlY2lmaWNhdGlvbjpUdXRvcjtmaWxsOiNmZmZmZmY7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjEuOTc3NTM4MjM7c3Ryb2tlLW1pdGVybGltaXQ6NDtzdHJva2UtZGFzaGFycmF5Om5vbmUiICAgICAgICAgaWQ9InBhdGgzMzg4IiAvPiAgICAgIDxwYXRoICAgICAgICAgZD0ibSA1My45NDQ5MTIsNzUuNzc1NTY0IDUuMjMyMjM2LDAgMCwzLjYwNDQyOSAtNS4yMzIyMzYsMCAwLC0zLjYwNDQyOSB6IG0gNS44MTM1OTYsMCA1LjIzMjIzNiwwIDAsMy42MDQ0MjkgLTUuMjMyMjM2LDAgMCwtMy42MDQ0MjkgeiBtIC01LjgxMzU5Niw4LjQxODA4NyA1LjIzMjIzNiwwIDAsMy42MDQ0MjkgLTUuMjMyMjM2LDAgMCwtMy42MDQ0MjkgeiBtIDUuODEzNTk2LDAgNS4yMzIyMzYsMCAwLDMuNjA0NDI5IC01LjIzMjIzNiwwIDAsLTMuNjA0NDI5IHoiICAgICAgICAgc3R5bGU9ImZvbnQtc3R5bGU6bm9ybWFsO2ZvbnQtdmFyaWFudDpub3JtYWw7Zm9udC13ZWlnaHQ6bm9ybWFsO2ZvbnQtc3RyZXRjaDpub3JtYWw7Zm9udC1mYW1pbHk6VHV0b3I7LWlua3NjYXBlLWZvbnQtc3BlY2lmaWNhdGlvbjpUdXRvcjtmaWxsOiNmZmZmZmY7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjEuOTc3NTM4MjM7c3Ryb2tlLW1pdGVybGltaXQ6NDtzdHJva2UtZGFzaGFycmF5Om5vbmUiICAgICAgICAgaWQ9InBhdGgzMzkwIiAvPiAgICAgIDxwYXRoICAgICAgICAgZD0ibSA2NS41NTM5MzYsNzEuNTY2NTIgNS4yMzIyMzYsMCAwLDQuMjA5MDQ0IDUuODEzNTk2LDAgMCwzLjYwNDQyOSAtNS44MTM1OTYsMCAwLDQuODEzNjU4IDUuODEzNTk2LDAgMCwzLjYwNDQyOSAtMTEuMDQ1ODMyLDAgMCwtMTYuMjMxNTYgeiIgICAgICAgICBzdHlsZT0iZm9udC1zdHlsZTpub3JtYWw7Zm9udC12YXJpYW50Om5vcm1hbDtmb250LXdlaWdodDpub3JtYWw7Zm9udC1zdHJldGNoOm5vcm1hbDtmb250LWZhbWlseTpUdXRvcjstaW5rc2NhcGUtZm9udC1zcGVjaWZpY2F0aW9uOlR1dG9yO2ZpbGw6I2ZmZmZmZjtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6MS45Nzc1MzgyMztzdHJva2UtbWl0ZXJsaW1pdDo0O3N0cm9rZS1kYXNoYXJyYXk6bm9uZSIgICAgICAgICBpZD0icGF0aDMzOTIiIC8+ICAgICAgPHBhdGggICAgICAgICBkPSJtIDc3LjE2Mjk2LDc1Ljc3NTU2NCA1LjIzMjIzNiwwIDAsMTIuMDIyNTE2IC01LjIzMjIzNiwwIDAsLTEyLjAyMjUxNiB6IG0gMCwtNC4yMDkwNDQgNS4yMzIyMzYsMCAwLDMuNjA0NDMgLTUuMjMyMjM2LDAgMCwtMy42MDQ0MyB6IiAgICAgICAgIHN0eWxlPSJmb250LXN0eWxlOm5vcm1hbDtmb250LXZhcmlhbnQ6bm9ybWFsO2ZvbnQtd2VpZ2h0Om5vcm1hbDtmb250LXN0cmV0Y2g6bm9ybWFsO2ZvbnQtZmFtaWx5OlR1dG9yOy1pbmtzY2FwZS1mb250LXNwZWNpZmljYXRpb246VHV0b3I7ZmlsbDojZmZmZmZmO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDoxLjk3NzUzODIzO3N0cm9rZS1taXRlcmxpbWl0OjQ7c3Ryb2tlLWRhc2hhcnJheTpub25lIiAgICAgICAgIGlkPSJwYXRoMzM5NCIgLz4gICAgICA8cGF0aCAgICAgICAgIGQ9Im0gODIuOTY3NDcyLDc1Ljc3NTU2NCA1LjgxMzU5NiwwIDAsLTQuMjA5MDQ0IDUuMjMyMjM2LDAgMCwxNi4yMzE1NiAtMTEuMDQ1ODMyLDAgMCwtMTIuMDIyNTE2IHogbSA1LjIzMjIzNiw4LjQxODA4NyAwLjU4MTM2LDAgMCwtNC44MTM2NTggLTAuNTgxMzYsMCAwLDQuODEzNjU4IHoiICAgICAgICAgc3R5bGU9ImZvbnQtc3R5bGU6bm9ybWFsO2ZvbnQtdmFyaWFudDpub3JtYWw7Zm9udC13ZWlnaHQ6bm9ybWFsO2ZvbnQtc3RyZXRjaDpub3JtYWw7Zm9udC1mYW1pbHk6VHV0b3I7LWlua3NjYXBlLWZvbnQtc3BlY2lmaWNhdGlvbjpUdXRvcjtmaWxsOiNmZmZmZmY7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjEuOTc3NTM4MjM7c3Ryb2tlLW1pdGVybGltaXQ6NDtzdHJva2UtZGFzaGFycmF5Om5vbmUiICAgICAgICAgaWQ9InBhdGgzMzk2IiAvPiAgICAgIDxwYXRoICAgICAgICAgZD0ibSA5NC41NzY0OTYsNzUuNzc1NTY0IDExLjA0NTgzNCwwIDAsMTIuMDIyNTE2IC0xMS4wNDU4MzQsMCAwLC0xMi4wMjI1MTYgeiBtIDUuMjMyMjM3LDguNDE4MDg3IDAuNTgxMzU3LDAgMCwtNC44MTM2NTggLTAuNTgxMzU3LDAgMCw0LjgxMzY1OCB6IiAgICAgICAgIHN0eWxlPSJmb250LXN0eWxlOm5vcm1hbDtmb250LXZhcmlhbnQ6bm9ybWFsO2ZvbnQtd2VpZ2h0Om5vcm1hbDtmb250LXN0cmV0Y2g6bm9ybWFsO2ZvbnQtZmFtaWx5OlR1dG9yOy1pbmtzY2FwZS1mb250LXNwZWNpZmljYXRpb246VHV0b3I7ZmlsbDojZmZmZmZmO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDoxLjk3NzUzODIzO3N0cm9rZS1taXRlcmxpbWl0OjQ7c3Ryb2tlLWRhc2hhcnJheTpub25lIiAgICAgICAgIGlkPSJwYXRoMzM5OCIgLz4gICAgICA8cGF0aCAgICAgICAgIGQ9Im0gMTA2LjE4NTUyLDcxLjU2NjUyIDUuMjMyMjQsMCAwLDQuMjA5MDQ0IDUuODEzNTksMCAwLDMuNjA0NDI5IC01LjgxMzU5LDAgMCw0LjgxMzY1OCA1LjgxMzU5LDAgMCwzLjYwNDQyOSAtMTEuMDQ1ODMsMCAwLC0xNi4yMzE1NiB6IiAgICAgICAgIHN0eWxlPSJmb250LXN0eWxlOm5vcm1hbDtmb250LXZhcmlhbnQ6bm9ybWFsO2ZvbnQtd2VpZ2h0Om5vcm1hbDtmb250LXN0cmV0Y2g6bm9ybWFsO2ZvbnQtZmFtaWx5OlR1dG9yOy1pbmtzY2FwZS1mb250LXNwZWNpZmljYXRpb246VHV0b3I7ZmlsbDojZmZmZmZmO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDoxLjk3NzUzODIzO3N0cm9rZS1taXRlcmxpbWl0OjQ7c3Ryb2tlLWRhc2hhcnJheTpub25lIiAgICAgICAgIGlkPSJwYXRoMzQwMCIgLz4gICAgICA8cGF0aCAgICAgICAgIGQ9Im0gMTE3Ljc5NDU0LDc1Ljc3NTU2NCAxMS4wNDU4NCwwIDAsNy44MTM0NzMgLTUuODEzNiwwIDAsMC42MDQ2MTQgNS44MTM2LDAgMCwzLjYwNDQyOSAtMTEuMDQ1ODQsMCAwLC0xMi4wMjI1MTYgeiBtIDUuMjMyMjQsNC4yMDkwNDMgMC41ODEzNiwwIDAsLTAuNjA0NjE0IC0wLjU4MTM2LDAgMCwwLjYwNDYxNCB6IiAgICAgICAgIHN0eWxlPSJmb250LXN0eWxlOm5vcm1hbDtmb250LXZhcmlhbnQ6bm9ybWFsO2ZvbnQtd2VpZ2h0Om5vcm1hbDtmb250LXN0cmV0Y2g6bm9ybWFsO2ZvbnQtZmFtaWx5OlR1dG9yOy1pbmtzY2FwZS1mb250LXNwZWNpZmljYXRpb246VHV0b3I7ZmlsbDojZmZmZmZmO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDoxLjk3NzUzODIzO3N0cm9rZS1taXRlcmxpbWl0OjQ7c3Ryb2tlLWRhc2hhcnJheTpub25lIiAgICAgICAgIGlkPSJwYXRoMzQwMiIgLz4gICAgPC9nPiAgPC9nPjwvc3ZnPg==);
+}
+h2.filename {
+  font-family: monospace;
+}
+h1.textidote {
+  width: 378px;
+  height: 68px;
+  display: block;
+}
+.keyword1 {
+  font-weight: bold;
+  color: green;
+}
+.keyword2 {
+  font-weight: bold;
+  color: darkblue;
+}
+.comment, .comment * {
+  color: darkred;
+  font-weight: normal;
+}
+.linenb {
+  font-style: italic;
+  color: lightgrey;
+  width: 30pt;
+  float: left;
+  margin-top: 1pt;
+  margin-bottom: 1pt;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.codeline {
+  margin-left: -30pt;
+  padding-left: 60pt;
+  margin-top: 1pt;
+  margin-bottom: 1pt;
+}
+.no-text {
+  display: none;
+}
+.clear {
+  clear: both;
+}
+</style>
+</head>
+<body>
+<a href="https://sylvainhalle.github.io/textidote"><h1 class="textidote"><span class="no-text">Results of TeXtidote analysis</span></h1></a>
+<p>Here is the result of analyzing your file(s) with TeXtidote. Hover the mouse over highlighted portions of the document to read a tooltip that gives you some writing advice.</p>
+<h2 class="filename">secciones/04_metodologia.tex</h2>
+
+<p>Found 10 warning(s)</p>
+<div class="original-file">
+<div class="linenb">&nbsp;&nbsp;1</div><div class="codeline">\<span class="highlight-spelling" title="Se ha encontrado un posible error ortográfico. (1) [lt:es:MORFOLOGIK_RULE_ES]"></span>UseRawInputEncoding</div><div class="clear"></div>
+<div class="linenb">&nbsp;&nbsp;2</div><div class="codeline">\chapter{Metodología}</div><div class="clear"></div>
+<div class="linenb">&nbsp;&nbsp;3</div><div class="codeline"><span class="keyword1">\label</span>{ch:metodología}</div><div class="clear"></div>
+<div class="linenb">&nbsp;&nbsp;4</div><div class="codeline">En este capítulo se describirá la forma en la que se ha trabajado durante el desarrollo del proyecto.</div><div class="clear"></div>
+<div class="linenb">&nbsp;&nbsp;5</div><div class="codeline">La metodología se centrará en el usuario, por lo que se utilizará una planificación ágil, con el objetivo</div><div class="clear"></div>
+<div class="linenb">&nbsp;&nbsp;6</div><div class="codeline">de conseguir un software de calidad y flexible. Esto debe estar presente constantemente en el desarrollo del proyecto.</div><div class="clear"></div>
+<div class="linenb">&nbsp;&nbsp;7</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">&nbsp;&nbsp;8</div><div class="codeline"><span class="keyword1">\section</span>{Planificación}</div><div class="clear"></div>
+<div class="linenb">&nbsp;&nbsp;9</div><div class="codeline"><span class="keyword1">\label</span>{sc:planificación}</div><div class="clear"></div>
+<div class="linenb">&nbsp;10</div><div class="codeline">La planificación que se va a <span class="highlight" title="Esta palabra ya ha aparecido en una de las frases inmediatamente anteriores. Puede usar un sinónimo para hacer más interesante el texto, excepto si la repetición es intencionada.. Suggestions: [usar, emplear] (406) [lt:es:ES_REPEATEDWORDS]">utilizar</span> está basada en los {\href{https://agilemanifesto.org/iso/es/principles.html}{principios del manifiesto ágil}}</div><div class="clear"></div>
+<div class="linenb">&nbsp;11</div><div class="codeline">Buscamos un tipo de planificación que se centre en el usuario, para que el propio usuario nos aporte retroalimentación.</div><div class="clear"></div>
+<div class="linenb">&nbsp;12</div><div class="codeline">Una planificación ágil nos permite adaptarnos al cambio de requisitos haciendo uso de las iteraciones y</div><div class="clear"></div>
+<div class="linenb">&nbsp;13</div><div class="codeline">evitando caer en una documentación excesiva llena de diagramas y requisitos innecesarios.</div><div class="clear"></div>
+<div class="linenb">&nbsp;14</div><div class="codeline">El desarrollo ágil construye el sistema por medio de aportaciones frecuentes de código que aportan valor</div><div class="clear"></div>
+<div class="linenb">&nbsp;15</div><div class="codeline">al usuario, es necesario organizar las funcionalidades en bloques y que los cambios siempre surgen de una</div><div class="clear"></div>
+<div class="linenb">&nbsp;16</div><div class="codeline">necesidad del usuario.</div><div class="clear"></div>
+<div class="linenb">&nbsp;17</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">&nbsp;18</div><div class="codeline"><span class="keyword1">\section</span>{Análisis de Usuarios}</div><div class="clear"></div>
+<div class="linenb">&nbsp;19</div><div class="codeline">Dentro del marco de desarrollo ágil, comprender las necesidades y experiencias de los usuarios es fundamental para el éxito del proyecto.</div><div class="clear"></div>
+<div class="linenb">&nbsp;20</div><div class="codeline">En esta sección, nos adentramos en el concepto de User Journeys, una herramienta invaluable para entender cómo interactúan los usuarios con nuestro producto o servicio a lo largo de su ciclo de vida.</div><div class="clear"></div>
+<div class="linenb">&nbsp;21</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">&nbsp;22</div><div class="codeline">\input{secciones/07_user-journey.tex}</div><div class="clear"></div>
+<div class="linenb">&nbsp;23</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">&nbsp;24</div><div class="codeline"><span class="keyword1">\section</span>{Control de versiones}</div><div class="clear"></div>
+<div class="linenb">&nbsp;25</div><div class="codeline">Una herramienta de control de versiones ayuda a un desarrollo iterativo, en el que se compruebe el trabajo constantemente indispensable para el desarrollo ágil.</div><div class="clear"></div>
+<div class="linenb">&nbsp;26</div><div class="codeline">La herramienta que yo he escogido es git y GitHub por su facilidad de uso y por su integración con otras herramientas.</div><div class="clear"></div>
+<div class="linenb">&nbsp;27</div><div class="codeline">Soy consciente de que existen otras herramientas como GitLab o Bitbucket, pero GitHub es muy buena opción, ya que, es gratuita, la más utilizada y tiene una gran comunidad.</div><div class="clear"></div>
+<div class="linenb">&nbsp;28</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">&nbsp;29</div><div class="codeline"><span class="keyword1">\section</span>{Hitos}</div><div class="clear"></div>
+<div class="linenb">&nbsp;30</div><div class="codeline"><span class="keyword1">\label</span>{sec:hitos}</div><div class="clear"></div>
+<div class="linenb">&nbsp;31</div><div class="codeline">El desarrollo ágil debe ser incremental y para ello se debe dividir la carga de trabajo de diferentes hitos.</div><div class="clear"></div>
+<div class="linenb">&nbsp;32</div><div class="codeline">Los hitos pueden definirse como metas a las que debemos de llegar durante el desarrollo del proyecto.</div><div class="clear"></div>
+<div class="linenb">&nbsp;33</div><div class="codeline">Los hitos son una buena forma de limitar los bloques de trabajo del desarrollo y su principal intención es que</div><div class="clear"></div>
+<div class="linenb">&nbsp;34</div><div class="codeline">al final de cada hito consigamos un producto mínimamente viable (<span class="keyword1">\textit</span>{PMV}) para que sea independiente e iterativo</div><div class="clear"></div>
+<div class="linenb">&nbsp;35</div><div class="codeline">Los hitos que se deben de cumplir están reflejados en el GitHub y son los siguientes:</div><div class="clear"></div>
+<div class="linenb">&nbsp;36</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">&nbsp;37</div><div class="codeline"><span class="keyword1">\subsection</span>*{\href{https://github.com/RubenDelgadoPareja/TFG-Triage-Inteligente-Consulta-Medica/milestone/1}{Hito 0: Infraestructura inicial y documentación}}</div><div class="clear"></div>
+<div class="linenb">&nbsp;38</div><div class="codeline"><span class="keyword1">\label</span>{sb:hito0}</div><div class="clear"></div>
+<div class="linenb">&nbsp;39</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">&nbsp;40</div><div class="codeline">El primer PMV consiste en alcanzar un repositorio inicial donde comenzar a forjar toda la arquitectura del proyecto con una planificación inicial.</div><div class="clear"></div>
+<div class="linenb">&nbsp;41</div><div class="codeline">Para aceptar el PMV, el repositorio debe de contener:</div><div class="clear"></div>
+<div class="linenb">&nbsp;42</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">&nbsp;43</div><div class="codeline"><span class="keyword2">\begin{itemize}</span></div><div class="clear"></div>
+<div class="linenb">&nbsp;44</div><div class="codeline">    <span class="keyword1">\item</span>{User Journeys.}</div><div class="clear"></div>
+<div class="linenb">&nbsp;45</div><div class="codeline">    <span class="keyword1">\item</span>{Hitos.}</div><div class="clear"></div>
+<div class="linenb">&nbsp;46</div><div class="codeline">    <span class="keyword1">\item</span>{Historias de Usuario.}</div><div class="clear"></div>
+<div class="linenb">&nbsp;47</div><div class="codeline">    <span class="keyword1">\item</span>{Comprobadores de gramática y ortografía.}</div><div class="clear"></div>
+<div class="linenb">&nbsp;48</div><div class="codeline">    <span class="keyword1">\item</span>{Comprobadores de compilación de LaTeX para la documentación.}</div><div class="clear"></div>
+<div class="linenb">&nbsp;49</div><div class="codeline">    <span class="keyword1">\item</span>{Documentar las secciones de Motivación, Objetivos y Planificación}</div><div class="clear"></div>
+<div class="linenb">&nbsp;50</div><div class="codeline"><span class="keyword2">\end{itemize}</span></div><div class="clear"></div>
+<div class="linenb">&nbsp;51</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">&nbsp;52</div><div class="codeline"><span class="keyword1">\subsection</span>*{\href{https://github.com/RubenDelgadoPareja/TFG-Triage-Inteligente-Consulta-Medica/milestone/7}{Hito 1: Modelado del Problema con DDD}}</div><div class="clear"></div>
+<div class="linenb">&nbsp;53</div><div class="codeline"><span class="keyword1">\label</span>{sb:hito1}</div><div class="clear"></div>
+<div class="linenb">&nbsp;54</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">&nbsp;55</div><div class="codeline">Este PMV consiste en modular el dominio del problema para facilitar el diseño e implementación.</div><div class="clear"></div>
+<div class="linenb">&nbsp;56</div><div class="codeline">Para aceptar el PMV la memoria debe de recoger una sección específica sobre cómo se aplicará el DDD la cual incluya:</div><div class="clear"></div>
+<div class="linenb">&nbsp;57</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">&nbsp;58</div><div class="codeline"><span class="keyword2">\begin{itemize}</span></div><div class="clear"></div>
+<div class="linenb">&nbsp;59</div><div class="codeline">    <span class="keyword1">\item</span> {Definición del dominio}</div><div class="clear"></div>
+<div class="linenb">&nbsp;60</div><div class="codeline">    <span class="keyword1">\item</span> {Definir el lenguaje ubicuo}</div><div class="clear"></div>
+<div class="linenb">&nbsp;61</div><div class="codeline">    <span class="keyword1">\item</span> {Identificar Entities, Value Objects, Aggregates}</div><div class="clear"></div>
+<div class="linenb">&nbsp;62</div><div class="codeline">    <span class="keyword1">\item</span> {Definir los Repositories y Services necesarios}</div><div class="clear"></div>
+<div class="linenb">&nbsp;63</div><div class="codeline"><span class="keyword2">\end{itemize}</span></div><div class="clear"></div>
+<div class="linenb">&nbsp;64</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">&nbsp;65</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">&nbsp;66</div><div class="codeline"><span class="keyword1">\subsection</span>*{\href{https://github.com/RubenDelgadoPareja/TFG-Triage-Inteligente-Consulta-Medica/milestone/2}{Hito 2: Arquitectura básica del sistema de colas de citas}}</div><div class="clear"></div>
+<div class="linenb">&nbsp;67</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">&nbsp;68</div><div class="codeline">Este PMV consiste en diseñar las clases y funciones necesarias para crear citas, almacenarlas en colas y priorizarlas mediante una heurística.</div><div class="clear"></div>
+<div class="linenb">&nbsp;69</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">&nbsp;70</div><div class="codeline">Los criterios de aceptación de este PMV son los tests de cada clase y sus funciones, además de reflejar en la memoria las decisiones tomadas</div><div class="clear"></div>
+<div class="linenb">&nbsp;71</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">&nbsp;72</div><div class="codeline"><span class="keyword1">\section</span>{Historias de Usuarios}</div><div class="clear"></div>
+<div class="linenb">&nbsp;73</div><div class="codeline">Este concepto es fundamental en el desarrollo ágil, ya que, resume las necesidades del usuario.</div><div class="clear"></div>
+<div class="linenb">&nbsp;74</div><div class="codeline">Las historias de usuario son la unidad mínima de funcionalidad que el usuario necesita del sistema, es decir,</div><div class="clear"></div>
+<div class="linenb">&nbsp;75</div><div class="codeline">expresa lo que quiere el usuario del sistema por esto lo hace tan importante, se centra completamente en el</div><div class="clear"></div>
+<div class="linenb">&nbsp;76</div><div class="codeline">usuario. Encontraremos las Historias de Usuario repartidas por los Hitos del desarrollo del software<span class="highlight" title="No se deja un espacio antes del punto.. Suggestions: [.] (4063) [lt:es:COMMA_PARENTHESIS_WHITESPACE]"></span> .</div><div class="clear"></div>
+<div class="linenb">&nbsp;77</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">&nbsp;78</div><div class="codeline">\noindent{Se han definido las siguientes historias de usuario:}</div><div class="clear"></div>
+<div class="linenb">&nbsp;79</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">&nbsp;80</div><div class="codeline"><span class="keyword1">\subsection</span>*{\href{https://github.com/RubenDelgadoPareja/TFG-Triage-Inteligente-Consulta-Medica/issues/19}{[HU-01] Triage Inteligente - Priorizar una cita.}}</div><div class="clear"></div>
+<div class="linenb">&nbsp;81</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">&nbsp;82</div><div class="codeline">Como paciente quiero tener prioridad en el orden de citas médicas.</div><div class="clear"></div>
+<div class="linenb">&nbsp;83</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">&nbsp;84</div><div class="codeline"><span class="keyword1">\subsection</span>*{\href{https://github.com/RubenDelgadoPareja/TFG-Triage-Inteligente-Consulta-Medica/issues/5}{[HU-02] Triage Inteligente - Establecer riesgo.}}</div><div class="clear"></div>
+<div class="linenb">&nbsp;85</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">&nbsp;86</div><div class="codeline">Como sanitario quiero asignarle una prioridad o riesgo a un paciente</div><div class="clear"></div>
+<div class="linenb">&nbsp;87</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">&nbsp;88</div><div class="codeline"><span class="keyword1">\section</span>{Issues}</div><div class="clear"></div>
+<div class="linenb">&nbsp;89</div><div class="codeline">Las issues son problemas que van surgiendo durante el desarrollo del hito o historia de usuario y</div><div class="clear"></div>
+<div class="linenb">&nbsp;90</div><div class="codeline">el <span class="highlight-spelling" title="Se ha encontrado un posible error ortográfico.. Suggestions: [conjunto, conjuntó, cejunto, cotunto] (4414) [lt:es:MORFOLOGIK_RULE_ES]">cojunto</span> de las soluciones de las issues de un hito deben conformar el PMV que <span class="highlight-spelling" title="Se ha encontrado un posible error ortográfico.. Suggestions: [satisfazla, satisfaz ca] (4492) [lt:es:MORFOLOGIK_RULE_ES]">satisfazca</span> la necesidad del usuario.</div><div class="clear"></div>
+<div class="linenb">&nbsp;91</div><div class="codeline">Las issues deben hacer referencia a una historia de usuario, ya sea para solucionar un problema de la propia historia o para añadir una funcionalidad.</div><div class="clear"></div>
+<div class="linenb">&nbsp;92</div><div class="codeline">Todas las Issues que solucionaré durante el desarrollo para construir el sistema están descritas en GitHub. Cada issue debe tener mínimo un commit asociado a su</div><div class="clear"></div>
+<div class="linenb">&nbsp;93</div><div class="codeline">etiqueta y debe tener una <span class="highlight-spelling" title="Se ha encontrado un posible error ortográfico.. Suggestions: [muy, puya, pule, huy, pulla, pula, puyo, pulo, full, pulí] (4867) [lt:es:MORFOLOGIK_RULE_ES]">pull</span> <span class="highlight-spelling" title="Se ha encontrado un posible error ortográfico.. Suggestions: [requesta] (4872) [lt:es:MORFOLOGIK_RULE_ES]">request</span> asociada para poder revisar el código.</div><div class="clear"></div>
+<div class="linenb">&nbsp;94</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">&nbsp;95</div><div class="codeline"><span class="keyword1">\section</span>{Control de calidad}</div><div class="clear"></div>
+<div class="linenb">&nbsp;96</div><div class="codeline"><span class="keyword1">\label</span>{sc:control-calidad}</div><div class="clear"></div>
+<div class="linenb">&nbsp;97</div><div class="codeline">Para crear un software de calidad debemos de comprobar constantemente que lo desarrollado, para ello hemos usado la integración continua.</div><div class="clear"></div>
+<div class="linenb">&nbsp;98</div><div class="codeline">Necesitamos pasar todos los tests antes de poder mezclar el código con la rama principal, para ello <span class="highlight" title="Esta palabra ya ha aparecido en una de las frases inmediatamente anteriores. Puede usar un sinónimo para hacer más interesante el texto, excepto si la repetición es intencionada.. Suggestions: [utilizamos, empleamos] (5178) [lt:es:ES_REPEATEDWORDS]">usamos</span> GitHub Actions.</div><div class="clear"></div>
+<div class="linenb">&nbsp;99</div><div class="codeline">Los tests se ejecutan automáticamente cada vez que se suben nuevos cambios. Se han definido los siguientes tests:</div><div class="clear"></div>
+<div class="linenb">100</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">101</div><div class="codeline"><span class="keyword2">\begin{itemize}</span></div><div class="clear"></div>
+<div class="linenb">102</div><div class="codeline">    <span class="keyword1">\item</span>{<span class="highlight-spelling" title="Se ha encontrado un posible error ortográfico.. Suggestions: [Compilación] (5320) [lt:es:MORFOLOGIK_RULE_ES]">Compilacion</span> de la documentación de LaTeX.}</div><div class="clear"></div>
+<div class="linenb">103</div><div class="codeline">    <span class="keyword1">\item</span>{Corrector ortográfico y gramatical.}</div><div class="clear"></div>
+<div class="linenb">104</div><div class="codeline">    <span class="keyword1">\item</span>{Análisis estático de código de Typescript - ESLint.}</div><div class="clear"></div>
+<div class="linenb">105</div><div class="codeline"><span class="keyword2">\end{itemize}</span></div><div class="clear"></div>
+<div class="linenb">106</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">107</div><div class="codeline"><span class="keyword1">\section</span>{Diseño}</div><div class="clear"></div>
+<div class="linenb">108</div><div class="codeline"><span class="keyword1">\label</span>{sc:diseño}</div><div class="clear"></div>
+<div class="linenb">109</div><div class="codeline">Durante todo el capítulo destaca la importancia de una planificación adecuada que permita adaptarse a los cambios de forma ágil y eficiente.</div><div class="clear"></div>
+<div class="linenb">110</div><div class="codeline">La metodología que se va a <span class="highlight" title="Esta palabra ya ha aparecido en una de las frases inmediatamente anteriores. Puede usar un sinónimo para hacer más interesante el texto, excepto si la repetición es intencionada.. Suggestions: [utilizar, emplear] (5635) [lt:es:ES_REPEATEDWORDS]">usar</span> en el diseño busca una estructura que permita una implementación flexible y centrada en las necesidades del usuario.</div><div class="clear"></div>
+<div class="linenb">111</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">112</div><div class="codeline">El diseño del sistema es una parte fundamental del proceso de desarrollo de software, ya que proporciona la estructura sobre la cual se construirá el sistema.</div><div class="clear"></div>
+<div class="linenb">113</div><div class="codeline">En este proyecto, se ha elegido el Diseño Dirigido por el Dominio (DDD) \cite{domain-drive-design} como enfoque principal, en línea con el desarrollo ágil debido a que ambos se centran en el usuario.</div><div class="clear"></div>
+<div class="linenb">114</div><div class="codeline">Además, DDD es buena opción cuando los desarrolladores no conocen el dominio, porque mediante la comunicación constante con los expertos de dominio se puede llegar a un entendimiento común.</div><div class="clear"></div>
+<div class="linenb">115</div><div class="codeline">De esta comunicación surgirán los términos y conceptos que se utilizarán para describir el dominio del problema que se usarán para describir el dominio del problema, también conocido como lenguaje ubicuo.</div><div class="clear"></div>
+<div class="linenb">116</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+</div>
+<h2 class="filename">secciones/02_descripcion.tex</h2>
+
+<p>Found 2 warning(s)</p>
+<div class="original-file">
+<div class="linenb">1</div><div class="codeline">\<span class="highlight-spelling" title="Se ha encontrado un posible error ortográfico. (1) [lt:es:MORFOLOGIK_RULE_ES]"></span>UseRawInputEncoding</div><div class="clear"></div>
+<div class="linenb">2</div><div class="codeline">\chapter{Descripción del problema}</div><div class="clear"></div>
+<div class="linenb">3</div><div class="codeline">Desde el inicio de la pandemia, atender telemáticamente es fundamental para no saturar las consultas médicas, sin <span class="highlight" title="Esta locución se escribe normalmente entre comas.. Suggestions: [embargo,] (160) [lt:es:COMMA_MARCADOR_DISCURSIVO]">embargo</span> si todo</div><div class="clear"></div>
+<div class="linenb">4</div><div class="codeline">se realiza de forma manual la saturación puede ser la misma. Mi proyecto intentará resolver este problema mediante un sistema de</div><div class="clear"></div>
+<div class="linenb">5</div><div class="codeline">triage el cual es capaz de filtrar solicitudes de atención médica con distintos grados de urgencias y sea capaz de proporcionar</div><div class="clear"></div>
+<div class="linenb">6</div><div class="codeline">una ayuda a los profesionales en caso necesario</div><div class="clear"></div>
+</div>
+<h2 class="filename">secciones/05_implementacion.tex</h2>
+
+<p>Found 3 warning(s)</p>
+<div class="original-file">
+<div class="linenb">&nbsp;1</div><div class="codeline">\<span class="highlight-spelling" title="Se ha encontrado un posible error ortográfico. (1) [lt:es:MORFOLOGIK_RULE_ES]"></span>UseRawInputEncoding</div><div class="clear"></div>
+<div class="linenb">&nbsp;2</div><div class="codeline">\chapter{Implementación}</div><div class="clear"></div>
+<div class="linenb">&nbsp;3</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">&nbsp;4</div><div class="codeline">A lo largo de este capítulo se pretende reflejar las herramientas usadas durante todo el proceso de desarrollo y</div><div class="clear"></div>
+<div class="linenb">&nbsp;5</div><div class="codeline">se argumentará por qué se han tomado estas decisiones, al igual que en el capítulo de \ref{ch:metodología} explicamos</div><div class="clear"></div>
+<div class="linenb">&nbsp;6</div><div class="codeline">la planificación y forma de trabajo.</div><div class="clear"></div>
+<div class="linenb">&nbsp;7</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">&nbsp;8</div><div class="codeline">La implementación del software se ha dividido en hitos. Cada hito representa un producto mínimamente viable que se publicará.</div><div class="clear"></div>
+<div class="linenb">&nbsp;9</div><div class="codeline">Los \href{https://github.com/RubenDelgadoPareja/TFG-Triage-Inteligente-Consulta-Medica/milestones}{hitos} han sido definidos en GitHub y explicados en la sección \ref{sec:hitos}.</div><div class="clear"></div>
+<div class="linenb">10</div><div class="codeline">Cada uno de ellos contiene un grupo de \href{https://github.com/RubenDelgadoPareja/TFG-Triage-Inteligente-Consulta-Medica/issues}{<span class="keyword1">\textit</span>{issues}} que se corresponden</div><div class="clear"></div>
+<div class="linenb">11</div><div class="codeline">con los distintos problemas que han ido surgiendo durante el desarrollado, cómo los hemos solucionado, qué herramientas se han utilizado y por qué.</div><div class="clear"></div>
+<div class="linenb">12</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">13</div><div class="codeline"><span class="keyword1">\section</span>{Hito 0: Infraestructura inicial y documentación}</div><div class="clear"></div>
+<div class="linenb">14</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">15</div><div class="codeline">El primer PMV consiste en alcanzar un repositorio inicial donde comenzar a forjar toda la arquitectura del proyecto con una planificación inicial.</div><div class="clear"></div>
+<div class="linenb">16</div><div class="codeline">En el capítulo de metodología ya definimos el PMV a alcanzar para este hito \ref{sb:hito0}.</div><div class="clear"></div>
+<div class="linenb">17</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">18</div><div class="codeline"><span class="keyword1">\subsection</span>{Entorno de Desarrollo Integrado}</div><div class="clear"></div>
+<div class="linenb">19</div><div class="codeline">El primer problema es encontrar un lugar donde comenzar el desarrollo del proyecto y configuraciones de herramientas, para ello necesitamos un entorno de desarrollo integrado (<span class="keyword1">\textit</span>{IDE}).</div><div class="clear"></div>
+<div class="linenb">20</div><div class="codeline">He decidido elegir Visual Studio Code para el desarrollo del proyecto debido a que tengo experiencia usándola y me siento cómodo desarrollando en este {<span class="keyword1">\textit</span>{IDE}}.</div><div class="clear"></div>
+<div class="linenb">21</div><div class="codeline">Otro motivo fundamental es que es gratuita, además contiene una gran cantidad de extensiones y configuraciones lo que facilita programar, también es ligero y multiplataforma.</div><div class="clear"></div>
+<div class="linenb">22</div><div class="codeline">Me parece muy cómodo y versátil frente a otras opciones.</div><div class="clear"></div>
+<div class="linenb">23</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">24</div><div class="codeline"><span class="keyword1">\subsection</span>{Memoria}</div><div class="clear"></div>
+<div class="linenb">25</div><div class="codeline">La memoria es un documento muy importante en el desarrollo de un proyecto, ya que, es el reflejo de todo el trabajo realizado y es necesario para la evaluación del proyecto.</div><div class="clear"></div>
+<div class="linenb">26</div><div class="codeline">Debemos de encontrar una herramienta que nos permita escribir la memoria de forma cómoda y eficiente. Además de comprobar constantemente que lo escrito esté correcto.</div><div class="clear"></div>
+<div class="linenb">27</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">28</div><div class="codeline"><span class="keyword1">\paragraph</span>*{Compilación de LaTeX}</div><div class="clear"></div>
+<div class="linenb">29</div><div class="codeline">La memoria se ha escrito empleando el lenguaje LaTeX, que es un sistema de composición de documentos bastante empleado</div><div class="clear"></div>
+<div class="linenb">30</div><div class="codeline">en el ámbito académico y científico, es necesario para poder generar la documentación final, agrupando cada capítulo, sección y</div><div class="clear"></div>
+<div class="linenb">31</div><div class="codeline">gráfica. Para generar este archivo final debemos ejecutar el comando <span class="keyword1">\textit</span>{all} del Makefile</div><div class="clear"></div>
+<div class="linenb">32</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">33</div><div class="codeline"><span class="keyword1">\paragraph</span>*{Corrector ortográfico gramatical}</div><div class="clear"></div>
+<div class="linenb">34</div><div class="codeline">Para verificar activamente que lo escrito en la memoria esté correcto se ha empleado una herramienta de LaTeX llamada \href{https://github.com/sylvainhalle/textidote}{TeXtidote}.</div><div class="clear"></div>
+<div class="linenb">35</div><div class="codeline">Esta herramienta nos permite corregir la ortografía, gramática y semántica de la documentación escrita. Se puede ejecutar la corrección a través del comando <span class="keyword1">\textit</span>{check} del Makefile,</div><div class="clear"></div>
+<div class="linenb">36</div><div class="codeline">generando un borrador con la documentación marcando los errores y posibles cambios. Además, se ha añadido este comando a los hooks de GitHub para ejecutarlo antes de cada commit.</div><div class="clear"></div>
+<div class="linenb">37</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">38</div><div class="codeline"><span class="keyword1">\subsection</span>{Código}</div><div class="clear"></div>
+<div class="linenb">39</div><div class="codeline">El código es imprescindible para el desarrollo, debemos encontrar un lenguaje que satisfaga las necesidades de la \ref{sc:planificación}.</div><div class="clear"></div>
+<div class="linenb">40</div><div class="codeline">Además, es necesario tener un constante análisis estático para mantener un código limpio, coherente y libre de errores.</div><div class="clear"></div>
+<div class="linenb">41</div><div class="codeline">Finalmente, para aportar valor al producto he decidido automatizar estos procesos con la integración continua, mencionado en la sección \ref{sc:control-calidad}.</div><div class="clear"></div>
+<div class="linenb">42</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">43</div><div class="codeline"><span class="keyword1">\subsubsection</span>*{Lenguaje de Programación}</div><div class="clear"></div>
+<div class="linenb">44</div><div class="codeline">Para el desarrollo de un proyecto es esencial decidir con qué herramienta principal, en este caso el lenguaje, se va a crear. De entre mi pila de lenguajes de programación he</div><div class="clear"></div>
+<div class="linenb">45</div><div class="codeline">escogido Typescript junto con<span class="highlight-sh" title="There should be a space after a period. If you are writing a URL or a filename, use the \url{} or \verb markup. [sh:d:002]"> Node.js</span>, ya que, estoy trabajando con él. Creo que da una gran robustez gracias al tipado y apoya mucho al Diseño Dirigido al Dominio, no como otros lenguajes como Java o Ruby</div><div class="clear"></div>
+<div class="linenb">46</div><div class="codeline">Cuenta con una gran batería de librerías que agiliza el desarrollo y permite la implementación rápida de características.</div><div class="clear"></div>
+<div class="linenb">47</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">48</div><div class="codeline"><span class="keyword1">\subsubsection</span>*{Análisis estático}</div><div class="clear"></div>
+<div class="linenb">49</div><div class="codeline">Para garantizar la calidad, la eficiencia y sostenibilidad del código a largo plazo, necesitamos un análisis estático del código.</div><div class="clear"></div>
+<div class="linenb">50</div><div class="codeline">Se ha decidido elegir ESLint con Typescript, ya que es un <span class="keyword1">\textit</span>{linter} que se emplea para el lenguaje de JavaScript, pero se puede aprovechar con TypeScript.</div><div class="clear"></div>
+<div class="linenb">51</div><div class="codeline">ESLint te permite aplicar reglas personalizadas, reglas predefinidas y configuraciones de estilo para garantizar que tu código sea consistente y libre de problemas.</div><div class="clear"></div>
+<div class="linenb">52</div><div class="codeline">No se ha escogido TSLint, por el hecho de que, está obsoleta y no tiene mantenimiento, también se ha barajado SonarQube y CodeClimate.</div><div class="clear"></div>
+<div class="linenb">53</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">54</div><div class="codeline"><span class="keyword1">\subsubsection</span>*{Integración Continua}</div><div class="clear"></div>
+<div class="linenb">55</div><div class="codeline">La integración continua es una práctica de desarrollo de software que tiene como objetivo principal mejorar la calidad del código, aumentar la eficiencia y agilizar el proceso de entrega de software.</div><div class="clear"></div>
+<div class="linenb">56</div><div class="codeline">Las diferentes opciones que encontramos para el cliente o local pueden ser git, SVN, Mercurial y para el servidor donde se harán las pruebas y la integración se presentan las siguientes</div><div class="clear"></div>
+<div class="linenb">57</div><div class="codeline">alternativas Jenkins, Travis, Circle, GitHub Actions. He decido escoger git para el cliente y GitHub Actions para el servidor porque me resultan fáciles de configurar y escalabilidad.</div><div class="clear"></div>
+<div class="linenb">58</div><div class="codeline">Gracias a esta metodología podemos automatizar la ejecución de test, linter y corrector ortográfico, de esta manera comprobaremos antes de ciertas acciones con los hooks de GitHub que todo está</div><div class="clear"></div>
+<div class="linenb">59</div><div class="codeline">correctamente. También se había barajado la opción de utilizar un paquete llamado <span class="keyword1">\textit</span>{husky} para<span class="highlight-sh" title="There should be a space after a period. If you are writing a URL or a filename, use the \url{} or \verb markup. [sh:d:002]"> Node.js</span>, pero no se ha escogido finalmente para aprender nuevas tecnologías.</div><div class="clear"></div>
+<div class="linenb">60</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">61</div><div class="codeline"><span class="keyword1">\section</span>{Hito 1: Modelado del Problema con DDD}</div><div class="clear"></div>
+<div class="linenb">62</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">63</div><div class="codeline">En este segundo PVM nos adentramos en el modelado del problema descrito en la sección \ref{sc:hito1}.</div><div class="clear"></div>
+<div class="linenb">64</div><div class="codeline">Pero antes debemos investigar sobre el Diseño Dirigido al Dominio y aplicarlo correctamente al dominio del problema. Además, con el desarrollo del</div><div class="clear"></div>
+<div class="linenb">65</div><div class="codeline">código surge la necesidad de realizar test unitarios e integración, mencionado en la sección \ref{sc:control-calidad}.</div><div class="clear"></div>
+<div class="linenb">66</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">67</div><div class="codeline"><span class="keyword1">\subsection</span>{Diseño}</div><div class="clear"></div>
+<div class="linenb">68</div><div class="codeline">La implementación del código estará guiada por el Diseño Dirigido al Dominio, esto significa que el diseño del código se basará en el dominio del problema.</div><div class="clear"></div>
+<div class="linenb">69</div><div class="codeline">Podemos encontrar una pequeña introducción al DDD en la sección \ref{sc:diseño}, no obstante es necesario explicar cómo se ha aplicado al proyecto.</div><div class="clear"></div>
+<div class="linenb">70</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">71</div><div class="codeline">Inicialmente, se deben localizar los subdominios y los contextos acotados. La arquitectura del proyecto se ha dividido en módulos que representan los distintos contextos acotados.</div><div class="clear"></div>
+<div class="linenb">72</div><div class="codeline">Cada módulo tendrá su propio conjunto de clases que representan esa parte del dominio y debe de tener sentido por sí mismo. Los distintos módulos también podrán comunicarse entre ellos.</div><div class="clear"></div>
+<div class="linenb">73</div><div class="codeline">Inicialmente, se van a crear lo mínimo necesario para el cliente, después poco a poco se irá aportando valor al producto, añadiendo más funcionalidades y mejoras.</div><div class="clear"></div>
+<div class="linenb">74</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">75</div><div class="codeline"><span class="keyword1">\subsection</span>{Test unitarios e integración}</div><div class="clear"></div>
+<div class="linenb">76</div><div class="codeline">Para garantizar la calidad del código, es necesario realizar test unitarios e integración. Los test unitarios son pruebas que se ejecutan a una unidad de código, por ejemplo, una función o un método.</div><div class="clear"></div>
+<div class="linenb">77</div><div class="codeline">Las herramientas que se han considerado para testear han sido Cypress, Mocha y Jest.</div><div class="clear"></div>
+<div class="linenb">78</div><div class="codeline">En general, todas son buenas opciones, pero se ha escogido Jest por su facilidad de uso, su integración con TypeScript y su gran comunidad.</div><div class="clear"></div>
+</div>
+<h2 class="filename">secciones/06_conclusiones.tex</h2>
+
+<p>Found 1 warning(s)</p>
+<div class="original-file">
+<div class="linenb">1</div><div class="codeline">\<span class="highlight-spelling" title="Se ha encontrado un posible error ortográfico. (1) [lt:es:MORFOLOGIK_RULE_ES]"></span>UseRawInputEncoding</div><div class="clear"></div>
+<div class="linenb">2</div><div class="codeline">\chapter{Conclusiones y trabajos futuros}</div><div class="clear"></div>
+<div class="linenb">3</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+</div>
+<h2 class="filename">prefacios/prefacio.tex</h2>
+
+<p>Found 9 warning(s)</p>
+<div class="original-file">
+<div class="linenb">&nbsp;1</div><div class="codeline">\thispagestyle{empty}</div><div class="clear"></div>
+<div class="linenb">&nbsp;2</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">&nbsp;3</div><div class="codeline"><span class="keyword2">\begin{center}</span></div><div class="clear"></div>
+<div class="linenb">&nbsp;4</div><div class="codeline">{\large\bfseries Triage Inteligente de Consulta Médica <span class="highlight-sh" title="You should not break lines manually in a paragraph. Either start a new paragraph or stay in the current one. [sh:nobreak]">\\</span> Sistema de citas priorizado por el riesgo del paciente }\\</div><div class="clear"></div>
+<div class="linenb">&nbsp;5</div><div class="codeline"><span class="keyword2">\end{center}</span></div><div class="clear"></div>
+<div class="linenb">&nbsp;6</div><div class="codeline"><span class="keyword2">\begin{center}</span></div><div class="clear"></div>
+<div class="linenb">&nbsp;7</div><div class="codeline">Rubén Delgado Pareja<span class="highlight-sh" title="You should not break lines manually in a paragraph. Either start a new paragraph or stay in the current one. [sh:nobreak]">\</span>\</div><div class="clear"></div>
+<div class="linenb">&nbsp;8</div><div class="codeline"><span class="keyword2">\end{center}</span></div><div class="clear"></div>
+<div class="linenb">&nbsp;9</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">10</div><div class="codeline"><span class="comment"><span class="comment">%\vspace{0.7cm}</span></span></div><div class="clear"></div>
+<div class="linenb">11</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">12</div><div class="codeline">\vspace{0.5cm}</div><div class="clear"></div>
+<div class="linenb">13</div><div class="codeline">\noindent{<span class="keyword1">\textbf</span>{Palabras clave}: <span class="keyword1">\textit</span>{software libre}</div><div class="clear"></div>
+<div class="linenb">14</div><div class="codeline">\vspace{0.7cm}</div><div class="clear"></div>
+<div class="linenb">15</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">16</div><div class="codeline">\noindent{<span class="keyword1">\textbf</span>{Resumen}<span class="highlight-sh" title="You should not break lines manually in a paragraph. Either start a new paragraph or stay in the current one. [sh:nobreak]">\</span>\</div><div class="clear"></div>
+<div class="linenb">17</div><div class="codeline">	</div><div class="clear"></div>
+<div class="linenb">18</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">19</div><div class="codeline">\cleardoublepage</div><div class="clear"></div>
+<div class="linenb">20</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">21</div><div class="codeline"><span class="keyword2">\begin{center}</span></div><div class="clear"></div>
+<div class="linenb">22</div><div class="codeline">	{\large\bfseries Same, but in <span class="highlight-spelling" title="Se ha encontrado un posible error ortográfico.. Suggestions: [Inglés, Inglesa, Engloba, Ingles, Anglos, Englobe, Englobó, Engrosa, Enlista, Engrase, Engrosó, Engrasa, Tengáis, Unguis, Engrose, Enlosó, Englobo, Vengáis, Anglas, Engrasó, Engroso, Engrías, Engríe, Enlosa, Anglès, Elisa, Anglista, Bengalís, Benjuís, Eagles, Eclisa, Enciso, Enclisis, Engaita, Engaite, Engaito, Engaitá, Engaité, Engaitó, Engerís, Engiba, Engibe, Engibo, Engibá, Engibé, Engibó, Englobá, Englobé, Engraso, Engrasá, Engrasé, Engreís, Engriese, Engrifa, Engrife, Engrifo, Engrifá, Engrifé, Engrifó, Engrió, Engrosá, Engrosé, Engría, Engrían, Engríase, Engríen, Engríes, Engrío, Engullís, Enjoya, Enjoyad, Enjoyan, Enjoyar, Enjoyas, Enjoyase, Enjoye, Enjoyen, Enjoyes, Enjoyo, Enjoyá, Enjoyás, Enjoyé, Enjoyó, Enjulio, Enjulios, Enjóyese, Enlice, Enlicé, Enliga, Enligo, Enligá, Enligó, Enliste, Enlisto, Enlistá, Enlisté, Enlistó, Enliza, Enlizo, Enlizá, Enlizó, Enlose, Enloso, Enlosá, Enlosé, Enojáis, Enojéis, Enoles, Enosis, Erguís, Espanglish, Ingush, Menjuís, Rengles, Spanglish, Ungís, Unjáis, Ánglica, Ánglico, Énclisis, Énulas, Épulis] (143) [lt:es:MORFOLOGIK_RULE_ES]"></span>English}<span class="highlight-sh" title="You should not break lines manually in a paragraph. Either start a new paragraph or stay in the current one. [sh:nobreak]">\</span>\</div><div class="clear"></div>
+<div class="linenb">23</div><div class="codeline"><span class="keyword2">\end{center}</span></div><div class="clear"></div>
+<div class="linenb">24</div><div class="codeline"><span class="keyword2">\begin{center}</span></div><div class="clear"></div>
+<div class="linenb">25</div><div class="codeline">	Rubén Delgado Pareja<span class="highlight-sh" title="You should not break lines manually in a paragraph. Either start a new paragraph or stay in the current one. [sh:nobreak]">\</span>\</div><div class="clear"></div>
+<div class="linenb">26</div><div class="codeline"><span class="keyword2">\end{center}</span></div><div class="clear"></div>
+<div class="linenb">27</div><div class="codeline">\vspace{0.5cm}</div><div class="clear"></div>
+<div class="linenb">28</div><div class="codeline">\noindent{<span class="keyword1">\textbf</span>{Keywords}: <span class="keyword1">\textit</span>{open source}, <span class="keyword1">\textit</span>{floss}</div><div class="clear"></div>
+<div class="linenb">29</div><div class="codeline">\vspace{0.7cm}</div><div class="clear"></div>
+<div class="linenb">30</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">31</div><div class="codeline">\noindent{<span class="keyword1">\textbf</span>{Abstract}<span class="highlight-sh" title="You should not break lines manually in a paragraph. Either start a new paragraph or stay in the current one. [sh:nobreak]">\</span>\</div><div class="clear"></div>
+<div class="linenb">32</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">33</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">34</div><div class="codeline">\cleardoublepage</div><div class="clear"></div>
+<div class="linenb">35</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">36</div><div class="codeline">\thispagestyle{empty}</div><div class="clear"></div>
+<div class="linenb">37</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">38</div><div class="codeline">\noindent\rule[-1ex]{\textwidth}{2pt}\\[4.5ex]</div><div class="clear"></div>
+<div class="linenb">39</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">40</div><div class="codeline">D. <span class="keyword1">\textbf</span>{Tutora/e(s)}, Profesor(a) del<span class="highlight-sh" title="There should not be a space before the period at the end of a sentence. [sh:d:003]"> ..</span>. </div><div class="clear"></div>
+<div class="linenb">41</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">42</div><div class="codeline">\vspace{0.5cm}</div><div class="clear"></div>
+<div class="linenb">43</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">44</div><div class="codeline"><span class="keyword1">\textbf</span>{Informo:}</div><div class="clear"></div>
+<div class="linenb">45</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">46</div><div class="codeline">\vspace{0.5cm}</div><div class="clear"></div>
+<div class="linenb">47</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">48</div><div class="codeline">Que el presente trabajo, titulado <span class="keyword1">\textit</span>{<span class="keyword1">\textbf</span>{Chief}},</div><div class="clear"></div>
+<div class="linenb">49</div><div class="codeline">ha sido realizado bajo mi supervisión por <span class="keyword1">\textbf</span>{Estudiante}, y autorizo la defensa de dicho trabajo ante el tribunal</div><div class="clear"></div>
+<div class="linenb">50</div><div class="codeline">que corresponda.</div><div class="clear"></div>
+<div class="linenb">51</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">52</div><div class="codeline">\vspace{0.5cm}</div><div class="clear"></div>
+<div class="linenb">53</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">54</div><div class="codeline">Y para que conste, expiden y firman el presente informe en Granada a <span class="highlight" title="Los meses del año se escriben en minúsculas, excepto si forman parte de un nombre propio.. Suggestions: [junio] (477) [lt:es:MIN_MESES]">Junio</span> de 2022.</div><div class="clear"></div>
+<div class="linenb">55</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">56</div><div class="codeline">\vspace{1cm}</div><div class="clear"></div>
+<div class="linenb">57</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">58</div><div class="codeline"><span class="keyword1">\textbf</span>{El/la director(a)/es: }</div><div class="clear"></div>
+<div class="linenb">59</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">60</div><div class="codeline">\vspace{5cm}</div><div class="clear"></div>
+<div class="linenb">61</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">62</div><div class="codeline">\noindent <span class="keyword1">\textbf</span>{(nombre completo tutor/a/es)}</div><div class="clear"></div>
+<div class="linenb">63</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">64</div><div class="codeline">\chapter*{Agradecimientos}</div><div class="clear"></div>
+<div class="linenb">65</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">66</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">67</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">68</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+</div>
+<h2 class="filename">secciones/01_introduccion.tex</h2>
+
+<p>Found 2 warning(s)</p>
+<div class="original-file">
+<div class="linenb">&nbsp;1</div><div class="codeline">\<span class="highlight-spelling" title="Se ha encontrado un posible error ortográfico. (1) [lt:es:MORFOLOGIK_RULE_ES]"></span>UseRawInputEncoding</div><div class="clear"></div>
+<div class="linenb">&nbsp;2</div><div class="codeline">\chapter{Introducción}</div><div class="clear"></div>
+<div class="linenb">&nbsp;3</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">&nbsp;4</div><div class="codeline">Este proyecto es software libre, y está liberado con la licencia \cite{gplv3}.</div><div class="clear"></div>
+<div class="linenb">&nbsp;5</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">&nbsp;6</div><div class="codeline"><span class="keyword1">\section</span>{Motivación}</div><div class="clear"></div>
+<div class="linenb">&nbsp;7</div><div class="codeline">Debido a la crisis económica del 2008 la sanidad española no ha parado de recibir recortes, puede observarse en este</div><div class="clear"></div>
+<div class="linenb">&nbsp;8</div><div class="codeline">\href{https://www.consalud.es/politica/decada-recortes-2009-2018-efectos-infrafinanciacion-sanidad_87083_102.html}{artículo} donde</div><div class="clear"></div>
+<div class="linenb">&nbsp;9</div><div class="codeline">se estudia la financiación de la sanidad desde entonces. Esto provoca que se disminuya el número de sanitarios en España.</div><div class="clear"></div>
+<div class="linenb">10</div><div class="codeline">Esta situación que se lleva dando desde hace más de una década produce una sobrecarga de trabajo para los sanitarios y un retardo</div><div class="clear"></div>
+<div class="linenb">11</div><div class="codeline">en todas las listas de esperas, tanto en cirugías como en la atención primaria.</div><div class="clear"></div>
+<div class="linenb">12</div><div class="codeline">Con la llegada de la pandemia y del covid-19 todo empeoró llegando a colapsar totalmente la atención primaria debido a la demanda</div><div class="clear"></div>
+<div class="linenb">13</div><div class="codeline">de citas previas y a la escasez de profesionales enfocados a este servicio, ya que, también desde hace años los sanitarios se aglomeran</div><div class="clear"></div>
+<div class="linenb">14</div><div class="codeline">en los Hospitales por mejores situaciones laborales y salarios. En las siguientes links podemos observar la situación que he descrito.</div><div class="clear"></div>
+<div class="linenb">15</div><div class="codeline"><span class="keyword2">\begin{itemize}</span></div><div class="clear"></div>
+<div class="linenb">16</div><div class="codeline">    <span class="keyword1">\item</span> <span class="highlight" title="Posible error: repetición de una palabra. Suggestions: [X] (986) [lt:es:SPANISH_WORD_REPEAT_RULE]"></span>\url{https://elpais.com/sociedad/2021-02-08/la-pandemia-sume-a-la-atencion-primaria-en-una-saturacion-permanente.html}</div><div class="clear"></div>
+<div class="linenb">17</div><div class="codeline">    <span class="keyword1">\item</span> \url{https://www.lavanguardia.com/vida/20211225/7952109/atencion-primaria-colapso-pacientes-medico-dias-espera.html}</div><div class="clear"></div>
+<div class="linenb">18</div><div class="codeline">    <span class="keyword1">\item</span> \url{https://www.lavozdegalicia.es/noticia/galicia/2022/01/16/dejando-atender-casos/0003_202201G16P2993.htm}</div><div class="clear"></div>
+<div class="linenb">19</div><div class="codeline"><span class="keyword2">\end{itemize}</span></div><div class="clear"></div>
+<div class="linenb">20</div><div class="codeline">El problema que trato de abordar se escapa a mis posibilidades, sin embargo, mediante la herramienta que voy a desarrollar</div><div class="clear"></div>
+<div class="linenb">21</div><div class="codeline">durante el proyecto podré ofrecer una gran ayuda para los sanitarios centrados en la atención primaria.</div><div class="clear"></div>
+<div class="linenb">22</div><div class="codeline">Mi principal motivación es aportar mediante el uso de sistemas informáticos mi grano de arena en este gran problema con el que</div><div class="clear"></div>
+<div class="linenb">23</div><div class="codeline">tenemos que lidiar a día de hoy, construyendo una aplicación de citas médicas el cual tiene integrada un sistema de triage.</div><div class="clear"></div>
+<div class="linenb">24</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">25</div><div class="codeline"><span class="keyword1">\section</span>{Objetivos}</div><div class="clear"></div>
+<div class="linenb">26</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">27</div><div class="codeline"><span class="keyword1">\textbf</span>{Crear el triage inteligente de las consultas médicas}. El sistema informático consistirá en un triage de consultas médicas; el triage en el ámbito</div><div class="clear"></div>
+<div class="linenb">28</div><div class="codeline"> de la sanidad es un proceso que permite gestionar el flujo de los pacientes teniendo en cuenta el riesgo cuando la demanda y necesidades clínicas</div><div class="clear"></div>
+<div class="linenb">29</div><div class="codeline"> superan los recursos, es muy importante en urgencias clínicas \href{https://scielo.isciii.es/scielo.php?script=sci_arttext&amp;pid=S1137-66272010000200008}{Aquí}</div><div class="clear"></div>
+<div class="linenb">30</div><div class="codeline"> se puede encontrar más información.</div><div class="clear"></div>
+<div class="linenb">31</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">32</div><div class="codeline">El triage inteligente es un gestor de citas previas médicas organizadas por una heurística, la cual priorizará las citas de los pacientes</div><div class="clear"></div>
+<div class="linenb">33</div><div class="codeline">con mayores riesgos, evitando las repercusiones negativas de la saturación actual en la sanidad. Sin embargo, no dejará ociosas al resto</div><div class="clear"></div>
+<div class="linenb">34</div><div class="codeline">de citas con menor prioridad, porque cada riesgo tendrá una franja horaria asociada al día.</div><div class="clear"></div>
+<div class="linenb">35</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">36</div><div class="codeline">La asignación de riesgo se realizará a partir de un formulario que deben rellenar el paciente al registrarse, esta prioridad</div><div class="clear"></div>
+<div class="linenb">37</div><div class="codeline">se comprobará y podrá ser modificado por los sanitarios en cualquier momento desde el sistema. Esto es necesario, ya que,</div><div class="clear"></div>
+<div class="linenb">38</div><div class="codeline">la mayoría de pacientes aumentarán de riesgo con los años y con las enfermedades que padezcan.</div><div class="clear"></div>
+<div class="linenb">39</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">40</div><div class="codeline">El triage tiene un gran potencial que no se aprovecha en los sistemas de citas de la sanidad actual, de forma que, con el triage inteligente</div><div class="clear"></div>
+<div class="linenb">41</div><div class="codeline">voy a demostrar que los tiempos medios de espera por riesgo disminuirán con respecto a otros sistemas de citas como \href{https://www.sspa.juntadeandalucia.es/servicioandaluzdesalud/clicsalud/pages/portada.jsf?caducada=1}{ClicSalud+},</div><div class="clear"></div>
+<div class="linenb">42</div><div class="codeline">verificando que hay una mejora notable. Esta comprobación se llevará a cabo simulando sobre el triage inteligente una carga de trabajo similar</div><div class="clear"></div>
+<div class="linenb">43</div><div class="codeline">a la de ClicSalud+ y midiendo tiempos.</div><div class="clear"></div>
+<div class="linenb">44</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">45</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">46</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">47</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+</div>
+<h2 class="filename">proyecto.tex</h2>
+
+<p>Found 4 warning(s)</p>
+<div class="original-file">
+<div class="linenb">&nbsp;&nbsp;1</div><div class="codeline"><span class="comment"><span class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span></span></div><div class="clear"></div>
+<div class="linenb">&nbsp;&nbsp;2</div><div class="codeline"><span class="comment"><span class="comment">% Short Sectioned Assignment LaTeX Template Version 1.0 (5/5/12)</span></span></div><div class="clear"></div>
+<div class="linenb">&nbsp;&nbsp;3</div><div class="codeline"><span class="comment"><span class="comment">% This template has been downloaded from: http://www.LaTeXTemplates.com</span></span></div><div class="clear"></div>
+<div class="linenb">&nbsp;&nbsp;4</div><div class="codeline"><span class="comment"><span class="comment">% Original author:  Frits Wenneker (http://www.howtotex.com)</span></span></div><div class="clear"></div>
+<div class="linenb">&nbsp;&nbsp;5</div><div class="codeline"><span class="comment"><span class="comment">% License: CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)</span></span></div><div class="clear"></div>
+<div class="linenb">&nbsp;&nbsp;6</div><div class="codeline"><span class="comment"><span class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span></span></div><div class="clear"></div>
+<div class="linenb">&nbsp;&nbsp;7</div><div class="codeline">\UseRawInputEncoding</div><div class="clear"></div>
+<div class="linenb">&nbsp;&nbsp;8</div><div class="codeline"><span class="comment"><span class="comment">% <span class="keyword1">\documentclass</span>[paper=a4, fontsize=11pt]{scrartcl} % A4 paper and 11pt font size</span></span></div><div class="clear"></div>
+<div class="linenb">&nbsp;&nbsp;9</div><div class="codeline"><span class="keyword1">\documentclass</span>[11pt, a4paper]{book}</div><div class="clear"></div>
+<div class="linenb">&nbsp;10</div><div class="codeline"><span class="keyword1">\usepackage</span>[T1]{fontenc} <span class="comment">% Use 8-bit encoding that has 256 glyphs</span></div><div class="clear"></div>
+<div class="linenb">&nbsp;11</div><div class="codeline"><span class="keyword1">\usepackage</span>[utf8]{inputenc}</div><div class="clear"></div>
+<div class="linenb">&nbsp;12</div><div class="codeline"><span class="keyword1">\usepackage</span>{fourier} <span class="comment">% Use the Adobe Utopia font for the document - comment this line to return to the LaTeX default</span></div><div class="clear"></div>
+<div class="linenb">&nbsp;13</div><div class="codeline"><span class="keyword1">\usepackage</span>{listings} <span class="comment">% para insertar código con formato similar al editor</span></div><div class="clear"></div>
+<div class="linenb">&nbsp;14</div><div class="codeline"><span class="keyword1">\usepackage</span>[spanish, es-tabla]{babel} <span class="comment">% Selecciona el español para palabras introducidas automáticamente, p.ej. "septiembre" en la fecha y especifica que se use la palabra Tabla en vez de Cuadro</span></div><div class="clear"></div>
+<div class="linenb">&nbsp;15</div><div class="codeline"><span class="keyword1">\usepackage</span>{url} <span class="comment">% ,href} %para incluir URLs e hipervínculos dentro del texto (aunque hay que instalar href)</span></div><div class="clear"></div>
+<div class="linenb">&nbsp;16</div><div class="codeline"><span class="keyword1">\usepackage</span>{graphics,graphicx, float} <span class="comment">%para incluir imágenes y colocarlas</span></div><div class="clear"></div>
+<div class="linenb">&nbsp;17</div><div class="codeline"><span class="keyword1">\usepackage</span>[gen]{eurosym} <span class="comment">%para incluir el símbolo del euro</span></div><div class="clear"></div>
+<div class="linenb">&nbsp;18</div><div class="codeline"><span class="keyword1">\usepackage</span>{cite} <span class="comment">%para incluir citas del archivo &lt;nombre&gt;.bib</span></div><div class="clear"></div>
+<div class="linenb">&nbsp;19</div><div class="codeline"><span class="keyword1">\usepackage</span>{enumerate}</div><div class="clear"></div>
+<div class="linenb">&nbsp;20</div><div class="codeline"><span class="keyword1">\usepackage</span>{hyperref}</div><div class="clear"></div>
+<div class="linenb">&nbsp;21</div><div class="codeline"><span class="keyword1">\usepackage</span>{graphicx}</div><div class="clear"></div>
+<div class="linenb">&nbsp;22</div><div class="codeline"><span class="keyword1">\usepackage</span>{tabularx}</div><div class="clear"></div>
+<div class="linenb">&nbsp;23</div><div class="codeline"><span class="keyword1">\usepackage</span>{booktabs}</div><div class="clear"></div>
+<div class="linenb">&nbsp;24</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">&nbsp;25</div><div class="codeline"><span class="keyword1">\usepackage</span>[table,xcdraw]{xcolor}</div><div class="clear"></div>
+<div class="linenb">&nbsp;26</div><div class="codeline">\hypersetup{</div><div class="clear"></div>
+<div class="linenb">&nbsp;27</div><div class="codeline">	colorlinks=true,	<span class="comment">% false: boxed links; true: colored links</span></div><div class="clear"></div>
+<div class="linenb">&nbsp;28</div><div class="codeline">	linkcolor=black,	<span class="comment">% color of internal links</span></div><div class="clear"></div>
+<div class="linenb">&nbsp;29</div><div class="codeline">	urlcolor=cyan		<span class="comment">% color of external links</span></div><div class="clear"></div>
+<div class="linenb">&nbsp;30</div><div class="codeline">}</div><div class="clear"></div>
+<div class="linenb">&nbsp;31</div><div class="codeline">\renewcommand{\familydefault}{\sfdefault}</div><div class="clear"></div>
+<div class="linenb">&nbsp;32</div><div class="codeline"><span class="keyword1">\usepackage</span>{fancyhdr} <span class="comment">% Custom headers and footers</span></div><div class="clear"></div>
+<div class="linenb">&nbsp;33</div><div class="codeline">\pagestyle{fancyplain} <span class="comment">% Makes all pages in the document conform to the custom headers and footers</span></div><div class="clear"></div>
+<div class="linenb">&nbsp;34</div><div class="codeline">\fancyhead[L]{} <span class="comment">% Empty left header</span></div><div class="clear"></div>
+<div class="linenb">&nbsp;35</div><div class="codeline">\fancyhead[C]{} <span class="comment">% Empty center header</span></div><div class="clear"></div>
+<div class="linenb">&nbsp;36</div><div class="codeline">\fancyhead[R]{Rubén Delgado Pareja} <span class="comment">% My name</span></div><div class="clear"></div>
+<div class="linenb">&nbsp;37</div><div class="codeline">\fancyfoot[L]{} <span class="comment">% Empty left footer</span></div><div class="clear"></div>
+<div class="linenb">&nbsp;38</div><div class="codeline">\fancyfoot[C]{} <span class="comment">% Empty center footer</span></div><div class="clear"></div>
+<div class="linenb">&nbsp;39</div><div class="codeline">\fancyfoot[R]{\thepage} <span class="comment">% Page numbering for right footer</span></div><div class="clear"></div>
+<div class="linenb">&nbsp;40</div><div class="codeline"><span class="comment"><span class="comment">%\renewcommand{\headrulewidth}{0pt} % Remove header underlines</span></span></div><div class="clear"></div>
+<div class="linenb">&nbsp;41</div><div class="codeline">\renewcommand{\footrulewidth}{0pt} <span class="comment">% Remove footer underlines</span></div><div class="clear"></div>
+<div class="linenb">&nbsp;42</div><div class="codeline">\setlength{\headheight}{13.6pt} <span class="comment">% Customize the height of the header</span></div><div class="clear"></div>
+<div class="linenb">&nbsp;43</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">&nbsp;44</div><div class="codeline"><span class="keyword1">\usepackage</span>{titlesec, blindtext, color}</div><div class="clear"></div>
+<div class="linenb">&nbsp;45</div><div class="codeline">\definecolor{gray75}{gray}{0.75}</div><div class="clear"></div>
+<div class="linenb">&nbsp;46</div><div class="codeline">\newcommand{\hsp}{\hspace{20pt}}</div><div class="clear"></div>
+<div class="linenb">&nbsp;47</div><div class="codeline"><span class="keyword1">\title</span>format{\chapter}[hang]{\Huge\bfseries}{\thechapter\hsp\textcolor{gray75}{|}\hsp}{0pt}{\Huge\bfseries}</div><div class="clear"></div>
+<div class="linenb">&nbsp;48</div><div class="codeline">\setcounter{secnumdepth}{4}</div><div class="clear"></div>
+<div class="linenb">&nbsp;49</div><div class="codeline"><span class="keyword1">\usepackage</span>[Lenny]{fncychap}</div><div class="clear"></div>
+<div class="linenb">&nbsp;50</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">&nbsp;51</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">&nbsp;52</div><div class="codeline"><span class="keyword2">\begin{document}</span></div><div class="clear"></div>
+<div class="linenb">&nbsp;53</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">&nbsp;54</div><div class="codeline">	<span class="comment">% Plantilla portada UGR</span></div><div class="clear"></div>
+<div class="linenb">&nbsp;55</div><div class="codeline">	\input{portada/portada}</div><div class="clear"></div>
+<div class="linenb">&nbsp;56</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">&nbsp;57</div><div class="codeline">	<span class="comment">% Plantilla prefacio UGR</span></div><div class="clear"></div>
+<div class="linenb">&nbsp;58</div><div class="codeline">	\input{prefacios/prefacio}</div><div class="clear"></div>
+<div class="linenb">&nbsp;59</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">&nbsp;60</div><div class="codeline">	<span class="comment">% Índice de contenidos</span></div><div class="clear"></div>
+<div class="linenb">&nbsp;61</div><div class="codeline">	<span class="highlight-sh" title="If you are writing a research paper, do not force page breaks. [sh:nonp]"></span>\newpage</div><div class="clear"></div>
+<div class="linenb">&nbsp;62</div><div class="codeline">	\tableofcontents</div><div class="clear"></div>
+<div class="linenb">&nbsp;63</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">&nbsp;64</div><div class="codeline">	<span class="comment">% Índice de imágenes y tablas</span></div><div class="clear"></div>
+<div class="linenb">&nbsp;65</div><div class="codeline">	<span class="highlight-sh" title="If you are writing a research paper, do not force page breaks. [sh:nonp]"></span>\newpage</div><div class="clear"></div>
+<div class="linenb">&nbsp;66</div><div class="codeline">	\listoffigures</div><div class="clear"></div>
+<div class="linenb">&nbsp;67</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">&nbsp;68</div><div class="codeline">	<span class="comment">% Si hay suficientes se incluirá dicho índice</span></div><div class="clear"></div>
+<div class="linenb">&nbsp;69</div><div class="codeline">	\listoftables</div><div class="clear"></div>
+<div class="linenb">&nbsp;70</div><div class="codeline">	<span class="highlight-sh" title="If you are writing a research paper, do not force page breaks. [sh:nonp]"></span>\newpage</div><div class="clear"></div>
+<div class="linenb">&nbsp;71</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">&nbsp;72</div><div class="codeline">	<span class="comment">% Introducción</span></div><div class="clear"></div>
+<div class="linenb">&nbsp;73</div><div class="codeline">	\input{secciones/01_introduccion}</div><div class="clear"></div>
+<div class="linenb">&nbsp;74</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">&nbsp;75</div><div class="codeline">	<span class="comment">% Descripción del problema y hasta donde se llega</span></div><div class="clear"></div>
+<div class="linenb">&nbsp;76</div><div class="codeline">	\input{secciones/02_descripcion}</div><div class="clear"></div>
+<div class="linenb">&nbsp;77</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">&nbsp;78</div><div class="codeline">	<span class="comment">% Estado del arte</span></div><div class="clear"></div>
+<div class="linenb">&nbsp;79</div><div class="codeline">	<span class="comment">% 	1. Crítica al estado del arte</span></div><div class="clear"></div>
+<div class="linenb">&nbsp;80</div><div class="codeline">	<span class="comment">% 	2. Propuesta</span></div><div class="clear"></div>
+<div class="linenb">&nbsp;81</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">&nbsp;82</div><div class="codeline">	\input{secciones/03_estado_del_arte}</div><div class="clear"></div>
+<div class="linenb">&nbsp;83</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">&nbsp;84</div><div class="codeline">	\input{secciones/04_metodologia.tex}</div><div class="clear"></div>
+<div class="linenb">&nbsp;85</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">&nbsp;86</div><div class="codeline">	\input{secciones/05_implementacion}</div><div class="clear"></div>
+<div class="linenb">&nbsp;87</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">&nbsp;88</div><div class="codeline">	<span class="comment">% Presupuesto</span></div><div class="clear"></div>
+<div class="linenb">&nbsp;89</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">&nbsp;90</div><div class="codeline">	<span class="comment">% Conclusiones</span></div><div class="clear"></div>
+<div class="linenb">&nbsp;91</div><div class="codeline">	\input{secciones/06_conclusiones}</div><div class="clear"></div>
+<div class="linenb">&nbsp;92</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">&nbsp;93</div><div class="codeline">	<span class="comment">% Trabajos futuros</span></div><div class="clear"></div>
+<div class="linenb">&nbsp;94</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">&nbsp;95</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">&nbsp;96</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">&nbsp;97</div><div class="codeline">	<span class="highlight-sh" title="If you are writing a research paper, do not force page breaks. [sh:nonp]"></span>\newpage</div><div class="clear"></div>
+<div class="linenb">&nbsp;98</div><div class="codeline">	\bibliography{bibliografia}</div><div class="clear"></div>
+<div class="linenb">&nbsp;99</div><div class="codeline">	\bibliographystyle{plain}</div><div class="clear"></div>
+<div class="linenb">100</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">101</div><div class="codeline"><span class="keyword2">\end{document}</span></div><div class="clear"></div>
+<div class="linenb">102</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+</div>
+<h2 class="filename">portada/portada.tex</h2>
+
+<p>Found 5 warning(s)</p>
+<div class="original-file">
+<div class="linenb">&nbsp;1</div><div class="codeline"><span class="keyword2">\begin{titlepage}</span></div><div class="clear"></div>
+<div class="linenb">&nbsp;2</div><div class="codeline">\newlength{\centeroffset}</div><div class="clear"></div>
+<div class="linenb">&nbsp;3</div><div class="codeline">\setlength{\centeroffset}{-0.5\oddsidemargin}</div><div class="clear"></div>
+<div class="linenb">&nbsp;4</div><div class="codeline">\addtolength{\centeroffset}{0.5\evensidemargin}</div><div class="clear"></div>
+<div class="linenb">&nbsp;5</div><div class="codeline">\thispagestyle{empty}</div><div class="clear"></div>
+<div class="linenb">&nbsp;6</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">&nbsp;7</div><div class="codeline">\noindent\hspace*{\centeroffset}<span class="keyword2">\begin{minipage}</span>{\textwidth}</div><div class="clear"></div>
+<div class="linenb">&nbsp;8</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">&nbsp;9</div><div class="codeline">\centering</div><div class="clear"></div>
+<div class="linenb">10</div><div class="codeline"><span class="keyword1">\includegraphics</span>[width=0.9\textwidth]{logos/logo_ugr.jpg}\\[1.4cm]</div><div class="clear"></div>
+<div class="linenb">11</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">12</div><div class="codeline">\textsc{ \Large TRABAJO FIN DE GRADO\\[<span class="highlight" title="Falta un espacio antes de la unidad.. Suggestions: [0.2 cm] (35) [lt:es:SPACE_UNITIES]">0.2cm</span>]}</div><div class="clear"></div>
+<div class="linenb">13</div><div class="codeline">\textsc{ GRADO EN INGENIERÍA INFORMÁTICA}\\[<span class="highlight" title="Falta un espacio antes de la unidad.. Suggestions: [1 cm] (75) [lt:es:SPACE_UNITIES]">1cm</span>]</div><div class="clear"></div>
+<div class="linenb">14</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">15</div><div class="codeline">{\Huge\bfseries Triage Inteligente de Consulta Médica \\}</div><div class="clear"></div>
+<div class="linenb">16</div><div class="codeline">\noindent\rule[-1ex]{\textwidth}{3pt}\\[3.5ex]</div><div class="clear"></div>
+<div class="linenb">17</div><div class="codeline">{\large\bfseries Sistema de citas priorizado por el riesgo del paciente }</div><div class="clear"></div>
+<div class="linenb">18</div><div class="codeline"><span class="keyword2">\end{minipage}</span></div><div class="clear"></div>
+<div class="linenb">19</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">20</div><div class="codeline">\vspace{2.5cm}</div><div class="clear"></div>
+<div class="linenb">21</div><div class="codeline">\noindent\hspace*{\centeroffset}</div><div class="clear"></div>
+<div class="linenb">22</div><div class="codeline"><span class="keyword2">\begin{minipage}</span>{\textwidth}</div><div class="clear"></div>
+<div class="linenb">23</div><div class="codeline">\centering</div><div class="clear"></div>
+<div class="linenb">24</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">25</div><div class="codeline"><span class="keyword1">\textbf</span>{Autor}\\ {Rubén Delgado Pareja}\\[<span class="highlight" title="Falta un espacio antes de la unidad.. Suggestions: [2.5 cm] (209) [lt:es:SPACE_UNITIES]">2.5cm</span>]</div><div class="clear"></div>
+<div class="linenb">26</div><div class="codeline"><span class="keyword1">\textbf</span>{Director}\\ {Juan Julián Merelo Guervós}\\[<span class="highlight" title="Falta un espacio antes de la unidad.. Suggestions: [2 cm] (252) [lt:es:SPACE_UNITIES]">2cm</span>]</div><div class="clear"></div>
+<div class="linenb">27</div><div class="codeline"><span class="keyword1">\includegraphics</span>[width=0.3\textwidth]{logos/etsiit_logo.png}\\[0.1cm]</div><div class="clear"></div>
+<div class="linenb">28</div><div class="codeline">\textsc{Escuela Técnica Superior de Ingenierías Informática y de Telecomunicación}\\</div><div class="clear"></div>
+<div class="linenb">29</div><div class="codeline">\textsc{---}\\</div><div class="clear"></div>
+<div class="linenb">30</div><div class="codeline">Granada, <span class="highlight" title="Los meses del año se escriben en minúsculas, excepto si forman parte de un nombre propio.. Suggestions: [febrero] (345) [lt:es:MIN_MESES]">Febrero</span> de 2024</div><div class="clear"></div>
+<div class="linenb">31</div><div class="codeline"><span class="keyword2">\end{minipage}</span></div><div class="clear"></div>
+<div class="linenb">32</div><div class="codeline"><span class="keyword2">\end{titlepage}</span></div><div class="clear"></div>
+</div>
+<h2 class="filename">secciones/03_estado_del_arte.tex</h2>
+
+<p>Found 1 warning(s)</p>
+<div class="original-file">
+<div class="linenb">1</div><div class="codeline">\<span class="highlight-spelling" title="Se ha encontrado un posible error ortográfico. (1) [lt:es:MORFOLOGIK_RULE_ES]"></span>UseRawInputEncoding</div><div class="clear"></div>
+<div class="linenb">2</div><div class="codeline">\chapter{Estado del arte}</div><div class="clear"></div>
+<div class="linenb">3</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">4</div><div class="codeline">El software libre y sus licencias \cite{gplv3} ha permitido llevar a cabo una expansión del</div><div class="clear"></div>
+<div class="linenb">5</div><div class="codeline">aprendizaje de la informática sin precedentes.</div><div class="clear"></div>
+</div>
+<h2 class="filename">secciones/07_user-journey.tex</h2>
+
+<p>Found 1 warning(s)</p>
+<div class="original-file">
+<div class="linenb">&nbsp;1</div><div class="codeline">\<span class="highlight-spelling" title="Se ha encontrado un posible error ortográfico. (1) [lt:es:MORFOLOGIK_RULE_ES]"></span>UseRawInputEncoding</div><div class="clear"></div>
+<div class="linenb">&nbsp;2</div><div class="codeline"><span class="keyword1">\section</span>{<span class="keyword1">\textit</span>{User Journeys}}<span class="keyword1">\label</span>{anexo}</div><div class="clear"></div>
+<div class="linenb">&nbsp;3</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">&nbsp;4</div><div class="codeline"><span class="keyword1">\subsection</span>{Samuel Tena Sánchez}</div><div class="clear"></div>
+<div class="linenb">&nbsp;5</div><div class="codeline"><span class="keyword2">\begin{itemize}</span></div><div class="clear"></div>
+<div class="linenb">&nbsp;6</div><div class="codeline">    <span class="keyword1">\item</span> <span class="keyword1">\textbf</span>{Contexto de uso: }</div><div class="clear"></div>
+<div class="linenb">&nbsp;7</div><div class="codeline">    <span class="keyword2">\begin{itemize}</span></div><div class="clear"></div>
+<div class="linenb">&nbsp;8</div><div class="codeline">        <span class="keyword1">\item</span> <span class="keyword1">\textbf</span>{¿Cuándo utiliza el ordenador?: }  Utiliza el ordenador con frecuencia</div><div class="clear"></div>
+<div class="linenb">&nbsp;9</div><div class="codeline">        <span class="keyword1">\item</span> <span class="keyword1">\textbf</span>{¿Dónde utiliza el ordenador?: } En casa y en clase</div><div class="clear"></div>
+<div class="linenb">10</div><div class="codeline">        <span class="keyword1">\item</span> <span class="keyword1">\textbf</span>{¿Qué tipo de ordenador utiliza?: } Un portátil común de ofimática</div><div class="clear"></div>
+<div class="linenb">11</div><div class="codeline">    <span class="keyword2">\end{itemize}</span></div><div class="clear"></div>
+<div class="linenb">12</div><div class="codeline">    <span class="keyword1">\item</span> <span class="keyword1">\textbf</span>{Misión: }</div><div class="clear"></div>
+<div class="linenb">13</div><div class="codeline">    <span class="keyword2">\begin{itemize}</span></div><div class="clear"></div>
+<div class="linenb">14</div><div class="codeline">        <span class="keyword1">\item</span> <span class="keyword1">\textbf</span>{¿Para qué quiere utilizar nuestra aplicación?: } Quiere pedir una cita al médico</div><div class="clear"></div>
+<div class="linenb">15</div><div class="codeline">        <span class="keyword1">\item</span> <span class="keyword1">\textbf</span>{¿Qué espera encontrar en ella?: } Espera encontrar una cita lo antes posible</div><div class="clear"></div>
+<div class="linenb">16</div><div class="codeline">    <span class="keyword2">\end{itemize}</span></div><div class="clear"></div>
+<div class="linenb">17</div><div class="codeline">    <span class="keyword1">\item</span> <span class="keyword1">\textbf</span>{Motivación: }</div><div class="clear"></div>
+<div class="linenb">18</div><div class="codeline">    <span class="keyword2">\begin{itemize}</span></div><div class="clear"></div>
+<div class="linenb">19</div><div class="codeline">        <span class="keyword1">\item</span> <span class="keyword1">\textbf</span>{¿Para cuándo quiere utilizarla?: } Lo antes posible</div><div class="clear"></div>
+<div class="linenb">20</div><div class="codeline">        <span class="keyword1">\item</span> <span class="keyword1">\textbf</span>{¿Por qué quiere alcanzar ese objetivo?: } Porque se encuentra mal desde hace días y posiblemente haya enfermado</div><div class="clear"></div>
+<div class="linenb">21</div><div class="codeline">    <span class="keyword2">\end{itemize}</span></div><div class="clear"></div>
+<div class="linenb">22</div><div class="codeline">    <span class="keyword1">\item</span> <span class="keyword1">\textbf</span>{Actitud hacia la tecnología: } Se siente cómodo navegando por Internet y usando las nuevas tecnologías. No le es ningún impedimento</div><div class="clear"></div>
+<div class="linenb">23</div><div class="codeline"><span class="keyword2">\end{itemize}</span></div><div class="clear"></div>
+<div class="linenb">24</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">25</div><div class="codeline"><span class="keyword1">\subsection</span>{Escenario 1 de Samuel Tena}</div><div class="clear"></div>
+<div class="linenb">26</div><div class="codeline">    Samuel es un chico que estudia un grado superior en cerámica y después del primer</div><div class="clear"></div>
+<div class="linenb">27</div><div class="codeline">    cuatrimestre del curso ha sacado muy buenas notas, por lo que su familia ha planeado</div><div class="clear"></div>
+<div class="linenb">28</div><div class="codeline">    regalarle un viaje a Francia por Navidad. Sin embargo, ha comenzado a sentirse muy fatigado</div><div class="clear"></div>
+<div class="linenb">29</div><div class="codeline">     y necesita pedir cita al médico. La familia de Samuel recientemente</div><div class="clear"></div>
+<div class="linenb">30</div><div class="codeline">    se ha cambiado a la sanidad privada por su innovador sistema de citas, por lo que Samuel se</div><div class="clear"></div>
+<div class="linenb">31</div><div class="codeline">    dispone a pedir cita. Accede desde el portal web donde necesita registrarse para pedir cita,</div><div class="clear"></div>
+<div class="linenb">32</div><div class="codeline">    durante el registro tiene que contestar una serie de preguntas sobre su salud y su historial</div><div class="clear"></div>
+<div class="linenb">33</div><div class="codeline">    médico para que el sistema sea consciente del estado de su salud actualmente. Una vez se registra</div><div class="clear"></div>
+<div class="linenb">34</div><div class="codeline">    accede a la página principal de la web donde puede solicitar citas, Samuel puede elegir del calendario</div><div class="clear"></div>
+<div class="linenb">35</div><div class="codeline">    los días señalados y termina pidiendo la cita para el primer día que aparece disponible. La cita disponible</div><div class="clear"></div>
+<div class="linenb">36</div><div class="codeline">    es para la semana siguiente, ya que, dependiendo de su riesgo no necesita urgencia al ser una persona joven y sin problemas de salud.</div><div class="clear"></div>
+<div class="linenb">37</div><div class="codeline">    Sin embargo, Samuel lo entiende porque conoce casos más necesitados que el suyo, sobre todo después del covid-19</div><div class="clear"></div>
+<div class="linenb">38</div><div class="codeline">    Finalmente, llega la fecha y asiste al centro de salud, le recetan los medicamentos para poder tratarse antes de su viaje.</div><div class="clear"></div>
+<div class="linenb">39</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">40</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">41</div><div class="codeline"><span class="keyword1">\subsection</span>{Azucena Rodríguez Peralta}</div><div class="clear"></div>
+<div class="linenb">42</div><div class="codeline"><span class="keyword2">\begin{itemize}</span></div><div class="clear"></div>
+<div class="linenb">43</div><div class="codeline">    <span class="keyword1">\item</span> <span class="keyword1">\textbf</span>{Contexto de uso: }</div><div class="clear"></div>
+<div class="linenb">44</div><div class="codeline">    <span class="keyword2">\begin{itemize}</span></div><div class="clear"></div>
+<div class="linenb">45</div><div class="codeline">        <span class="keyword1">\item</span> <span class="keyword1">\textbf</span>{¿Cuándo utiliza el ordenador?: }  Usa el ordenador a diario</div><div class="clear"></div>
+<div class="linenb">46</div><div class="codeline">        <span class="keyword1">\item</span> <span class="keyword1">\textbf</span>{¿Dónde utiliza el ordenador?: } En casa y en el trabajo</div><div class="clear"></div>
+<div class="linenb">47</div><div class="codeline">        <span class="keyword1">\item</span> <span class="keyword1">\textbf</span>{¿Qué tipo de ordenador utiliza?: } El ordenador que le ofrecen en la consulta</div><div class="clear"></div>
+<div class="linenb">48</div><div class="codeline">    <span class="keyword2">\end{itemize}</span></div><div class="clear"></div>
+<div class="linenb">49</div><div class="codeline">    <span class="keyword1">\item</span> <span class="keyword1">\textbf</span>{Misión: }</div><div class="clear"></div>
+<div class="linenb">50</div><div class="codeline">    <span class="keyword2">\begin{itemize}</span></div><div class="clear"></div>
+<div class="linenb">51</div><div class="codeline">        <span class="keyword1">\item</span> <span class="keyword1">\textbf</span>{¿Para qué quiere utilizar nuestra aplicación?: } Necesita saber que citas tiene durante el día</div><div class="clear"></div>
+<div class="linenb">52</div><div class="codeline">        <span class="keyword1">\item</span> <span class="keyword1">\textbf</span>{¿Qué espera encontrar en ella?: } Una web sencilla para saber conocer sus citas asignadas y poder modificar el riesgo del paciente</div><div class="clear"></div>
+<div class="linenb">53</div><div class="codeline">    <span class="keyword2">\end{itemize}</span></div><div class="clear"></div>
+<div class="linenb">54</div><div class="codeline">    <span class="keyword1">\item</span> <span class="keyword1">\textbf</span>{Motivación: }</div><div class="clear"></div>
+<div class="linenb">55</div><div class="codeline">    <span class="keyword2">\begin{itemize}</span></div><div class="clear"></div>
+<div class="linenb">56</div><div class="codeline">        <span class="keyword1">\item</span> <span class="keyword1">\textbf</span>{¿Para cuándo quiere utilizarla?: } Para el trabajo</div><div class="clear"></div>
+<div class="linenb">57</div><div class="codeline">        <span class="keyword1">\item</span> <span class="keyword1">\textbf</span>{¿Por qué quiere alcanzar ese objetivo?: } Porque es una tarea de su trabajo</div><div class="clear"></div>
+<div class="linenb">58</div><div class="codeline">    <span class="keyword2">\end{itemize}</span></div><div class="clear"></div>
+<div class="linenb">59</div><div class="codeline">    <span class="keyword1">\item</span> <span class="keyword1">\textbf</span>{Actitud hacia la tecnología: } Está muy acostumbrada a usar las nuevas tecnologías</div><div class="clear"></div>
+<div class="linenb">60</div><div class="codeline"><span class="keyword2">\end{itemize}</span></div><div class="clear"></div>
+<div class="linenb">61</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">62</div><div class="codeline"><span class="keyword1">\subsection</span>{Escenario Azucena Rodríguez}</div><div class="clear"></div>
+<div class="linenb">63</div><div class="codeline">    Azucena es una mujer que ha estudiado la carrera de Medicina y está especializada para la atención primaria.</div><div class="clear"></div>
+<div class="linenb">64</div><div class="codeline">    La acaban de contratar en una empresa de sanidad privada para que se encargue de algunas consultas y le</div><div class="clear"></div>
+<div class="linenb">65</div><div class="codeline">    han comentado que utilice la aplicación de la empresa para organizarse y gestionar las citas.</div><div class="clear"></div>
+<div class="linenb">66</div><div class="codeline">    Azucena ingresa con sus credenciales y accede como sanitario, la primera pantalla que encuentra</div><div class="clear"></div>
+<div class="linenb">67</div><div class="codeline">    es un calendario con todas sus citas asignadas y los pacientes a los que atenderá.</div><div class="clear"></div>
+<div class="linenb">68</div><div class="codeline">    Azucena esta mañana le ha tocado atender las citas de mayor prioridad, entre los perfiles de los pacientes</div><div class="clear"></div>
+<div class="linenb">69</div><div class="codeline">    puede observar personas muy mayores, con enfermedades crónicas o gente con un alto riesgo en su salud los cuales</div><div class="clear"></div>
+<div class="linenb">70</div><div class="codeline">    una cita antes de tiempo puede ser significativa para su estado de salud.</div><div class="clear"></div>
+<div class="linenb">71</div><div class="codeline">    Azucena después de tener consultar a un paciente decide que el su riesgo debe ser modificado, por lo que</div><div class="clear"></div>
+<div class="linenb">72</div><div class="codeline">    desde el sistema accede al perfil del paciente y le sube el riesgo, ya que, le han diagnosticado epilepsia</div><div class="clear"></div>
+<div class="linenb">73</div><div class="codeline">    crónica. Gracias al sistema de triage inteligente Azucena puede cumplir con su trabajo cómodamente.</div><div class="clear"></div>
+</div>
+<hr/>
+Output produced by TeXtidote v0.8.2, &copy; 2018-2020 Sylvain Hall&eacute; - All rights reserved.<br/>
+See the <a href="https://sylvainhalle.github.io/textidote">TeXtidote website</a> for more information.
+</body>
+</html>
