@@ -46,3 +46,6 @@ Shared
 Anticorruption
 Layer
 shared
+Node.js
+Jest
+Cypress
