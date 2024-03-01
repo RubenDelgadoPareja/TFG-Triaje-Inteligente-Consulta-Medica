@@ -46,3 +46,5 @@ Shared
 Anticorruption
 Layer
 shared
+pull
+request
