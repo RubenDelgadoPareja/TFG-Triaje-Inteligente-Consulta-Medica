@@ -49,3 +49,5 @@ shared
 Node.js
 Jest
 Cypress
+pull
+request
