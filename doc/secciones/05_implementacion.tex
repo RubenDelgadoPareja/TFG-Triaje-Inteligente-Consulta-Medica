@@ -12,8 +12,9 @@ con los distintos problemas que han ido surgiendo durante el desarrollado, cómo
 
 \section{Hito 0: Infraestructura inicial y documentación}
 
-El primer PMV consiste en alcanzar un repositorio inicial donde comenzar a forjar toda la arquitectura del proyecto con una planificación inicial.
-En el capítulo de metodología ya definimos el PMV a alcanzar para este hito \ref{sb:hito0}.
+Durante el hito 0 se ha llevado a cabo la planificación inicial del proyecto y configuraciones de herramientas. En el capítulo de metodología ya definimos el hito \ref{sb:hito0} a alcanzar.
+Podemos encontrar dos tipos de herramientas configuradas, dependiendo de su uso, las herramientas de desarrollo y las de documentación.
+Aunque inicialmente tengo que aclarar dónde se completa tanto documentación como desarrollo.
 
 \subsection{Entorno de Desarrollo Integrado}
 El primer problema es encontrar un lugar donde comenzar el desarrollo del proyecto y configuraciones de herramientas, para ello necesitamos un entorno de desarrollo integrado (\textit{IDE}).
@@ -21,8 +22,8 @@ He decidido elegir Visual Studio Code para el desarrollo del proyecto debido a q
 Otro motivo fundamental es que es gratuita, además contiene una gran cantidad de extensiones y configuraciones lo que facilita programar, también es ligero y multiplataforma.
 Me parece muy cómodo y versátil frente a otras opciones.
 
-\subsection{Memoria}
-La memoria es un documento muy importante en el desarrollo de un proyecto, ya que, es el reflejo de todo el trabajo realizado y es necesario para la evaluación del proyecto.
+\subsection{Herramientas para la memoria}
+La memoria es muy importante en el desarrollo de un proyecto, ya que, es el reflejo de todo el trabajo realizado y es necesario para la evaluación del proyecto.
 Debemos de encontrar una herramienta que nos permita escribir la memoria de forma cómoda y eficiente. Además de comprobar constantemente que lo escrito esté correcto.
 
 \paragraph*{Compilación de LaTeX}
@@ -35,12 +36,12 @@ Para verificar activamente que lo escrito en la memoria esté correcto se ha emp
 Esta herramienta nos permite corregir la ortografía, gramática y semántica de la documentación escrita. Se puede ejecutar la corrección a través del comando \textit{check} del Makefile,
 generando un borrador con la documentación marcando los errores y posibles cambios. Además, se ha añadido este comando a los hooks de GitHub para ejecutarlo antes de cada commit.
 
-\subsection{Código}
+\subsection{Herramientas para el desarrollo}
 El código es imprescindible para el desarrollo, debemos encontrar un lenguaje que satisfaga las necesidades de la \ref{sc:planificación}.
 Además, es necesario tener un constante análisis estático para mantener un código limpio, coherente y libre de errores.
 Finalmente, para aportar valor al producto he decidido automatizar estos procesos con la integración continua, mencionado en la sección \ref{sc:control-calidad}.
 
-\subsubsection*{Lenguaje de Programación}
+\subsubsection*{Lenguaje de programación}
 Para el desarrollo de un proyecto es esencial decidir con qué herramienta principal, en este caso el lenguaje, se va a crear. De entre mi pila de lenguajes de programación he
 escogido Typescript junto con Node.js, ya que, estoy trabajando con él. Creo que da una gran robustez gracias al tipado y apoya mucho al Diseño Dirigido al Dominio, no como otros lenguajes como Java o Ruby
 Cuenta con una gran batería de librerías que agiliza el desarrollo y permite la implementación rápida de características.
@@ -57,8 +58,9 @@ Las diferentes opciones que encontramos para el cliente o local pueden ser git, 
 alternativas Jenkins, Travis, Circle, GitHub Actions. He decido escoger git para el cliente y GitHub Actions para el servidor porque me resultan fáciles de configurar y escalabilidad.
 Gracias a esta metodología podemos automatizar la ejecución de test, linter y corrector ortográfico, de esta manera comprobaremos antes de ciertas acciones con los hooks de GitHub que todo está
 correctamente. También se había barajado la opción de utilizar un paquete llamado \textit{husky} para Node.js, pero no se ha escogido finalmente para aprender nuevas tecnologías.
+Con esta herramienta se ha configurado un workflow que se ejecuta en cada push a la rama principal, en el que se ejecutan los test, el linter y el corrector ortográfico, ya mencionado en la sección de control de calidad \ref{sc:control-calidad}.
 
-\section{Hito 1: Modelado del Problema con DDD}
+\section{Hito 1: Priorizar una cita}
 
 En este segundo PVM nos adentramos en el modelado del problema descrito en la sección \ref{sc:hito1}.
 Pero antes debemos investigar sobre el Diseño Dirigido al Dominio y aplicarlo correctamente al dominio del problema. Además, con el desarrollo del
