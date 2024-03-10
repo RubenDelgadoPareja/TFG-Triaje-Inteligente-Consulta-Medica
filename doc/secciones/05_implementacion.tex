@@ -62,7 +62,8 @@ Con esta herramienta se ha configurado un workflow que se ejecuta en cada push a
 
 \section{Hito 1: Priorizar una cita}
 
-En este segundo PVM nos adentramos en el modelado del problema descrito en la sección \ref{sc:hito1}.
+Durante el primer hito del proyecto debemos de alcanzar el PMV que permita priorizar una cita por el riesgo del paciente.
+Principalmente necesitamos un modelado del problema descrito en la sección \ref{sc:hito1}.
 Pero antes debemos investigar sobre el Diseño Dirigido al Dominio y aplicarlo correctamente al dominio del problema. Además, con el desarrollo del
 código surge la necesidad de realizar test unitarios e integración, mencionado en la sección \ref{sc:control-calidad}.
 
@@ -73,6 +74,8 @@ Podemos encontrar una pequeña introducción al DDD en la sección \ref{sc:dise�
 Inicialmente, se deben localizar los subdominios y los contextos acotados. La arquitectura del proyecto se ha dividido en módulos que representan los distintos contextos acotados.
 Cada módulo tendrá su propio conjunto de clases que representan esa parte del dominio y debe de tener sentido por sí mismo. Los distintos módulos también podrán comunicarse entre ellos.
 Inicialmente, se van a crear lo mínimo necesario para el cliente, después poco a poco se irá aportando valor al producto, añadiendo más funcionalidades y mejoras.
+Sin embargo, decidí crear un conjunto de clases abstractas que representan conceptos del diseño dirigido por el dominio, estos conceptos son entidades, objetos de valor, agregados y eventos de dominio.
+En el caso de que no sean necesarios se eliminarán en este mismo PVM.
 
 \subsection{Test unitarios e integración}
 Para garantizar la calidad del código, es necesario realizar test unitarios e integración. Los test unitarios son pruebas que se ejecutan a una unidad de código, por ejemplo, una función o un método.
