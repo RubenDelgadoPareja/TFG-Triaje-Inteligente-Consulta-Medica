@@ -2,55 +2,59 @@
 \chapter{Implementación}
 
 A lo largo de este capítulo se pretende reflejar las herramientas usadas durante todo el proceso de desarrollo y
-se argumentará por qué se han tomado estas decisiones, al igual que en el capítulo de \ref{ch:metodología} explicamos
+se argumentará por qué se han tomado estas decisiones, al igual que en el capítulo de metodología \ref{ch:metodología} explicamos
 la planificación y forma de trabajo.
 
 La implementación del software se ha dividido en hitos. Cada hito representa un producto mínimamente viable que se publicará.
 Los \href{https://github.com/RubenDelgadoPareja/TFG-Triage-Inteligente-Consulta-Medica/milestones}{hitos} han sido definidos en GitHub y explicados en la sección \ref{sec:hitos}.
-Cada uno de ellos contiene un grupo de \href{https://github.com/RubenDelgadoPareja/TFG-Triage-Inteligente-Consulta-Medica/issues}{\textit{issues}} que se corresponden
+Cada uno de ellos tiene asignados \href{https://github.com/RubenDelgadoPareja/TFG-Triage-Inteligente-Consulta-Medica/issues}{\textit{issues}} que se corresponden
 con los distintos problemas que han ido surgiendo durante el desarrollado, cómo los hemos solucionado, qué herramientas se han utilizado y por qué.
+La solución de las issues asignadas al hito conforman el llamado producto mínimo viable (\textit{PMV}) del hito.
 
 \section{Hito 0: Infraestructura inicial y documentación}
 
-Durante el hito 0 se ha llevado a cabo la planificación inicial del proyecto y configuraciones de herramientas. En el capítulo de metodología ya definimos el hito \ref{sb:hito0} a alcanzar.
+El PMV del hito 0 es un repositorio inicial formado por una documentación y un conjunto de herramientas configuradas para el desarrollo del proyecto.
+En la documentación se ha plasmado la planificación inicial del proyecto y configuraciones de herramientas. En el capítulo de metodología ya definimos el hito \ref{sb:hito0} a alcanzar.
 Podemos encontrar dos tipos de herramientas configuradas, dependiendo de su uso, las herramientas de desarrollo y las de documentación.
 Aunque inicialmente tengo que aclarar dónde se completa tanto documentación como desarrollo.
 
 \subsection{Entorno de Desarrollo Integrado}
-El primer problema es encontrar un lugar donde comenzar el desarrollo del proyecto y configuraciones de herramientas, para ello necesitamos un entorno de desarrollo integrado (\textit{IDE}).
-He decidido elegir Visual Studio Code para el desarrollo del proyecto debido a que tengo experiencia usándola y me siento cómodo desarrollando en este {\textit{IDE}}.
-Otro motivo fundamental es que es gratuita, además contiene una gran cantidad de extensiones y configuraciones lo que facilita programar, también es ligero y multiplataforma.
-Me parece muy cómodo y versátil frente a otras opciones.
+El primer problema es encontrar una herramienta donde comenzar el desarrollo del proyecto y configuraciones de herramientas, para ello necesitamos un entorno de desarrollo integrado (\textit{IDE}).
+Las herramientas que cumplen con la necesidad pueden ser Visual Studio Code, Atom, Sublime Text, WebStorm, etc.
+Visual Studio Code destaca por su ligereza, multiplataforma, gran cantidad de extensiones y configuraciones, además de ser gratuita, no como WebStorm.
+Respecto al resto, Visual Studio Code permite tener una terminal integrada y tiene mayor comunidad. Además, es la herramienta con la que tengo experiencia usándola y me siento cómodo desarrollando.
 
-\subsection{Herramientas para la memoria}
-La memoria es muy importante en el desarrollo de un proyecto, ya que, es el reflejo de todo el trabajo realizado y es necesario para la evaluación del proyecto.
+\subsection{Memoria}
+La memoria es muy importante en el desarrollo de un proyecto, ya que es el reflejo de todo el trabajo realizado y es necesario para la evaluación del proyecto.
 Debemos de encontrar una herramienta que nos permita escribir la memoria de forma cómoda y eficiente. Además de comprobar constantemente que lo escrito esté correcto.
 
-\paragraph*{Compilación de LaTeX}
+\paragraph*{Generación de la memoria}
 La memoria se ha escrito empleando el lenguaje LaTeX, que es un sistema de composición de documentos bastante empleado
 en el ámbito académico y científico, es necesario para poder generar la documentación final, agrupando cada capítulo, sección y
-gráfica. Para generar este archivo final debemos ejecutar el comando \textit{all} del Makefile
+gráfica.
 
-\paragraph*{Corrector ortográfico gramatical}
-Para verificar activamente que lo escrito en la memoria esté correcto se ha empleado una herramienta de LaTeX llamada \href{https://github.com/sylvainhalle/textidote}{TeXtidote}.
-Esta herramienta nos permite corregir la ortografía, gramática y semántica de la documentación escrita. Se puede ejecutar la corrección a través del comando \textit{check} del Makefile,
+\paragraph*{Corrector de la memoria}
+La herramienta \href{https://github.com/sylvainhalle/textidote}{TeXtidote} nos permite corregir la ortografía, gramática y semántica de la documentación escrita. Se puede ejecutar la corrección a través del comando \textit{check} del Makefile,
 generando un borrador con la documentación marcando los errores y posibles cambios. Además, se ha añadido este comando a los hooks de GitHub para ejecutarlo antes de cada commit.
 
-\subsection{Herramientas para el desarrollo}
-El código es imprescindible para el desarrollo, debemos encontrar un lenguaje que satisfaga las necesidades de la \ref{sc:planificación}.
-Además, es necesario tener un constante análisis estático para mantener un código limpio, coherente y libre de errores.
-Finalmente, para aportar valor al producto he decidido automatizar estos procesos con la integración continua, mencionado en la sección \ref{sc:control-calidad}.
+Finalmente, la herramienta para gestionar tanto la generación como corrección de la memoria es make. Existe una tarea para cada herramienta, \textit{all} para generar la memoria y \textit{check} para corregirla.
+
+\subsection{Herramientas de desarrollo}
 
 \subsubsection*{Lenguaje de programación}
-Para el desarrollo de un proyecto es esencial decidir con qué herramienta principal, en este caso el lenguaje, se va a crear. De entre mi pila de lenguajes de programación he
-escogido Typescript junto con Node.js, ya que, estoy trabajando con él. Creo que da una gran robustez gracias al tipado y apoya mucho al Diseño Dirigido al Dominio, no como otros lenguajes como Java o Ruby
-Cuenta con una gran batería de librerías que agiliza el desarrollo y permite la implementación rápida de características.
+Primero debemos de escoger un lenguaje de programación para el desarrollo del proyecto.
+Existen infinidad de lenguajes de programación como JavaScript, Java, Python, Ruby, C++, C\#, etc.
+Sobre toda estas he escogido Typescript junto con Node.js, ya que da una gran robustez gracias al tipado, es un lenguaje moderno y con una gran comunidad.
+Cuenta con una gran batería de librerías que agiliza el desarrollo y permite la implementación rápida de características justamente lo que se quiere con el
+desarrollo ágil.
 
 \subsubsection*{Análisis estático}
-Para garantizar la calidad, la eficiencia y sostenibilidad del código a largo plazo, necesitamos un análisis estático del código.
-Se ha decidido elegir ESLint con Typescript, ya que es un \textit{linter} que se emplea para el lenguaje de JavaScript, pero se puede aprovechar con TypeScript.
+En TypeScript a pesar de tener un tipado fuerte, es posible que se cometan errores que no se detecten hasta que se ejecute el código, por ello es necesario un análisis estático del código.
+Para el desarrollo ágil es inprescindible garantizar la calidad, la eficiencia y sostenibilidad del código a largo plazo.
+Las posibles herramientas a escoger son SonarQube, ESLint, TSLint, Checkmarx, PMD. Sin embargo, ESLint es la única herramienta especifica para el lenguaje escogido, TypeScript.
+Mientras que SonarQube es una herramienta más generalista y Checkmarx es una herramienta de pago. PMD es una herramienta que se utiliza para Java, por lo que no es aplicable.
 ESLint te permite aplicar reglas personalizadas, reglas predefinidas y configuraciones de estilo para garantizar que tu código sea consistente y libre de problemas.
-No se ha escogido TSLint, por el hecho de que, está obsoleta y no tiene mantenimiento, también se ha barajado SonarQube y CodeClimate.
+No se ha escogido TSLint, por el hecho de que, está obsoleta y no tiene mantenimiento.
 
 \subsubsection*{Integración Continua}
 La integración continua es una práctica de desarrollo de software que tiene como objetivo principal mejorar la calidad del código, aumentar la eficiencia y agilizar el proceso de entrega de software.
@@ -59,25 +63,3 @@ alternativas Jenkins, Travis, Circle, GitHub Actions. He decido escoger git para
 Gracias a esta metodología podemos automatizar la ejecución de test, linter y corrector ortográfico, de esta manera comprobaremos antes de ciertas acciones con los hooks de GitHub que todo está
 correctamente. También se había barajado la opción de utilizar un paquete llamado \textit{husky} para Node.js, pero no se ha escogido finalmente para aprender nuevas tecnologías.
 Con esta herramienta se ha configurado un workflow que se ejecuta en cada push a la rama principal, en el que se ejecutan los test, el linter y el corrector ortográfico, ya mencionado en la sección de control de calidad \ref{sc:control-calidad}.
-
-\section{Hito 1: Priorizar una cita}
-
-Durante el primer hito del proyecto debemos de alcanzar el PMV que permita priorizar una cita por el riesgo del paciente.
-Principalmente necesitamos un modelado del problema descrito en la sección \ref{sc:hito1}.
-Pero antes debemos investigar sobre el Diseño Dirigido al Dominio y aplicarlo correctamente al dominio del problema. Además, con el desarrollo del
-código surge la necesidad de realizar test unitarios e integración, mencionado en la sección \ref{sc:control-calidad}.
-
-\subsection{Diseño}
-La implementación del código estará guiada por el Diseño Dirigido al Dominio, esto significa que el diseño del código se basará en el dominio del problema.
-Podemos encontrar una pequeña introducción al DDD en la sección \ref{sc:diseño}, no obstante es necesario explicar cómo se ha aplicado al proyecto.
-
-Inicialmente, se deben localizar los subdominios y los contextos acotados. La arquitectura del proyecto se ha dividido en módulos que representan los distintos contextos acotados.
-Cada módulo tendrá su propio conjunto de clases que representan esa parte del dominio y debe de tener sentido por sí mismo. Los distintos módulos también podrán comunicarse entre ellos.
-Inicialmente, se van a crear lo mínimo necesario para el cliente, después poco a poco se irá aportando valor al producto, añadiendo más funcionalidades y mejoras.
-Sin embargo, decidí crear un conjunto de clases abstractas que representan conceptos del diseño dirigido por el dominio, estos conceptos son entidades, objetos de valor, agregados y eventos de dominio.
-En el caso de que no sean necesarios se eliminarán en este mismo PVM.
-
-\subsection{Test unitarios e integración}
-Para garantizar la calidad del código, es necesario realizar test unitarios e integración. Los test unitarios son pruebas que se ejecutan a una unidad de código, por ejemplo, una función o un método.
-Las herramientas que se han considerado para testear han sido Cypress, Mocha y Jest.
-En general, todas son buenas opciones, pero se ha escogido Jest por su facilidad de uso, su integración con TypeScript y su gran comunidad.
