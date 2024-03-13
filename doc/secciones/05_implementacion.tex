@@ -11,20 +11,20 @@ Cada uno de ellos tiene asignados \href{https://github.com/RubenDelgadoPareja/TF
 con los distintos problemas que han ido surgiendo durante el desarrollado, cómo los hemos solucionado, qué herramientas se han utilizado y por qué.
 La solución de las issues asignadas al hito conforman el llamado producto mínimo viable (\textit{PMV}) del hito.
 
-\section{Hito 0: Infraestructura inicial y documentación}
+\section{Hito 0: Infraestructura y documentación inicial}
 
 El PMV del hito 0 es un repositorio inicial formado por una documentación y un conjunto de herramientas configuradas para el desarrollo del proyecto.
 En la documentación se ha plasmado la planificación inicial del proyecto y configuraciones de herramientas. En el capítulo de metodología ya definimos el hito \ref{sb:hito0} a alcanzar.
 Podemos encontrar dos tipos de herramientas configuradas, dependiendo de su uso, las herramientas de desarrollo y las de documentación.
 Aunque inicialmente tengo que aclarar dónde se completa tanto documentación como desarrollo.
 
-\subsection{Entorno de Desarrollo Integrado}
-El primer problema es encontrar una herramienta donde comenzar el desarrollo del proyecto y configuraciones de herramientas, para ello necesitamos un entorno de desarrollo integrado (\textit{IDE}).
+\subsection{Entorno de desarrollo}
+El primer problema es encontrar una herramienta donde comenzar el desarrollo del proyecto y configuraciones de herramientas, como puede ser un entorno de desarrollo integrado (\textit{IDE}) o un editor.
 Las herramientas que cumplen con la necesidad pueden ser Visual Studio Code, Atom, Sublime Text, WebStorm, etc.
 Visual Studio Code destaca por su ligereza, multiplataforma, gran cantidad de extensiones y configuraciones, además de ser gratuita, no como WebStorm.
 Respecto al resto, Visual Studio Code permite tener una terminal integrada y tiene mayor comunidad. Además, es la herramienta con la que tengo experiencia usándola y me siento cómodo desarrollando.
 
-\subsection{Memoria}
+\subsection{Herramientas de documentación}
 La memoria es muy importante en el desarrollo de un proyecto, ya que es el reflejo de todo el trabajo realizado y es necesario para la evaluación del proyecto.
 Debemos de encontrar una herramienta que nos permita escribir la memoria de forma cómoda y eficiente. Además de comprobar constantemente que lo escrito esté correcto.
 
@@ -37,26 +37,25 @@ gráfica.
 La herramienta \href{https://github.com/sylvainhalle/textidote}{TeXtidote} nos permite corregir la ortografía, gramática y semántica de la documentación escrita. Se puede ejecutar la corrección a través del comando \textit{check} del Makefile,
 generando un borrador con la documentación marcando los errores y posibles cambios. Además, se ha añadido este comando a los hooks de GitHub para ejecutarlo antes de cada commit.
 
-Finalmente, la herramienta para gestionar tanto la generación como corrección de la memoria es make. Existe una tarea para cada herramienta, \textit{all} para generar la memoria y \textit{check} para corregirla.
+Finalmente, la herramienta para gestionar tanto la generación como corrección de la memoria es make. Existe una tarea para cada herramienta, \textit{all} para generar la memoria y \textit{check} para revisarla.
 
 \subsection{Herramientas de desarrollo}
 
 \subsubsection*{Lenguaje de programación}
 Primero debemos de escoger un lenguaje de programación para el desarrollo del proyecto.
-Existen infinidad de lenguajes de programación como JavaScript, Java, Python, Ruby, C++, C\#, etc.
+El lenguaje a escoger tiene que tener soporte en la actualidad, una gran comunidad, una gran batería de librerías, ser seguro y escalable.
+Además, tengo que tener algo de experiencia en el lenguaje. Los lenguajes que cumplen este criterio son los siguientes: JavaScript, Java, Ruby, C++, Python.
 Sobre toda estas he escogido Typescript junto con Node.js, ya que da una gran robustez gracias al tipado, es un lenguaje moderno y con una gran comunidad.
-Cuenta con una gran batería de librerías que agiliza el desarrollo y permite la implementación rápida de características justamente lo que se quiere con el
-desarrollo ágil.
+Cuenta con muchos paquetes que agiliza el desarrollo y permite la implementación rápida de características justamente lo que se quiere con el desarrollo ágil.
 
 \subsubsection*{Análisis estático}
-En TypeScript a pesar de tener un tipado fuerte, es posible que se cometan errores que no se detecten hasta que se ejecute el código, por ello es necesario un análisis estático del código.
-Para el desarrollo ágil es inprescindible garantizar la calidad, la eficiencia y sostenibilidad del código a largo plazo.
-Las posibles herramientas a escoger son SonarQube, ESLint, TSLint, Checkmarx, PMD. Sin embargo, ESLint es la única herramienta especifica para el lenguaje escogido, TypeScript.
-Mientras que SonarQube es una herramienta más generalista y Checkmarx es una herramienta de pago. PMD es una herramienta que se utiliza para Java, por lo que no es aplicable.
-ESLint te permite aplicar reglas personalizadas, reglas predefinidas y configuraciones de estilo para garantizar que tu código sea consistente y libre de problemas.
-No se ha escogido TSLint, por el hecho de que, está obsoleta y no tiene mantenimiento.
+Para el desarrollo ágil es imprescindible garantizar la calidad, la eficiencia y sostenibilidad del código a largo plazo.
+En TypeScript, a pesar de tener un tipado fuerte, es posible que se cometan errores que no se detecten hasta que se ejecute el código; por ello es necesario un análisis estático del código.
+Buscamos una herramienta rápida y sencilla de configurar que detecte errores de programación en TypeScript.
+Las posibles herramientas a escoger son ESLint o TSLint, porque son las únicas herramientas especifica para el lenguaje escogido, TypeScript. Aunque, TSLint está obsoleta y no tiene mantenimiento.
+Nos quedamos con ESLint que te permite aplicar reglas personalizadas, reglas predefinidas y configuraciones de estilo para garantizar que tu código sea consistente y libre de problemas.
 
-\subsubsection*{Integración Continua}
+\subsubsection*{Integración continua}
 La integración continua es una práctica de desarrollo de software que tiene como objetivo principal mejorar la calidad del código, aumentar la eficiencia y agilizar el proceso de entrega de software.
 Las diferentes opciones que encontramos para el cliente o local pueden ser git, SVN, Mercurial y para el servidor donde se harán las pruebas y la integración se presentan las siguientes
 alternativas Jenkins, Travis, Circle, GitHub Actions. He decido escoger git para el cliente y GitHub Actions para el servidor porque me resultan fáciles de configurar y escalabilidad.
