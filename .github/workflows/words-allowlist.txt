@@ -52,3 +52,6 @@ Cypress
 pull
 request
 workflow
+Atom
+Text
+make
