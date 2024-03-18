@@ -43,8 +43,9 @@ Finalmente, la herramienta para gestionar tanto la generación como corrección 
 
 \subsubsection*{Lenguaje de programación}
 Primero debemos de escoger un lenguaje de programación para el desarrollo del proyecto.
-El lenguaje a escoger tiene que tener soporte en la actualidad, una gran comunidad, una gran batería de librerías, ser seguro y escalable.
-Además, tengo que tener algo de experiencia en el lenguaje. Los lenguajes que cumplen este criterio son los siguientes: JavaScript, Java, Ruby, C++, Python.
+El lenguaje a escoger tiene que ser actual, que no esté obsoleto, tener una buena comunidad con gran cantidad de librerías, que sea seguro y software libre.
+Además, si el desarrollador tiene algo de experiencia en el lenguaje será un plus.
+Los lenguajes que cumplen este criterio son los siguientes: JavaScript / TypeScript, Java, Ruby, C++, Python.
 Sobre toda estas he escogido Typescript junto con Node.js, ya que da una gran robustez gracias al tipado, es un lenguaje moderno y con una gran comunidad.
 Cuenta con muchos paquetes que agiliza el desarrollo y permite la implementación rápida de características justamente lo que se quiere con el desarrollo ágil.
 
@@ -57,8 +58,9 @@ Nos quedamos con ESLint que te permite aplicar reglas personalizadas, reglas pre
 
 \subsubsection*{Integración continua}
 La integración continua es una práctica de desarrollo de software que tiene como objetivo principal mejorar la calidad del código, aumentar la eficiencia y agilizar el proceso de entrega de software.
-Las diferentes opciones que encontramos para el cliente o local pueden ser git, SVN, Mercurial y para el servidor donde se harán las pruebas y la integración se presentan las siguientes
-alternativas Jenkins, Travis, Circle, GitHub Actions. He decido escoger git para el cliente y GitHub Actions para el servidor porque me resultan fáciles de configurar y escalabilidad.
+Debemos encontrar una herramienta que nos permita automatizar los procesos de integración en la nube, teniendo en cuenta que sea gratuita para código abierto, fácil de configurar y sea compatible con el repositorio del proyecto en GitHub.
+Las herramientas que cumplen con estos requisitos son Travis CI, CircleCI, GitHub Actions. La opción elegida es GitHub Actions, es la herramienta perfecta en este caso, ya que es gratuita, fácil de configurar y está integrada en el propio GitHub.
+Esto nos ayuda a poder relanzar los flujos de trabajo desde la propia interfaz de GitHub.
 Gracias a esta metodología podemos automatizar la ejecución de test, linter y corrector ortográfico, de esta manera comprobaremos antes de ciertas acciones con los hooks de GitHub que todo está
 correctamente. También se había barajado la opción de utilizar un paquete llamado \textit{husky} para Node.js, pero no se ha escogido finalmente para aprender nuevas tecnologías.
 Con esta herramienta se ha configurado un workflow que se ejecuta en cada push a la rama principal, en el que se ejecutan los test, el linter y el corrector ortográfico, ya mencionado en la sección de control de calidad \ref{sc:control-calidad}.
