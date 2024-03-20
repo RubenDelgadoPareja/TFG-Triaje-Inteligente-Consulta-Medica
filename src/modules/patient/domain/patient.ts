@@ -1,17 +1,12 @@
-import AggregateRoot from '../../shared/domain/aggregate-root';
-import { UniqueEntityID } from '../../shared/domain/unique-entity-id';
-
 interface PatientProps {
-  id: UniqueEntityID;
+  id?: number;
 }
 
-export class Patient extends AggregateRoot<PatientProps> {
+export class Patient {
   // We can pass an id to instantiate an already existing Patient
-  constructor(props: PatientProps, id?: UniqueEntityID) {
-    super(props, id);
-  }
+  constructor(private readonly id?: number) {}
 
-  public static create(props: PatientProps, id?: UniqueEntityID): Patient {
-    return new Patient(props, id);
+  public static create(props: PatientProps): Patient {
+    return new Patient(props.id);
   }
 }
