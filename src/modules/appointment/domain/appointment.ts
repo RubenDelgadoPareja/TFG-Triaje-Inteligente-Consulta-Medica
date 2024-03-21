@@ -1,14 +1,12 @@
 import { Entity } from '../../shared/domain/entity';
 import { UniqueEntityID } from '../../shared/domain/unique-entity-id';
-import { AppointmentDate } from './appointment-date';
 import { AppointmentType } from './appointment-type';
 
 export interface AppointmentProps {
   id: UniqueEntityID;
   patientId: UniqueEntityID;
-  appointmentDate: AppointmentDate;
+  appointmentDate: Date;
   appointmentType: AppointmentType;
-  confirmed?: boolean;
 }
 
 export class Appointment extends Entity<AppointmentProps> {
@@ -16,15 +14,7 @@ export class Appointment extends Entity<AppointmentProps> {
     super(props, id);
   }
 
-  public static create(
-    props: AppointmentProps,
-    id?: UniqueEntityID,
-  ): Appointment {
-    props.confirmed = false;
-    return new Appointment(props, id);
-  }
-
-  getDate(): AppointmentDate {
+  getDate(): Date {
     return this.props.appointmentDate;
   }
 }
