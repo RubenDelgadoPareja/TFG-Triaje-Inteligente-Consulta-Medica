@@ -1,20 +1,25 @@
-import { Entity } from '../../shared/domain/entity';
-import { UniqueEntityID } from '../../shared/domain/unique-entity-id';
-import { AppointmentType } from './appointment-type';
-
-export interface AppointmentProps {
-  id: UniqueEntityID;
-  patientId: UniqueEntityID;
-  appointmentDate: Date;
-  appointmentType: AppointmentType;
+export enum AppointmentTypeEnum {
+  TELEPHONE = 'telephone',
+  FACE_TO_FACE = 'face_to_face',
 }
-
-export class Appointment extends Entity<AppointmentProps> {
-  constructor(props: AppointmentProps, id?: UniqueEntityID) {
-    super(props, id);
-  }
+export class Appointment {
+  constructor(
+    private readonly id: number,
+    private readonly patientId: number,
+    private readonly appointmentDate: Date,
+    private readonly appointmentType: AppointmentTypeEnum,
+    private readonly confirmed: boolean = false,
+  ) {}
 
   getDate(): Date {
-    return this.props.appointmentDate;
+    return this.appointmentDate;
+  }
+
+  getType(): AppointmentTypeEnum {
+    return this.appointmentType;
+  }
+
+  isConfirmed(): boolean {
+    return this.confirmed;
   }
 }
