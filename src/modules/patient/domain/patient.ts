@@ -1,17 +1,46 @@
-import AggregateRoot from '../../shared/domain/aggregate-root';
-import { UniqueEntityID } from '../../shared/domain/unique-entity-id';
-
-interface PatientProps {
-  id: UniqueEntityID;
+export enum PatientGenre {
+  MALE = 'male',
+  FEMALE = 'female',
+  OTHER = 'other',
 }
 
-export class Patient extends AggregateRoot<PatientProps> {
-  // We can pass an id to instantiate an already existing Patient
-  constructor(props: PatientProps, id?: UniqueEntityID) {
-    super(props, id);
+export class Patient {
+  constructor(
+    public readonly id: string,
+    public readonly name: string,
+    public readonly birthDate: Date,
+    public readonly dni: string,
+    public readonly ssc: string,
+    public readonly genre: PatientGenre,
+    public readonly email: string,
+    public readonly phone: string,
+  ) {}
+
+  getName(): string {
+    return this.name;
   }
 
-  public static create(props: PatientProps, id?: UniqueEntityID): Patient {
-    return new Patient(props, id);
+  getBirthDate(): Date {
+    return this.birthDate;
+  }
+
+  getDni(): string {
+    return this.dni;
+  }
+
+  getSsc(): string {
+    return this.ssc;
+  }
+
+  getGenre(): PatientGenre {
+    return this.genre;
+  }
+
+  getEmail(): string {
+    return this.email;
+  }
+
+  getPhone(): string {
+    return this.phone;
   }
 }
