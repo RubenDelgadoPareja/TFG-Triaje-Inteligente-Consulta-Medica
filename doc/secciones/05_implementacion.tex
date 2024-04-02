@@ -31,23 +31,26 @@ Debemos de encontrar una herramienta que nos permita escribir la memoria de form
 \paragraph*{Generación de la memoria}
 La memoria se ha escrito empleando el lenguaje LaTeX, que es un sistema de composición de documentos bastante empleado
 en el ámbito académico y científico, es necesario para poder generar la documentación final, agrupando cada capítulo, sección y
-gráfica.
+gráfica. Para facilitar la construcción de la memoria se ha utilizado un gestor de tareas con la finalidad de automatizar la generación de la memoria.
+Las opciones que se han tenido en cuenta son Make, CMake, Gradle, Rake o Gulp. Se ha escogido Make porque es la más sencilla de configurar y la más extendida, el resto
+están ligados a un lenguaje de programación en concreto y no se ajustan a las necesidades del proyecto, ya que añadiría una complejidad innecesaria.
 
 \paragraph*{Corrector de la memoria}
 La herramienta \href{https://github.com/sylvainhalle/textidote}{TeXtidote} nos permite corregir la ortografía, gramática y semántica de la documentación escrita. Se puede ejecutar la corrección a través del comando \textit{check} del Makefile,
 generando un borrador con la documentación marcando los errores y posibles cambios. Además, se ha añadido este comando a los hooks de GitHub para ejecutarlo antes de cada commit.
 
-Finalmente, la herramienta para gestionar tanto la generación como corrección de la memoria es make. Existe una tarea para cada herramienta, \textit{all} para generar la memoria y \textit{check} para revisarla.
+Finalmente, tenemos una tarea a ejecutar en el Makefile para cada herramienta, \textit{all} para generar la memoria y \textit{check} para revisarla.
 
 \subsection{Herramientas de desarrollo}
 
 \subsubsection*{Lenguaje de programación}
-Primero debemos de escoger un lenguaje de programación para el desarrollo del proyecto.
-El lenguaje a escoger tiene que ser actual, que no esté obsoleto, tener una buena comunidad con gran cantidad de librerías, que sea seguro y software libre.
-Además, si el desarrollador tiene algo de experiencia en el lenguaje será un plus.
-Los lenguajes que cumplen este criterio son los siguientes: JavaScript / TypeScript, Java, Ruby, C++, Python.
-Sobre toda estas he escogido Typescript junto con Node.js, ya que da una gran robustez gracias al tipado, es un lenguaje moderno y con una gran comunidad.
-Cuenta con muchos paquetes que agiliza el desarrollo y permite la implementación rápida de características justamente lo que se quiere con el desarrollo ágil.
+Primero debemos de escoger un lenguaje de programación para el desarrollo del proyecto, el cual cumpla una serie de criterios para que sea adecuado.
+Para elegir correctamente deberíamos de evaluar el alcance y objetivos del proyecto, los recursos y habilidades disponibles, la experiencia del desarrollador etc.
+Sin embargo, como no estamos en un proyecto real nos basaremos en criterios más generales de los lenguajes de programación, como pueden ser la seguridad, portabilidad, legibilidad, experiencia y se trate de software libre.
+Los lenguajes que cumplen este criterio son los siguientes: JavaScript, TypeScript, Java, Ruby, C++, Python. Partiendo de la experiencia, estos son los lenguajes que conozco.
+Respecto a la portabilidad Java y Python serían buena opción, pero teniendo en cuenta que utilizaremos Node.js como entorno de ejecución se unen a la lista JavaScript y TypeScript.
+Finalmente hablando sobre legibilidad y seguridad Typescript sería la mejor opción, ya que es un lenguaje fuertemente tipado lo que aporta seguridad y legibilidad al código.
+Por tanto, el lenguaje de programación escogido es TypeScript ejecutado en Node.js.
 
 \subsubsection*{Análisis estático}
 Para el desarrollo ágil es imprescindible garantizar la calidad, la eficiencia y sostenibilidad del código a largo plazo.
