@@ -4,11 +4,10 @@ export enum AppointmentTypeEnum {
 }
 export class Appointment {
   constructor(
-    private readonly id: number,
     private readonly patientId: number,
     private readonly appointmentDate: Date,
     private readonly appointmentType: AppointmentTypeEnum,
-    private readonly confirmed: boolean = false,
+    private readonly confirmed: boolean,
   ) {}
 
   getDate(): Date {
