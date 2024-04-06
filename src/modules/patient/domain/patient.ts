@@ -4,9 +4,16 @@ export enum PatientGenre {
   OTHER = 'other',
 }
 
+export enum PatientRisk {
+  UNKNOWN = 'unknown',
+  LOW = 'low',
+  MEDIUM = 'medium',
+  HIGH = 'high',
+}
+
 export class Patient {
   constructor(
-    public readonly id: string,
+    public readonly risk: PatientRisk,
     public readonly name: string,
     public readonly birthDate: Date,
     public readonly dni: string,
@@ -15,6 +22,10 @@ export class Patient {
     public readonly email: string,
     public readonly phone: string,
   ) {}
+
+  getRisk(): PatientRisk {
+    return this.risk;
+  }
 
   getName(): string {
     return this.name;
