@@ -58,19 +58,28 @@ Este PMV consiste en diseñar las clases y funciones necesarias para crear citas
 Los criterios de aceptación de este PMV son los tests de cada clase y sus funciones, además de reflejar en la memoria las decisiones tomadas
 
 \section{Historias de Usuarios}
-Las historias de usuario son la unidad mínima de funcionalidad que el usuario necesita del sistema, es decir,
-expresa lo que quiere el usuario del sistema por esto lo hace tan importante, se centra completamente en el
-usuario. Encontraremos las Historias de Usuario repartidas por los Hitos del desarrollo del software .
+Las historias de usuario son una técnica de la metodología ágil para representar requisitos utilizando lenguaje común del usuario.
+En las historias de usuario se describe desde el punto de vista del usuario, cómo interactúa con el sistema y resuelve una necesidad
+Encontraremos las historias de usuario repartidas por los hitos del desarrollo del software. Las historias de usuarios deben seguir el siguiente formato:
+
+\begin{itemize}
+    \item{Debemos de identificar el tipo de usuario de la historia.}
+    \item{La historia debe de resolver una necesidad del usuario, encontrarse dentro del dominio del problema y expresar el beneficio que consigue el usuario.}
+    \item{Cuando se complete la historia de usuario debe de haber una funcionalidad nueva en el producto}
+\end{itemize}
 
 \noindent{Se han definido las siguientes historias de usuario:}
 
-\subsection*{\href{https://github.com/RubenDelgadoPareja/TFG-Triage-Inteligente-Consulta-Medica/issues/19}{[HU-01] Triage Inteligente - Priorizar una cita.}}
+\subsection*{\href{https://github.com/RubenDelgadoPareja/TFG-Triage-Inteligente-Consulta-Medica/issues/19}{[HU-01] Triage Inteligente - Como sanitario de urgencias quiero que el triage inteligente asigne turnos de consulta automáticamente por riesgo.}}
+Como sanitario de guardia quiero un sistema automático que aplique el triage de urgencias a los pacientes y les asigne un turno de consulta para consultar a los pacientes más graves.
 
-Como paciente quiero tener prioridad en el orden de citas médicas.
+\subsection*{\href{https://github.com/RubenDelgadoPareja/TFG-Triage-Inteligente-Consulta-Medica/issues/101}{[HU-02] Triage Inteligente - Como sanitario de citología quiero consultar los pacientes con mayores riesgos.}}
+Como sanitario que trabaja en citología quiero hacer uso de un triage inteligente para consultar los pacientes con mayor riesgo para diagnosticar posibles enfermedades lo antes posibles.
+Este triage consistirá en un conjunto de síntomas que sean alarmantes para diagnosticar enfermedades graves.
 
-\subsection*{\href{https://github.com/RubenDelgadoPareja/TFG-Triage-Inteligente-Consulta-Medica/issues/5}{[HU-02] Triage Inteligente - Establecer riesgo.}}
-
-Como sanitario quiero asignarle una prioridad o riesgo a un paciente
+\subsection*{\href{https://github.com/RubenDelgadoPareja/TFG-Triage-Inteligente-Consulta-Medica/issues/5}{[HU-03] Triage Inteligente - Como sanitario de citología quiero modificar el riesgo de un paciente.}}
+Como sanitario que trabaja en citología que utiliza el triage inteligente, después de una consulta con un paciente que se le haya diagnosticado de manera precoz una enfermedad grave,
+quiero aumentarle el riesgo para las siguientes consultas.
 
 \section{Issues}
 Las Issues son simples tareas que hay que realizar para completar los Hitos.
