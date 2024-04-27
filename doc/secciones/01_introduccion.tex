@@ -24,24 +24,23 @@ tenemos que lidiar a día de hoy, construyendo una aplicación de citas médicas
 
 \section{Objetivos}
 
-\textbf{Crear el triage inteligente de las consultas médicas}. El sistema informático consistirá en un triage de consultas médicas; el triage en el ámbito
+\textbf{Crear el triage inteligente de consultas médicas}. El sistema informático se basará en un triage de consultas médicas; el triage en el ámbito
  de la sanidad es un proceso que permite gestionar el flujo de los pacientes teniendo en cuenta el riesgo cuando la demanda y necesidades clínicas
  superan los recursos, es muy importante en urgencias clínicas \href{https://scielo.isciii.es/scielo.php?script=sci_arttext&pid=S1137-66272010000200008}{Aquí}
- se puede encontrar más información.
+ se puede encontrar más información. El triage inteligente consistirá en una abstracción del triage que ya se aplica en urgencias y automatizarlo en un sistema informático.
 
-El triage inteligente es un gestor de citas previas médicas organizadas por una heurística, la cual priorizará las citas de los pacientes
-con mayores riesgos, evitando las repercusiones negativas de la saturación actual en la sanidad. Sin embargo, no dejará ociosas al resto
-de citas con menor prioridad, porque cada riesgo tendrá una franja horaria asociada al día.
+El triage inteligente es un gestor de citas guiadas por una heurística, la cual priorizará las citas de los pacientes
+con mayores riesgos, evitando las repercusiones negativas de la saturación actual en la sanidad. Sin embargo, el triage no dejará
+ociosa a los pacientes en espera, después de que superar un tiempo máximo de espera, se volverá a evaluar su riesgo teniéndolo en cuenta.
 
-La asignación de riesgo se realizará a partir de un formulario que deben rellenar el paciente al registrarse, esta prioridad
-se comprobará y podrá ser modificado por los sanitarios en cualquier momento desde el sistema. Esto es necesario, ya que,
-la mayoría de pacientes aumentarán de riesgo con los años y con las enfermedades que padezcan.
+La asignación de riesgo se realizará a partir de un formulario que debe rellenar el paciente antes de solicitar la cita.
+Los resultados del formulario pueden ser supervisados por un sanitario y modificar el riesgo asignado al paciente bajo su propio criterio.
 
-El triage tiene un gran potencial que no se aprovecha en los sistemas de citas de la sanidad actual, de forma que, con el triage inteligente
-voy a demostrar que los tiempos medios de espera por riesgo disminuirán con respecto a otros sistemas de citas como \href{https://www.sspa.juntadeandalucia.es/servicioandaluzdesalud/clicsalud/pages/portada.jsf?caducada=1}{ClicSalud+},
-verificando que hay una mejora notable. Esta comprobación se llevará a cabo simulando sobre el triage inteligente una carga de trabajo similar
-a la de ClicSalud+ y midiendo tiempos.
+Inicialmente, se aplicará el triage inteligente en dos posibles escenarios:
+\begin{itemize}
+\item \textbf{Urgencias:} En esta situación un paciente que llegue a urgencias deberá completar el formulario y se le asignará un riesgo y un tiempo de espera máximo.
+\item \textbf{Citologías:} En esta situación el sanitario solicita al paciente que rellene el formulario, dependiendo de los resultados se le asignará una fecha más o menos próxima.
+\end{itemize}
 
-
-
-
+De esta forma podríamos aprovechar el gran potencial del triage automatizarlo para urgencias y aplicarlo a diferentes ámbitos de la sanidad.
+La abstracción de este concepto puede llevar a una mejora notable en el diagnóstico precoz de enfermedades donde puede ser crucial para el paciente, como un cáncer.
