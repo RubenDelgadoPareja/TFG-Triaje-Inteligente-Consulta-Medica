@@ -1,38 +1,22 @@
-export enum PatientGenre {
-  MALE = 'male',
-  FEMALE = 'female',
-  OTHER = 'other',
-}
-
 export enum PatientRisk {
   UNKNOWN = 'unknown',
   LOW = 'low',
   MEDIUM = 'medium',
   HIGH = 'high',
 }
-
 export class Patient {
   constructor(
-    public readonly risk: PatientRisk,
     public readonly name: string,
-    public readonly birthDate: Date,
     public readonly dni: string,
     public readonly ssc: string,
-    public readonly genre: PatientGenre,
-    public readonly email: string,
-    public readonly phone: string,
+    public readonly risk: PatientRisk,
+    public readonly delay: number,
+    public readonly triageForm: unknown,
+    public readonly queuePosition: number,
   ) {}
-
-  getRisk(): PatientRisk {
-    return this.risk;
-  }
 
   getName(): string {
     return this.name;
-  }
-
-  getBirthDate(): Date {
-    return this.birthDate;
   }
 
   getDni(): string {
@@ -43,15 +27,19 @@ export class Patient {
     return this.ssc;
   }
 
-  getGenre(): PatientGenre {
-    return this.genre;
+  getRisk(): PatientRisk {
+    return this.risk;
   }
 
-  getEmail(): string {
-    return this.email;
+  getDelay(): number {
+    return this.delay;
   }
 
-  getPhone(): string {
-    return this.phone;
+  getTriageForm(): unknown {
+    return this.triageForm;
+  }
+
+  getQueuePosition(): number {
+    return this.queuePosition;
   }
 }
