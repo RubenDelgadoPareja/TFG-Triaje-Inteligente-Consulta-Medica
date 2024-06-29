@@ -5,24 +5,26 @@ A lo largo de este capítulo se pretende reflejar las herramientas usadas durant
 se argumentará por qué se han tomado estas decisiones, al igual que en el capítulo de metodología \ref{ch:metodología} explicamos
 la planificación y forma de trabajo.
 
-La implementación del software se ha dividido en hitos. Cada hito representa un producto mínimamente viable que se publicará.
-Los \href{https://github.com/RubenDelgadoPareja/TFG-Triage-Inteligente-Consulta-Medica/milestones}{hitos} han sido definidos en GitHub y explicados en la sección \ref{sec:hitos}.
+La implementación del software se ha dividido en hitos \ref*{sec:hitos}. Cada hito representa un PMV que se publicará.
+PMV son las siglas de Producto Mínimo Viable, es la versión más simple y básico del producto que proporciona valor al cliente.
+Los \href{https://github.com/RubenDelgadoPareja/TFG-Triage-Inteligente-Consulta-Medica/milestones}{hitos} han sido definidos en GitHub.
 Cada uno de ellos tiene asignados \href{https://github.com/RubenDelgadoPareja/TFG-Triage-Inteligente-Consulta-Medica/issues}{\textit{issues}} que se corresponden
 con los distintos problemas que han ido surgiendo durante el desarrollado, cómo los hemos solucionado, qué herramientas se han utilizado y por qué.
 La solución de las issues asignadas al hito conforman el llamado producto mínimo viable (\textit{PMV}) del hito.
 
 \section{Hito 0: Infraestructura y documentación inicial}
 
-El PMV del hito 0 es un repositorio inicial formado por una documentación y un conjunto de herramientas configuradas para el desarrollo del proyecto.
-En la documentación se ha plasmado la planificación inicial del proyecto y configuraciones de herramientas. En el capítulo de metodología ya definimos el hito \ref{sb:hito0} a alcanzar.
-Podemos encontrar dos tipos de herramientas configuradas, dependiendo de su uso, las herramientas de desarrollo y las de documentación.
-Aunque inicialmente tengo que aclarar dónde se completa tanto documentación como desarrollo.
+Lo he llamado hito número 0 porque es el punto de partida del proyecto y no aporta un valor real al cliente, sino a nosotros como desarrolladores.
+El PMV del hito 0 \ref{sb:hito0} es un repositorio inicial formado por una documentación y un conjunto de herramientas configuradas para el desarrollo del proyecto.
+En la documentación se ha plasmado la planificación inicial del proyecto y configuraciones de herramientas.
 
 \subsection{Entorno de desarrollo}
-El primer problema es encontrar una herramienta donde comenzar el desarrollo del proyecto y configuraciones de herramientas, como puede ser un entorno de desarrollo integrado (\textit{IDE}) o un editor.
-Las herramientas que cumplen con la necesidad pueden ser Visual Studio Code, Atom, Sublime Text, WebStorm, etc.
-Visual Studio Code destaca por su ligereza, multiplataforma, gran cantidad de extensiones y configuraciones, además de ser gratuita, no como WebStorm.
-Respecto al resto, Visual Studio Code permite tener una terminal integrada y tiene mayor comunidad. Además, es la herramienta con la que tengo experiencia usándola y me siento cómodo desarrollando.
+Antes de poder empezar con el hito 0 debemos de plantearnos qué entorno usar como base de todo el trabajo.
+Necesitamos una herramienta donde comenzar el desarrollo del proyecto y configuraciones de herramientas.
+Los criterios de búsqueda de este entorno será el estándar, el software libre, multilenguaje, de calidad, de fácil uso y configuración, por orden de prioridad.
+Después de una pequeña búsqueda sobre los entornos de desarrollo, no existe un estándar, pero si que hay un grupo de más usados, los cuales son: VS Code, IntelliJ IDEA, PyCharm, Eclipse, Netbeans.
+De esta lista he seleccionado finalmente VS Code, es el único que cumple con la mayoría de criterios. La mayoría de entornos depende del lenguaje de programación, pero al no haberlo
+decidido aún elijo VS Code, además es software libre de fácil uso y configuración.
 
 \subsection{Herramientas de documentación}
 La memoria es muy importante en el desarrollo de un proyecto, ya que es el reflejo de todo el trabajo realizado y es necesario para la evaluación del proyecto.
