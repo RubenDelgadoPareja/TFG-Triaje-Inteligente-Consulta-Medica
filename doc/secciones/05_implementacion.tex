@@ -22,10 +22,10 @@ Las herramientas configuradas durante este hito son las siguientes:
 \subsection{Entorno de desarrollo}
 Antes de poder empezar con el hito 0 debemos de plantearnos qué entorno usar como base de todo el trabajo.
 Necesitamos una herramienta donde comenzar el desarrollo del proyecto y configuraciones de herramientas.
-Los criterios de búsqueda de este entorno será el estándar, el software libre, multilenguaje, de calidad, de fácil uso y configuración, por orden de prioridad.
-Después de una pequeña búsqueda sobre los entornos de desarrollo, no existe un estándar, pero si que hay un grupo de más usados, los cuales son: VS Code, IntelliJ IDEA, PyCharm, Eclipse, Netbeans.
+Los criterios de búsqueda de este entorno será el estándar, el software libre, multilenguaje, de calidad, de fácil empleo y configuración, por orden de prioridad.
+Después de una pequeña búsqueda sobre los entornos de desarrollo, no existe un estándar, pero sí que hay un grupo de más usados, los cuales son: VS Code, IntelliJ IDEA, PyCharm, Eclipse, Netbeans.
 De esta lista he seleccionado finalmente VS Code, es el único que cumple con la mayoría de criterios. La mayoría de entornos depende del lenguaje de programación, pero al no haberlo
-decidido aún elijo VS Code, además es software libre de fácil uso y configuración.
+decidido aún elijo VS Code, además es software libre.
 
 \subsection{Integración continua}
 La integración continua es una práctica de desarrollo de software que tiene como objetivo principal mejorar la calidad del código, aumentar la eficiencia y agilizar el proceso de entrega de software.
@@ -40,7 +40,7 @@ A continuación sigo con las herramientas que aportan calidad tanto al código c
 
 \subsection{Herramientas de documentación}
 La memoria es muy importante en el desarrollo de un proyecto, ya que es el reflejo de todo el trabajo realizado y es necesario para la evaluación del proyecto.
-Debemos de encontrar una herramienta que nos permita escribir la memoria de forma cómoda y eficiente. Además de comprobar constantemente que lo escrito esté correcto.
+Debemos de encontrar una herramienta que nos permita escribir la memoria de forma cómoda y eficiente. Además de revisar constantemente que lo escrito esté correcto.
 
 \subsubsection{Generación de la memoria}
 La memoria se ha escrito empleando el lenguaje LaTeX, que es un sistema de composición de documentos bastante empleado
@@ -55,7 +55,7 @@ La herramienta \href{https://github.com/sylvainhalle/textidote}{TeXtidote} nos p
 Se puede ejecutar la corrección a través del comando \textit{check} del Makefile, generando un borrador con la documentación marcando los errores y posibles cambios.
 Además, se ha añadido este comando a los hooks de GitHub para ejecutarlo antes de cada commit.
 
-Con la inteción de continuar con el paradigma de la calidad y las buenas prácticas claves para el desarrollo ágil, se ha configurado el entorno con
+Con la intención de continuar con el paradigma de la calidad y las buenas prácticas claves para el desarrollo ágil, se ha configurado el entorno con
 una tarea en el Makefile para ejecutar para cada herramienta, \textit{all} para generar la memoria y \textit{check} para revisarla.
 
 \subsection{Herramientas de desarrollo}
@@ -66,9 +66,9 @@ que nos ayuden a detectar errores durante y después el desarrollo. Pero estas h
 Primero debemos de escoger un lenguaje de programación para el desarrollo del proyecto, el cual cumpla una serie de criterios para que sea adecuado.
 Para elegir correctamente deberíamos de hacer un estudio del alcance y objetivos del proyecto, los recursos y habilidades disponibles, la experiencia del desarrollador etc.
 Los criterios que para elegir el lenguaje son la experiencia del programador, la portabilidad, legibilidad, seguridad del código y la comunidad.
-Los lenguajes que cumplen estos criterio son los siguientes: JavaScript, TypeScript, Java, Ruby, C++, Python. Inicialmente, porque son los lenguajes con los que he trabajado.
+Los lenguajes que cumplen estos criterios son los siguientes: JavaScript, TypeScript, Java, Ruby, C++, Python. Inicialmente, porque son los lenguajes con los que he trabajado.
 Como el proyecto será una aplicación web buscamos lenguajes portables con los diferentes navegadores actuales, destaca JavaScript porque los navegadores desde 2012 soportan ECMAScript 5.1 que está basado en JavaScript.
-Además como TypeScript es un superconjunto de JavaScript, también seria buena opción en ese aspecto y gracias al tipado fuerte que tiene aporta seguridad y legibilidad al código, mejorando la calidad del software.
+Además, como TypeScript es un superconjunto de JavaScript, también sería buena opción en ese aspecto y gracias al tipado fuerte que tiene aporta seguridad y legibilidad al código, mejorando la calidad del software.
 Los lenguajes como Java y Python también serían buenas opciones, pero finalmente se han descartado por la poca experiencia y la falta de recursos para comenzar a desarrollar en ellos.
 Por tanto, el lenguaje de programación escogido es TypeScript;
 
