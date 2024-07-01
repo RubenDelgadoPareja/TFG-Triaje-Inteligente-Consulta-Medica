@@ -1,21 +1,28 @@
 \UseRawInputEncoding
 \chapter{Metodología}
 En este capítulo se describirá la forma en la que se ha trabajado durante el desarrollo del proyecto.
-La metodología se centrará en el usuario, por lo que se utilizará una planificación ágil, con el objetivo
+El marco del desarrollo será el {\href{https://www.redhat.com/es/topics/devops/what-is-agile-methodology}{desarrollo ágil}}; que se centra en el usuario, por lo que se utilizará una planificación ágil, con el objetivo
 de conseguir un software de calidad y flexible. Esto debe estar presente constantemente en el desarrollo del proyecto.
 
 \section{Planificación}
 La planificación que se va a emplear está basada en los {\href{https://agilemanifesto.org/iso/es/principles.html}{principios del manifiesto ágil}}
-Buscamos un tipo de planificación que se centre en el usuario, para que el propio usuario nos aporte retroalimentación.
-Una planificación ágil nos permite adaptarnos al cambio de requisitos haciendo uso de las iteraciones y
-evitando caer en una documentación excesiva llena de diagramas y requisitos innecesarios.
-El desarrollo ágil construye el sistema por medio de aportaciones frecuentes de código que aportan valor
-al usuario, es necesario organizar las funcionalidades en bloques y que los cambios siempre surgen de una
-necesidad del usuario.
+Buscamos un tipo de planificación que se centre en el usuario, para que el propio usuario nos aporte retroalimentación, aunque para este caso no sea posible por la
+ausencia de un cliente real, por lo que debemos de escoger una planificación específica. En mi caso he usado Kanban con la ayuda del tablero de GitHub.
 
-\section{Análisis de Usuarios}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.9\linewidth]{logos/kanban.png}
+    \caption{Tablero Kanban.}
+    \label{fig:layout1}
+\end{figure}
+
+Una planificación ágil nos permite adaptarnos al cambio de requisitos haciendo uso de las iteraciones y aprovechar las nuevas oportunidades que aparezcan.
+El desarrollo ágil construye el sistema por medio de aportaciones frecuentes de código que aportan valor
+al usuario, es necesario organizar las funcionalidades en bloques y que los cambios siempre surgen de una necesidad del usuario.
+
+\section{Análisis de usuarios}
 Dentro del marco de desarrollo ágil, comprender las necesidades y experiencias de los usuarios es fundamental para el éxito del proyecto.
-En esta sección, nos adentramos en el concepto de User Journeys, una herramienta invaluable para entender cómo interactúan los usuarios con nuestro producto o servicio a lo largo de su ciclo de vida.
+En esta sección, nos adentramos en el concepto de User Journeys, una herramienta para entender cómo interactúan los usuarios con nuestro producto o servicio a lo largo de su ciclo de vida.
 
 \input{secciones/07_user-journey.tex}
 
@@ -28,7 +35,29 @@ Soy consciente de que existen otras herramientas como GitLab o Bitbucket, pero G
 El desarrollo ágil debe ser incremental y para ello se debe dividir la carga de trabajo de diferentes hitos.
 Los hitos pueden definirse como metas a las que debemos de llegar durante el desarrollo del proyecto.
 Los hitos son una buena forma de limitar los bloques de trabajo del desarrollo y su principal intención es que
-al final de cada hito consigamos un producto mínimamente viable (\textit{PMV}) para que sea independiente e iterativo
+al final de cada hito consigamos un producto mínimamente viable (\textit{PMV}) para que sea independiente e iterativo.
+Durante el desarrollo de un hito surgen las \textit{issues}.
+
+\subsection{Issues}
+Las issues son problemas que van surgiendo durante el desarrollo del hito y
+el conjunto de las soluciones de las issues de un hito deben conformar el PMV que satisfaga la necesidad del usuario.
+Las issues deben hacer referencia a una historia de usuario, ya sea para solucionar un problema de la propia historia o para añadir una funcionalidad.
+Todas las Issues que solucionaré durante el desarrollo para construir el sistema están descritas en GitHub. Cada issue debe tener mínimo un commit asociado a su
+etiqueta y debe tener una pull request asociada para poder revisar el código.
+
+\begin{figure}[!tb]
+    \begin{center}
+        \subfigure[Listado de issues.]{
+            \includegraphics[width=0.9\linewidth]{logos/issues.png}
+            \label{Imagen-Issues}}
+        \subfigure[Listado de Pull Requests.]{
+            \includegraphics[width=0.9\linewidth]{logos/pullrequest.png}
+            \label{Imagen-PullRequests}}
+        \label{Figura-Ciudades}
+    \end{center}
+\end{figure}
+
+
 Los hitos que se deben de cumplir están reflejados en el GitHub y son los siguientes:
 
 \subsection*{\href{https://github.com/RubenDelgadoPareja/TFG-Triage-Inteligente-Consulta-Medica/milestone/1}{Hito 0: Infraestructura inicial y documentación}}
@@ -87,13 +116,6 @@ que den indicios de la enfermedad. En citología, la demora de consulta es muy a
 \subsection*{\href{https://github.com/RubenDelgadoPareja/TFG-Triage-Inteligente-Consulta-Medica/issues/5}{[HU-03] Triage Inteligente - Como sanitario de citología quiero modificar el riesgo de un paciente.}}
 Como sanitario que trabaja en citología que utiliza el triage inteligente, después de una consulta con un paciente que se le haya diagnosticado de manera precoz una enfermedad grave,
 quiero aumentarle el riesgo para las siguientes consultas.
-
-\section{Issues}
-Las issues son problemas que van surgiendo durante el desarrollo del hito o historia de usuario y
-el conjunto de las soluciones de las issues de un hito deben conformar el PMV que satisfaga la necesidad del usuario.
-Las issues deben hacer referencia a una historia de usuario, ya sea para solucionar un problema de la propia historia o para añadir una funcionalidad.
-Todas las Issues que solucionaré durante el desarrollo para construir el sistema están descritas en GitHub. Cada issue debe tener mínimo un commit asociado a su
-etiqueta y debe tener una pull request asociada para poder revisar el código.
 
 \section{Control de calidad}
 Para crear un software de calidad debemos de comprobar constantemente que lo desarrollado, para ello hemos usado la integración continua.
