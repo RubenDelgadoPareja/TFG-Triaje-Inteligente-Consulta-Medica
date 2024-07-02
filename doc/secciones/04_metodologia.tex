@@ -1,7 +1,7 @@
 \UseRawInputEncoding
 \chapter{Metodología}
 En este capítulo se describirá la forma en la que se ha trabajado durante el desarrollo del proyecto.
-El marco del desarrollo será el {\href{https://www.redhat.com/es/topics/devops/what-is-agile-methodology}{desarrollo ágil}}; que se centra en el usuario, por lo que se utilizará una planificación ágil, con el objetivo
+El marco del desarrollo será el desarrollo ágil \cite{agile-software-development}; que se centra en el usuario, por lo que se utilizará una planificación ágil, con el objetivo
 de conseguir un software de calidad y flexible. Esto debe estar presente constantemente en el desarrollo del proyecto.
 
 \section{Planificación}
@@ -26,13 +26,17 @@ En esta sección, nos adentramos en el concepto de User Journeys, una herramient
 
 \input{secciones/07_user-journey.tex}
 
-\section{Control de versiones}
-Una herramienta de control de versiones ayuda a un desarrollo iterativo, en el que se compruebe el trabajo constantemente indispensable para el desarrollo ágil.
-La herramienta que yo he escogido es git y GitHub por su facilidad de uso y por su integración con otras herramientas.
-Soy consciente de que existen otras herramientas como GitLab o Bitbucket, pero GitHub es muy buena opción, ya que, es gratuita, la más utilizada y tiene una gran comunidad.
+\section{Herramienta de CI/CD}
+Una herramienta de integración continua y despliegue continua ayuda a un desarrollo iterativo, en el que se compruebe el trabajo constantemente; indispensable para el desarrollo ágil.
+Por esta razón necesitamos una herramienta para automatizar las pruebas y la integración del código. Además ayuda al tutor a corregir de una manera ágil e independiente, facilitando el trabajo en equipo de estudiantes y tutores.
+La búsqueda de esta herramienta estará cribada por lo más estandarizado, software libre, las mejores prácticas y menos deuda técnica cause al proyecto.
+Las posibles herramientas encontradas son Bitbucket, Github o Gitlab. Todas cumplen con los criterios de búsqueda, por lo que objetivamente podría ser cualquiera.
+Finalmente se ha escogido GitHub, debido a que es la más cómoda y fácil de usar para el tutor y el estudiante.
+Como consecuencia de usar GitHub se "decide" escoger git, que es un sistema de control de versiones distribuido para manejar el proyecto con velocidad y eficiencia.
 
 \section{Hitos}
-El desarrollo ágil debe ser incremental y para ello se debe dividir la carga de trabajo de diferentes hitos.
+El desarrollo ágil debe ser incremental y para ello se debe dividir la carga de trabajo de diferentes hitos, esta carga
+de trabajo corresponden a cada producto mínimamente viable (\textit{PMV}) y, asu vez, en diferentes capas de abstracción del producto.
 Los hitos pueden definirse como metas a las que debemos de llegar durante el desarrollo del proyecto.
 Los hitos son una buena forma de limitar los bloques de trabajo del desarrollo y su principal intención es que
 al final de cada hito consigamos un producto mínimamente viable (\textit{PMV}) para que sea independiente e iterativo.
@@ -95,9 +99,11 @@ Los criterios de aceptación de este PMV son los tests de cada clase y sus funci
 
 \section{Historias de Usuarios}
 Este concepto es fundamental en el desarrollo ágil, ya que, resume las necesidades del usuario.
-Las historias de usuario son la unidad mínima de funcionalidad que el usuario necesita del sistema, es decir,
-expresa lo que quiere el usuario del sistema por esto lo hace tan importante, se centra completamente en el
-usuario. Encontraremos las Historias de Usuario repartidas por los Hitos del desarrollo del software.
+Las historias de usuario se encuentran disgregando los aspéctos atómicos del \textit{user journey} que aportan valor.
+Deben de definirse en el dominio del problema, por lo que están relacionadas con la lógica de negocio.
+Las historias de usuario describen la necesidad del usuario abtrayendose de los detalles técnicos, ya que
+el usuario no es un experto ni en informática ni en el dominio del problema.
+Encontraremos las Historias de Usuario repartidas por los Hitos del desarrollo del software.
 
 \noindent{Se han definido las siguientes historias de usuario:}
 
