@@ -20,8 +20,8 @@ export class Patient {
     public readonly ssc: string,
     public readonly risk: PatientRisk,
     public readonly delay: Delay,
-    // TODO: Create issue and implement the triage form model
-    public readonly triageForm: unknown,
+    // TODO: Create issue and implement the symptom form model
+    public readonly symptomForm: unknown,
   ) {}
 
   getName(): string {
@@ -45,6 +45,6 @@ export class Patient {
   }
 
   getTriageForm(): unknown {
-    return this.triageForm;
+    return this.symptomForm;
   }
 }
