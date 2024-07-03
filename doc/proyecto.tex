@@ -21,6 +21,7 @@
 \usepackage{graphicx}
 \usepackage{tabularx}
 \usepackage{booktabs}
+\usepackage{subfigure}
 
 \usepackage[table,xcdraw]{xcolor}
 \hypersetup{
@@ -51,53 +52,53 @@
 
 \begin{document}
 
-	% Plantilla portada UGR
-	\input{portada/portada}
+% Plantilla portada UGR
+\input{portada/portada}
 
-	% Plantilla prefacio UGR
-	\input{prefacios/prefacio}
+% Plantilla prefacio UGR
+\input{prefacios/prefacio}
 
-	% Índice de contenidos
-	\newpage
-	\tableofcontents
+% Índice de contenidos
+\newpage
+\tableofcontents
 
-	% Índice de imágenes y tablas
-	\newpage
-	\listoffigures
+% Índice de imágenes y tablas
+\newpage
+\listoffigures
 
-	% Si hay suficientes se incluirá dicho índice
-	\listoftables
-	\newpage
+% Si hay suficientes se incluirá dicho índice
+\listoftables
+\newpage
 
-	% Introducción
-	\input{secciones/01_introduccion}
+% Introducción
+\input{secciones/01_introduccion}
 
-	% Descripción del problema y hasta donde se llega
-	\input{secciones/02_descripcion}
+% Descripción del problema y hasta donde se llega
+\input{secciones/02_descripcion}
 
-	% Estado del arte
-	% 	1. Crítica al estado del arte
-	% 	2. Propuesta
+% Estado del arte
+% 	1. Crítica al estado del arte
+% 	2. Propuesta
 
-	\input{secciones/03_estado_del_arte}
+\input{secciones/03_estado_del_arte}
 
-	\input{secciones/04_metodologia.tex}
+\input{secciones/04_metodologia.tex}
 
-	% Implementación
-	\input{secciones/05_implementacion}
+% Implementación
+\input{secciones/05_implementacion}
 
-	% Presupuesto
+% Presupuesto
 
-	% Conclusiones
-	\input{secciones/06_conclusiones}
+% Conclusiones
+\input{secciones/06_conclusiones}
 
-	% Trabajos futuros
+% Trabajos futuros
 
 
 
-	\newpage
-	\bibliography{bibliografia}
-	\bibliographystyle{plain}
+\newpage
+\bibliography{bibliografia}
+\bibliographystyle{plain}
 
 \end{document}
 
