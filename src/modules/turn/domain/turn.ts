@@ -1,6 +1,5 @@
 
 import { DateTime } from 'luxon';
-import { Patient } from '../../patient/domain/patient';
 
 export enum RiskEnum {
   LOW = 'LOW',
@@ -14,7 +13,7 @@ export class Turn {
     private readonly queuePosition: number,
     // We will calculate the waiting time based on the startedAt and the current time
     private readonly startedAt: DateTime,
-    private readonly patient: Patient,
+    private readonly patientId: number,
     private readonly risk: RiskEnum,
 
   ){}
@@ -23,8 +22,8 @@ export class Turn {
     return this.queuePosition;
   }
 
-  getPatient(): Patient {
-    return this.patient;
+  getPatient(): number {
+    return this.patientId;
   }
 
   getRisk(): RiskEnum {
