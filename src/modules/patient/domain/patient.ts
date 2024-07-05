@@ -1,32 +1,43 @@
+export interface PatientInputProps{
+  id: number;
+  name: string;
+  dni: string;
+  ssc: string;
+  turn: unknown;
+  symptomForm: unknown;
+}
 
 export class Patient {
-  constructor(
-    public readonly name: string,
-    public readonly dni: string,
-    public readonly ssc: string,
-    // TODO: Create issue and implement the turn model
-    public readonly turn: unknown,
-    // TODO: Create issue and implement the symptom form model
-    public readonly symptomForm: unknown,
-  ) {}
+  readonly __brand = "Patient" as const;
 
-  getName(): string {
-    return this.name;
+  private constructor(private readonly props: PatientInputProps) {}
+
+  static create(props: PatientInputProps): Patient {
+    // TODO: Create custom error message for invalid patient creation
+    return new Patient(props);
   }
 
-  getDni(): string {
-    return this.dni;
+  get id(): number {
+    return this.props.id;
   }
 
-  getSsc(): string {
-    return this.ssc;
+  get name(): string {
+    return this.props.name;
   }
 
-  getRisk(): unknown {
-    return this.turn;
+  get dni(): string {
+    return this.props.dni;
   }
 
-  getTriageForm(): unknown {
-    return this.symptomForm;
+  get ssc(): string {
+    return this.props.ssc;
+  }
+
+  get turn(): unknown {
+    return this.props.turn;
+  }
+
+  get symptomForm(): unknown {
+    return this.props.symptomForm;
   }
 }
