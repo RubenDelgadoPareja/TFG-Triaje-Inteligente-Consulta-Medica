@@ -1,6 +1,14 @@
 
 import { DateTime } from 'luxon';
 
+export interface TurnInputProps {
+  id: number;
+  patientId: number,
+  position: number,
+  startedAt: DateTime,
+  risk: RiskEnum,
+}
+
 export enum RiskEnum {
   LOW = 'LOW',
   MEDIUM = 'MEDIUM',
@@ -9,33 +17,35 @@ export enum RiskEnum {
 }
 
 export class Turn {
-  constructor(
-    private readonly queuePosition: number,
-    // We will calculate the waiting time based on the startedAt and the current time
-    private readonly startedAt: DateTime,
-    private readonly patientId: number,
-    private readonly risk: RiskEnum,
+  readonly __brand = "Turn" as const;
 
-  ){}
+  private constructor(private readonly props: TurnInputProps) {}
 
-  getQueuePosition(): number {
-    return this.queuePosition;
+  static create(props: TurnInputProps): Turn {
+    return new Turn(props);
   }
 
-  getPatient(): number {
-    return this.patientId;
+  get id(): number {
+    return this.props.id;
   }
 
-  getRisk(): RiskEnum {
-    return this.risk;
+  get patientId(): number {
+    return this.props.patientId;
   }
 
-  getStartedAt(): DateTime {
+  get position(): number {
+    return this.position;
+  }
+
+  get startedAt(): DateTime {
     return this.startedAt;
   }
 
-  getWaitingTime(): number {
+  get waitingTime(): number {
     return DateTime.now().diff(this.startedAt, 'minutes').minutes;
   }
 
+  get risk(): RiskEnum {
+    return this.risk;
+  }
 }
