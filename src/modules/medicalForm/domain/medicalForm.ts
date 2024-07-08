@@ -1,5 +1,5 @@
 
-export class SymptomsForm {
+export class MedicalForm {
     private constructor(
         private readonly id: number,
         private readonly patientId: number,
