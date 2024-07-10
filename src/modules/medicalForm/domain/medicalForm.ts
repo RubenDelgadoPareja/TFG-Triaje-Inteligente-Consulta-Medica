@@ -1,13 +1,13 @@
+import { Patient } from "../../patient/domain/patient";
 
 export class MedicalForm {
-    private constructor(
-        private readonly id: number,
-        private readonly patientId: number,
+    constructor(
+        private readonly patient: Patient,
         private readonly reason: string,
-        private readonly discriminatory: string,
+        private readonly discriminators: string,
         private readonly symptoms: string,
-        // private readonly vitalSigns: unknown,
-        private readonly diagnosis: string
+        private readonly vitalSigns: string,
+        private readonly diagnosis: string,
     ) {}
 
 }
