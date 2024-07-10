@@ -1,6 +1,5 @@
-
 export class Patient {
-  private constructor(
+  constructor(
     private readonly name: string,
     private readonly dni: string,
   ){}
