@@ -28,15 +28,15 @@ En esta sección, nos adentramos en el concepto de User Journeys, una herramient
 
 \section{Herramienta de CI/CD}
 Una herramienta de integración continua y despliegue continua ayuda a un desarrollo iterativo, en el que se compruebe el trabajo constantemente; indispensable para el desarrollo ágil.
-Por esta razón necesitamos una herramienta para automatizar las pruebas y la integración del código. Además ayuda al tutor a corregir de una manera ágil e independiente, facilitando el trabajo en equipo de estudiantes y tutores.
+Por esta razón necesitamos una herramienta para automatizar las pruebas y la integración del código. Además, ayuda al tutor a corregir de una manera ágil e independiente, facilitando el trabajo en equipo de estudiantes y tutores.
 La búsqueda de esta herramienta estará cribada por lo más estandarizado, software libre, las mejores prácticas y menos deuda técnica cause al proyecto.
 Las posibles herramientas encontradas son Bitbucket, Github o Gitlab. Todas cumplen con los criterios de búsqueda, por lo que objetivamente podría ser cualquiera.
-Finalmente se ha escogido GitHub, debido a que es la más cómoda y fácil de usar para el tutor y el estudiante.
+Finalmente, se ha escogido GitHub, debido a que es la más cómoda y fácil de usar para el tutor y el estudiante.
 Como consecuencia de usar GitHub se "decide" escoger git, que es un sistema de control de versiones distribuido para manejar el proyecto con velocidad y eficiencia.
 
 \section{Hitos}
 El desarrollo ágil debe ser incremental y para ello se debe dividir la carga de trabajo de diferentes hitos, esta carga
-de trabajo corresponden a cada producto mínimamente viable (\textit{PMV}) y, asu vez, en diferentes capas de abstracción del producto.
+de trabajo corresponden a cada producto mínimamente viable (\textit{PMV}) y, a su vez, en diferentes capas de abstracción del producto.
 Los hitos pueden definirse como metas a las que debemos de llegar durante el desarrollo del proyecto.
 Los hitos son una buena forma de limitar los bloques de trabajo del desarrollo y su principal intención es que
 al final de cada hito consigamos un producto mínimamente viable (\textit{PMV}) para que sea independiente e iterativo.
@@ -99,9 +99,9 @@ Los criterios de aceptación de este PMV son los tests de cada clase y sus funci
 
 \section{Historias de Usuarios}
 Este concepto es fundamental en el desarrollo ágil, ya que, resume las necesidades del usuario.
-Las historias de usuario se encuentran disgregando los aspéctos atómicos del \textit{user journey} que aportan valor.
+Las historias de usuario se encuentran disgregando los aspectos atómicos del \textit{user journey} que aportan valor.
 Deben de definirse en el dominio del problema, por lo que están relacionadas con la lógica de negocio.
-Las historias de usuario describen la necesidad del usuario abtrayendose de los detalles técnicos, ya que
+Las historias de usuario describen la necesidad del usuario abstrayéndose de los detalles técnicos, ya que
 el usuario no es un experto ni en informática ni en el dominio del problema.
 Encontraremos las Historias de Usuario repartidas por los Hitos del desarrollo del software.
 
@@ -111,7 +111,7 @@ Encontraremos las Historias de Usuario repartidas por los Hitos del desarrollo d
 Como sanitario de urgencias quiero un sistema de triage inteligente que se encargue de aplicar un cribado de riesgos a los pacientes.
 El triage se encarga de evaluar el estado de salud del paciente a través de un formulario dónde se le pregunta al paciente el motivo de la consulta y
 síntomas que padece, con esta información el sistema le asignará un riesgo de los cinco niveles establecidos, dependiendo del riesgo el paciente tendrá una demora
-específica de tiempo para ser atendido. En caso de que supere el tiempo de demora y no sea atendido se podrá reevaluar el riesgo del paciente.
+específica de tiempo para ser atendido. En caso de que supere el tiempo de demora y no sea atendido se podrá revaluar el riesgo del paciente.
 El triage funcionará todo el día y puede tener supervisión de un sanitario en todo momento, este sanitario podría, según su criterio cambiar el riesgo del paciente.
 
 \subsection*{\href{https://github.com/RubenDelgadoPareja/TFG-Triage-Inteligente-Consulta-Medica/issues/101}{[HU-02] Triage Inteligente - Como sanitario de citología quiero consultar los pacientes con mayores riesgos.}}
@@ -134,7 +134,7 @@ Los tests se ejecutan automáticamente cada vez que se suben nuevos cambios. Se 
     \item{Análisis estático de código de Typescript - ESLint.}
 \end{itemize}
 
-\section{Diseño}
+\section{Metodologías de diseño de la aplicación}
 Durante todo el capítulo destaca la importancia de una planificación adecuada que permita adaptarse a los cambios de forma ágil y eficiente.
 La metodología que se va a utilizar en el diseño busca una estructura que permita una implementación flexible y centrada en las necesidades del usuario.
 
@@ -142,4 +142,15 @@ El diseño del sistema es una parte fundamental del proceso de desarrollo de sof
 En este proyecto, se ha elegido el Diseño Dirigido por el Dominio (DDD) \cite{domain-drive-design} como enfoque principal, en línea con el desarrollo ágil debido a que ambos se centran en el usuario.
 Además, DDD es buena opción cuando los desarrolladores no conocen el dominio, porque mediante la comunicación constante con los expertos de dominio se puede llegar a un entendimiento común.
 De esta comunicación surgirán los términos y conceptos que se utilizarán para describir el dominio del problema que se usarán para describir el dominio del problema, también conocido como lenguaje ubicuo.
+
+\subsection{Buenas prácticas en la modelización del dominio}
+La capa de dominio es el lugar donde se encuentra modelada el dominio y lógica del negocio en diferentes clases y funciones.
+En Diseño Dirigido por el Dominio solemos encontrar modelos que representan entidades, objetos de valor, agregados, repositorios y servicios, sin embargo
+el desarrollo ágil es quien nos guía en la implementación de estas clases y funciones. No desarrollaremos explícitamente estos conceptos si no es estrictamente necesario.
+La metodología a seguir es la de desarrollar las clases necesarias para cumplir con las historias de usuario, de esta forma se evita la sobre abstracción y se consigue un desarrollo iterativo.
+Esta forma de trabajo está respaldada por los principios del software \textit{DRY}: "Don't repeat yourself", \textit{YAGNI}: "You aren't gonna need it", o \textit{AHA}: "Avoid hasty abstractions".
+En resumen, estos principios nos dicen que no debemos de abstraer antes de tiempo, que no debemos de repetir código y que no debemos de hacer abstracciones innecesarias.
+
+Para modelar el dominio y la lógica se ha requerido conocer conceptos y datos del dominio, por lo que se ha requerido de la colaboración de expertos en el dominio.
+En este caso, contaba con un experto cercano al dominio, mi hermana que es enfermera. Además, he conseguido información de expertos en este \href{https://scielo.isciii.es/scielo.php?script=sci_arttext&pid=S1137-66272010000200008}{artículo de un sistema de triage navarro}.
 
