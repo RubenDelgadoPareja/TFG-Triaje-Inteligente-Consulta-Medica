@@ -46,5 +46,12 @@ Shared
 Anticorruption
 Layer
 shared
+Node.js
+Jest
+Cypress
 pull
 request
+workflow
+Atom
+Text
+make
