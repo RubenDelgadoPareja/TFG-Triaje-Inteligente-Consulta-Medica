@@ -21,6 +21,7 @@
 \usepackage{graphicx}
 \usepackage{tabularx}
 \usepackage{booktabs}
+\usepackage{subfigure}
 
 \usepackage[table,xcdraw]{xcolor}
 \hypersetup{
@@ -51,68 +52,53 @@
 
 \begin{document}
 
-	% Plantilla portada UGR
-	\input{portada/portada}
+% Plantilla portada UGR
+\input{portada/portada}
 
-	% Plantilla prefacio UGR
-	\input{prefacios/prefacio}
+% Plantilla prefacio UGR
+\input{prefacios/prefacio}
 
-	% Índice de contenidos
-	\newpage
-	\tableofcontents
+% Índice de contenidos
+\newpage
+\tableofcontents
 
-	% Índice de imágenes y tablas
-	\newpage
-	\listoffigures
+% Índice de imágenes y tablas
+\newpage
+\listoffigures
 
-	% Si hay suficientes se incluirá dicho índice
-	\listoftables
-	\newpage
+% Si hay suficientes se incluirá dicho índice
+\listoftables
+\newpage
 
-	% Introducción
-	\input{secciones/01_introduccion}
+% Introducción
+\input{secciones/01_introduccion}
 
-	% Descripción del problema y hasta donde se llega
-	\input{secciones/02_descripcion}
+% Descripción del problema y hasta donde se llega
+\input{secciones/02_descripcion}
 
-	% Estado del arte
-	% 	1. Crítica al estado del arte
-	% 	2. Propuesta
+% Estado del arte
+% 	1. Crítica al estado del arte
+% 	2. Propuesta
 
-	\input{secciones/03_estado_del_arte}
+\input{secciones/03_estado_del_arte}
 
-	\input{secciones/04_metodologia.tex}
+\input{secciones/04_metodologia.tex}
 
-	% Diseño Dirigido por Dominio
-	% 1. Lenguaje Ubicuo
-	% 2. Mapa contextual
-	% 3. Modelo del dominio
-		% 3.1 Identificar Entidades y Objetos de Valor
-		% 3.2 Abstraer Asociaciones entre Entidades y Objetos de Valor
-		% 3.3 Abstraer posibles Agregaciones entre Entidades y Objetos de Valor
-		% 3.4 Redactar el uso de un Repositorio
-	\input{secciones/05_diseño}
+% Implementación
+\input{secciones/05_implementacion}
 
-	% Desarrollo bajo sprints:
-	% 	1. Permitir registros y login de usuarios
-	% 	2. Desarrollo del sistema de incidencias
-	% 	3. Desarrollo del sistema de denuncias administrativas y accidentes
-	% 	4. Desarrollo del sistema de croquis
-	%   5. Instalación de la aplicación de manera automática
-	\input{secciones/06_implementacion}
+% Presupuesto
 
-	% Presupuesto
+% Conclusiones
+\input{secciones/06_conclusiones}
 
-	% Conclusiones
-	\input{secciones/07_conclusiones}
-
-	% Trabajos futuros
+% Trabajos futuros
 
 
 
-	\newpage
-	\bibliography{bibliografia}
-	\bibliographystyle{plain}
+\newpage
+\bibliography{bibliografia}
+\bibliographystyle{plain}
 
 \end{document}
 
