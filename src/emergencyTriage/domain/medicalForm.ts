@@ -1,4 +1,4 @@
-import { Patient } from "../../patient/domain/patient";
+import { Patient } from "./patient";
 
 export class MedicalForm {
     constructor(
