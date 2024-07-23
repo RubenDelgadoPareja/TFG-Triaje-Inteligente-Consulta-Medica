@@ -1,5 +1,5 @@
 import { Patient } from "../model/patient";
 
-export interface PatientRepository {
+export interface IPatientRepository {
     create: (name: string, dni: string) => Promise<Patient>;
 }

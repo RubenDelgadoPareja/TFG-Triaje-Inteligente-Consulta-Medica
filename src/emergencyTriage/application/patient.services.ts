@@ -1,5 +1,5 @@
 import { Patient } from "../domain/model/patient";
-import { PatientRepository } from "../domain/repository/patiente.respository";
+import { PatientRepository } from "./patient.repository";
 
 export class PatientServices {
   constructor(readonly patientRepository: PatientRepository) {}
