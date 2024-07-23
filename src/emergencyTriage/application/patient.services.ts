@@ -1,12 +1,10 @@
 import { Patient } from "../domain/model/patient";
 import { PatientRepository } from "../domain/repository/patiente.respository";
 
-export class PatientCreate {
+export class PatientServices {
   constructor(readonly patientRepository: PatientRepository) {}
 
-  async execute(name: string, dni: string): Promise<Patient> {
-    const patient = new Patient(name, dni);
-
-    return this.patientRepository.create(patient);
+  async create(name: string, dni: string): Promise<Patient> {
+    return this.patientRepository.create(name, dni);
   }
 }
