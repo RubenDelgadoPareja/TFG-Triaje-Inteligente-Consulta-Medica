@@ -4,7 +4,7 @@ import { PatientRepository } from "../domain/repository/patiente.respository";
 export class PatientCreate {
   constructor(readonly patientRepository: PatientRepository) {}
 
-  async execute(name: string, dni: string): Promise<void> {
+  async execute(name: string, dni: string): Promise<Patient> {
     const patient = new Patient(name, dni);
 
     return this.patientRepository.create(patient);
