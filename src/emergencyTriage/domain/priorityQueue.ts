@@ -1,16 +1,14 @@
-import { RiskEnum, Turn } from "../../turn/domain/turn";
 
-class PriorityNode{
+class PriorityNode<T>{
     constructor(
-        private readonly value: Turn,
-        private readonly priority: RiskEnum,
-        private readonly next: PriorityNode
+        private readonly value: T,
+        private readonly next: PriorityNode<T>
     ) {}
 }
 
-export class PriorityQueue {
+export class PriorityQueue<T> {
     constructor(
-        private readonly head: PriorityNode,
-        private readonly tail: PriorityNode,
+        private readonly head: PriorityNode<T>,
+        private readonly tail: PriorityNode<T>,
     ) {}
 }
