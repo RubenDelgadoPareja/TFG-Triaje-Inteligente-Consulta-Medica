@@ -1,14 +1,22 @@
+import { Turn } from "./turn";
 
-class PriorityNode<T>{
-    constructor(
-        private readonly value: T,
-        private readonly next: PriorityNode<T>
-    ) {}
-}
+export class PriorityQueue{
+    private heap: Turn[];
 
-export class PriorityQueue<T> {
-    constructor(
-        private readonly head: PriorityNode<T>,
-        private readonly tail: PriorityNode<T>,
-    ) {}
+    constructor() {
+        this.heap = [];
+    }
+
+    isEmpty(): boolean {
+        return this.heap.length === 0;
+    }
+
+    peek(): Turn | null  {
+        return this.isEmpty() ? null : this.heap[0];
+    }
+
+    insert(turn: Turn): void {
+        this.heap.push(turn);
+    }
+
 }
