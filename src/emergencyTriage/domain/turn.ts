@@ -11,6 +11,11 @@ export class Turn {
     private readonly patient: Patient,
     private readonly startedAt: Date,
     private readonly risk: RiskEnum,
+    private readonly priority: number,
   ) {}
+
+  getPriority(): number {
+    return this.priority;
+  }
 
 }
