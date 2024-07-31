@@ -2,10 +2,10 @@ name: Unit test with Jest
 on:
   push:
     paths:
-      - 'src/**.test'
+      - 'src/**.test.ts'
   pull_request:
     paths:
-        - 'src/**.test'
+        - 'src/**.test.ts'
 jobs:
   lint:
     runs-on: ubuntu-latest
