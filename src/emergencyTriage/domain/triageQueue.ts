@@ -1,19 +1,23 @@
 import { Turn } from "./turn";
 
-export class PriorityQueue{
+export class TriageQueue {
+    private static readonly LEFT_OFFSET: number = 1;
+    private static readonly RIGHT_OFFSET: number = 2;
+
     private heap: Turn[];
 
     constructor() {
         this.heap = [];
     }
 
-    private left(index: number):number
-    {
-        return  2 * index + 1
+    private left(index: number): number {
+        // We use the offset to calculate the left child index
+        return 2 * index + TriageQueue.LEFT_OFFSET;
     }
 
     private right(index: number): number {
-        return 2 * index + 2;
+        // We use the offset to calculate the right child index
+        return 2 * index + TriageQueue.RIGHT_OFFSET;
     }
 
     private parent(index: number): number {
@@ -26,26 +30,27 @@ export class PriorityQueue{
         this.heap[index2] = temp;
     }
 
-    private bubbleUp(index: number): void {
-        while (index > 0 && this.heap[this.parent(index)].getPriority() < this.heap[index].getPriority()) {
+    private prioritizeUp(index: number): void {
+        while (index > 0 && this.heap[this.parent(index)].priority < this.heap[index].priority) {
             this.swap(index, this.parent(index));
             index = this.parent(index);
         }
     }
 
-    private bubbleDown(index: number): void {
+    private prioritizeDown(index: number): void {
         let maxIndex = index;
         const left = this.left(index);
         const right = this.right(index);
-        if (left < this.heap.length && this.heap[left].getPriority() > this.heap[maxIndex].getPriority()) {
+
+        if (left < this.heap.length && this.heap[left].priority > this.heap[maxIndex].priority) {
             maxIndex = left;
         }
-        if (right < this.heap.length && this.heap[right].getPriority() > this.heap[maxIndex].getPriority()) {
+        if (right < this.heap.length && this.heap[right].priority > this.heap[maxIndex].priority) {
             maxIndex = right;
         }
         if (index !== maxIndex) {
             this.swap(index, maxIndex);
-            this.bubbleDown(maxIndex);
+            this.prioritizeDown(maxIndex);
         }
     }
 
@@ -53,16 +58,16 @@ export class PriorityQueue{
         return this.heap.length === 0;
     }
 
-    peek(): Turn | null  {
+    nextPatientToProcess(): Turn | null  {
         return this.isEmpty() ? null : this.heap[0];
     }
 
-    insert(turn: Turn): void {
+    addTurnToQueue(turn: Turn): void {
         this.heap.push(turn);
-        this.bubbleUp(this.heap.length - 1);
+        this.prioritizeUp(this.heap.length - 1);
     }
 
-    pop(): Turn | null {
+    processNextTurn(): Turn | null {
         if (this.isEmpty()) {
             return null;
         }
@@ -72,11 +77,9 @@ export class PriorityQueue{
 
         if (this.heap.length > 0 && last) {
             this.heap[0] = last;
-            this.bubbleDown(0);
+            this.prioritizeDown(0);
         }
 
         return root;
-
     }
-
 }
