@@ -152,10 +152,15 @@ De esta comunicación surgirán los términos y conceptos que se utilizarán par
 \subsection{Buenas prácticas en la modelización del dominio}
 La capa de dominio es el lugar donde se encuentra modelada el dominio y lógica del negocio en diferentes clases y funciones.
 En Diseño Dirigido por el Dominio solemos encontrar modelos que representan entidades, objetos de valor, agregados, repositorios y servicios, sin embargo
-el desarrollo ágil es quien nos guía en la implementación de estas clases y funciones. No desarrollaremos explícitamente estos conceptos si no es estrictamente necesario.
+el desarrollo ágil es quien nos guía en la implementación de estas clases y funciones. No desarrollaremos explícitamente estos conceptos si no es estrictamente necesario, se implementarán como un modelo más.
 La metodología a seguir es la de desarrollar las clases necesarias para cumplir con las historias de usuario, de esta forma se evita la sobre abstracción y se consigue un desarrollo iterativo.
 Esta forma de trabajo está respaldada por los principios del software \textit{DRY}: "Don't repeat yourself", \textit{YAGNI}: "You aren't gonna need it", o \textit{AHA}: "Avoid hasty abstractions".
 En resumen, estos principios nos dicen que no debemos de abstraer antes de tiempo, que no debemos de repetir código y que no debemos de hacer abstracciones innecesarias.
+
+A pesar de lo mencionado anteriormente, debido a como se ha ido resolviendo el desarrollo  del código, se ha hecho una separación por responsabilidades en los modelos.
+Separando la lógica interna del modelo con los parámetros de creación del propio modelo, para facilitar el cambio y la adaptación del modelo a las necesidades del usuario.
+De esta manera cuando se agregue nuevo código, solamente se modificará esta interfaz y no la lógica ya desarrollada.
+Esto es fundamental para el desarrollo ágil, ya que permite adaptarse a los cambios de manera rápida y eficiente.
 
 Para modelar el dominio y la lógica se ha requerido conocer conceptos y datos del dominio, por lo que se ha requerido de la colaboración de expertos en el dominio.
 En este caso, contaba con un experto cercano al dominio, mi hermana que es enfermera. Además, he conseguido información de expertos en este \href{https://scielo.isciii.es/scielo.php?script=sci_arttext&pid=S1137-66272010000200008}{artículo de un sistema de triage navarro}.
