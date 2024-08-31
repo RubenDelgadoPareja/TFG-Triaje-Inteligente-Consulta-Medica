@@ -92,3 +92,13 @@ Cypress realmente es una herramienta para hacer test E2E y depende del navegador
 Jest tiene una gran comunidad, buena documentación, fácil integración con Typescript, ayuda a mockear los datos necesarios para los tests y trae espiadores integrados.
 Además tiene una cobertura integrada en el código para saber cuánto porcentaje del código está testeado.
 
+\subsubsection*{Framework de desarrollo}
+Durante el desarrollo del proyecto se ha tomado la decisión de usar un framework de desarrollo para facilitar la creación de la aplicación web.
+Utilizar un framework acelera el desarrollo al proporcionar una estructura predefinida, buenas prácticas y herramientas integradas, lo que mejora la calidad del código, la seguridad y la mantenibilidad.
+Además, reduce el tiempo de desarrollo y facilita la escalabilidad, haciendo el proceso más eficiente y organizado.
+Los criterios de búsqueda para el framework serán una configuración sencilla, fácil de usar, que soporte Typescript y Node.js, que se adapte a la situación del proyecto y que sea pragmático.
+He de explicar que el desarrollo del proyecto se centrará en la lógica de negocio y en la parte del backend, por lo que los framework serán orientados a este tipo de desarrollo.
+Las opciones que se han barajado son las siguientes: Express, NestJS, Koa, Hapi. Express se ha descartado por ser una framework muy sencillo y no aporta tanto como los demás.
+Hapi se descarta ya que está enfocado a los plugins, lo que no se ajusta a las necesidades del proyecto. Koa se descarta ya que utiliza una arquitectura de middleware y lo mejor sería una arquitectura modular.
+Finalmente, se ha escogido NestJS por ser el framework que mejor se amolda a nuestro proyecto.
+
