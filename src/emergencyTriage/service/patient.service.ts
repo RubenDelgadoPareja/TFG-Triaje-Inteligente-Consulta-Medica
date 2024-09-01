@@ -10,7 +10,7 @@ export class PatientService {
             name: props.name,
             dni: props.dni,
             age: props.age,
-            genero: props.genero
+            genre: props.genre
         });
     }
 }

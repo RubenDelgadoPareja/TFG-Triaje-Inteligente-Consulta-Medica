@@ -1,6 +1,6 @@
-import { TriageQueue } from "../domain/triageQueue";
-import { Turn } from "../domain/turn";
-import { getTurn } from "../mocks/getTurn.mock";
+import { TriageQueue } from "../../domain/triageQueue";
+import { Turn } from "../../domain/turn";
+import { getTurn } from "../../mocks/getTurn.mock";
 
 
 describe("Triage queue", () => {

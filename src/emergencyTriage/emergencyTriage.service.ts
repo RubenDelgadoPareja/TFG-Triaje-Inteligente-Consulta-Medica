@@ -1,4 +1,3 @@
-import { Patient } from './domain/patient';
 import { Injectable } from "@nestjs/common";
 import { TriageQueueService } from "./service/triageQueue.service";
 import { PatientService } from "./service/patient.service";
@@ -27,8 +26,10 @@ export class EmergencyTriageService {
 
         // The patient fills out the medical form
         const medicalForm = this.medicalFormService.createMedicalForm(getMedicalForm(patient));
+
+        const priority = this.turnService.estimatePriority(medicalForm);
         // The patient is assigned a turn
-        const turn = this.turnService.createTurn(getTurn(patient));
+        const turn = this.turnService.createTurn(getTurn(patient, priority));
 
         // The patient is added to the triage queue
         const triageQueue = this.triageQueueService.instanceTriageQueue();

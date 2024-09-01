@@ -14,12 +14,12 @@ const getDni = (dni?: Dni): Dni => {
 }
 
 
-export const getPatient = (name?: string, dni?: Dni) => {
+export const getPatient = (name?: string, dni?: Dni, age?: number, genre?: GenreEnum) => {
     const patientProps: PatientProps = {
         name: name ?? faker.internet.userName(),
         dni: dni ?? getDni(),
-        age: Math.floor(Math.random() * 100),
-        genero: faker.helpers.enumValue(GenreEnum),
+        age: age ?? Math.floor(Math.random() * 100),
+        genre: genre ?? faker.helpers.enumValue(GenreEnum),
     }
 
     return new Patient(patientProps)
