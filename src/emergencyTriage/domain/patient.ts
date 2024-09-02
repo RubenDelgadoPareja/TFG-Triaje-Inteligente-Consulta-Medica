@@ -10,7 +10,7 @@ export interface PatientProps {
   name: string;
   dni: Dni;
   age: number;
-  genero: GenreEnum;
+  genre: GenreEnum;
 }
 
 export class Patient {
@@ -33,7 +33,7 @@ export class Patient {
     return this._props.age;
   }
 
-  get genero(): GenreEnum {
-    return this._props.genero;
+  get genre(): GenreEnum {
+    return this._props.genre;
   }
 }
