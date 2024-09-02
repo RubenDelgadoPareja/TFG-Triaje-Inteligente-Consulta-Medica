@@ -22,14 +22,14 @@ export class EmergencyTriageService {
 
     createEmergencyTriage(){
         // New patient arrives the emergency room
-        const patient = this.patientService.createPatient(getPatient());
+        const patient = this.patientService.createPatient(getPatient(1));
 
         // The patient fills out the medical form
-        const medicalForm = this.medicalFormService.createMedicalForm(getMedicalForm(patient));
+        const medicalForm = this.medicalFormService.createMedicalForm(getMedicalForm(1, patient.id));
 
         const priority = this.turnService.estimatePriority(medicalForm);
         // The patient is assigned a turn
-        const turn = this.turnService.createTurn(getTurn(patient, priority));
+        const turn = this.turnService.createTurn(getTurn(1, patient.id, priority));
 
         // The patient is added to the triage queue
         const triageQueue = this.triageQueueService.instanceTriageQueue();

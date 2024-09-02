@@ -14,8 +14,9 @@ const getDni = (dni?: Dni): Dni => {
 }
 
 
-export const getPatient = (name?: string, dni?: Dni, age?: number, genre?: GenreEnum) => {
+export const getPatient = (id?: number, name?: string, dni?: Dni, age?: number, genre?: GenreEnum) => {
     const patientProps: PatientProps = {
+        id: id ?? undefined,
         name: name ?? faker.internet.userName(),
         dni: dni ?? getDni(),
         age: age ?? Math.floor(Math.random() * 100),

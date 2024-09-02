@@ -11,7 +11,7 @@ describe('MedicalForm Service', () => {
     });
 
     test('should create a patient', () => {
-        const medicalForm = getMedicalForm();
+        const medicalForm = getMedicalForm(undefined, 1);
         const result = medicalFormService.createMedicalForm(medicalForm);
 
         expect(result).toBeInstanceOf(MedicalForm);

@@ -7,6 +7,7 @@ export enum GenreEnum {
 }
 
 export interface PatientProps {
+  id?: number;
   name: string;
   dni: Dni;
   age: number;
@@ -19,6 +20,10 @@ export class Patient {
   constructor(props: PatientProps
   ){
     this._props = props;
+  }
+
+  get id(): number | undefined {
+    return this._props.id;
   }
 
   get name(): string {
