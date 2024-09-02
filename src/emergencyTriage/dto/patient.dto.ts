@@ -31,7 +31,4 @@ export class CreatePatientDto{
     @IsEnum(GenreEnum)
     readonly genre?: GenreEnum;
 
-
-
-
 }

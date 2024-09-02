@@ -12,4 +12,8 @@ export class EmergencyTriageController {
     getEmergencyTriageMessage(): string {
         return this.emergencyTriageService.getEmergencyTriageMessage();
     }
+
+    simulateEmergencyTriage() {
+        return this.emergencyTriageService.createEmergencyTriage();
+    }
 }

@@ -8,7 +8,7 @@ import { EmergencyTriageService } from "./emergencyTriage/emergencyTriage.servic
     imports: [ConfigModule.forRoot({
         isGlobal: true,
         envFilePath: '.env',
-    })],
+    }), ],
     controllers: [EmergencyTriageController],
     providers: [EmergencyTriageService]
 })
