@@ -1,4 +1,3 @@
-import { Patient } from './patient';
 
 export enum RiskEnum {
   LOW = 'LOW',
@@ -8,7 +7,8 @@ export enum RiskEnum {
 }
 
 export interface TurnProps {
-  patient: Patient;
+  id?: number;
+  patientId: number;
   startedAt: Date;
   risk: RiskEnum;
   priority: number;
@@ -21,8 +21,12 @@ export class Turn {
     this._props = props;
   }
 
-  get patient(): Patient {
-    return this._props.patient;
+  get id(): number | undefined {
+    return this._props.id;
+  }
+
+  get patientId(): number {
+    return this._props.patientId;
   }
 
   get startedAt(): Date {

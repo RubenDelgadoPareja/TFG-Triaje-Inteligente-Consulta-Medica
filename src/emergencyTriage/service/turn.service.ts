@@ -11,7 +11,7 @@ export class TurnService {
         const riskEnum = this.evaluateRisk(props.priority);
 
         return new Turn({
-            patient: props.patient,
+            patientId: props.patientId,
             priority: props.priority,
             startedAt: props.startedAt,
             risk: riskEnum,
@@ -57,15 +57,15 @@ export class TurnService {
             priority += 50;
         }
 
-        // Evaluar edad del paciente
-        const age = medicalForm.patient.age;
-        if (age < 1) {
-            priority += 40; // Prioridad máxima para recién nacidos
-        } else if (age >= 1 && age < 8) {
-            priority += 20; // Niños pequeños
-        } else if (age >= 65) {
-            priority += 30; // Adultos mayores
-        }
+        // TODO: Evaluar edad del paciente. Create a GET by id patient
+        // const age = medicalForm.patient.age;
+        // if (age < 1) {
+        //     priority += 40; // Prioridad máxima para recién nacidos
+        // } else if (age >= 1 && age < 8) {
+        //     priority += 20; // Niños pequeños
+        // } else if (age >= 65) {
+        //     priority += 30; // Adultos mayores
+        // }
 
 
 

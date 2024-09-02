@@ -7,7 +7,7 @@ export class MedicalFormService {
 
     createMedicalForm(props: MedicalFormProps): MedicalForm{
         return new MedicalForm({
-            patient: props.patient,
+            patientId: props.patientId,
             reason: props.reason,
             discriminators: props.discriminators,
             symptoms: props.symptoms,

@@ -2,9 +2,7 @@ import { getMedicalForm } from './../../mocks/getMedicalForm.mock';
 import { Turn } from "../../domain/turn";
 import { getTurn } from "../../mocks/getTurn.mock";
 import { TurnService } from "../../service/turn.service";
-import { getPatient } from '../../mocks/getPatient.mock';
 import { faker } from '@faker-js/faker';
-import { GenreEnum } from '../../domain/patient';
 
 
 describe('Turn Service', () => {
@@ -15,7 +13,7 @@ describe('Turn Service', () => {
     });
 
     test('should create a turn', () => {
-        const turn = getTurn();
+        const turn = getTurn(undefined, 1);
         const result = turnService.createTurn(turn);
 
         expect(result).toBeInstanceOf(Turn);
@@ -28,14 +26,10 @@ describe('Turn Service', () => {
     });
 
     test('should estimate priority', () => {
-        const patient = getPatient(
-            'Little Jhon',
-            undefined,
-            66, // add 30 to priority
-            GenreEnum.MALE
-        );
+
         const MedicalForm = getMedicalForm(
-            patient,
+            faker.number.int(),
+            faker.number.int(),
             faker.lorem.sentence(),
             faker.lorem.sentence() + 'alteración del estado mental', // add 40 to priority
             faker.lorem.sentence() + 'dolor leve', // add 10 to priority
@@ -44,6 +38,6 @@ describe('Turn Service', () => {
         );
         const result = turnService.estimatePriority(MedicalForm);
 
-        expect(result).toBe(80);
+        expect(result).toBe(50);
     });
 });
