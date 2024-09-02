@@ -1,7 +1,7 @@
-import { Patient } from "./patient";
 
 export interface MedicalFormProps {
-    patient: Patient;
+    id?: number;
+    patientId: number;
     reason: string;
     discriminators: string;
     symptoms: string;
@@ -18,8 +18,12 @@ export class MedicalForm {
         this.props = props;
     }
 
-    get patient(): Patient {
-        return this.props.patient;
+    get id(): number | undefined {
+        return this.props.id;
+    }
+
+    get patientId(): number {
+        return this.props.patientId;
     }
 
     get reason(): string {
