@@ -13,7 +13,7 @@ export class TurnService {
         return new Turn({
             patient: props.patient,
             priority: props.priority,
-            startedAt: new Date(),
+            startedAt: props.startedAt,
             risk: riskEnum,
         });
     }
