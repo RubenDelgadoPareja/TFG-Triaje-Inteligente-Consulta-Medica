@@ -87,18 +87,26 @@ Los criterios para escoger la herramienta son la compatibilidad con Typescript, 
 que ayude a mockear los datos necesarios para los tests.
 Las opciones que se han encontrado a valorar son las siguientes: Jest, Mocha, Cypress, Jasmine y AVA. De todas estas opciones, se ha escogido Jest sobre el resto debido a que es la
 mejor herramienta en los criterios respecto al resto. Mocha tiene una documentación mala y conlleva más tiempo de preparar para usarlo, ya que la configuracion con Typescript es manual.
-AVA al igual que Mocha necesita una configuracion especial para usarlo junto a TypeScript. Jasmine es en general buena opción pero es la interfaz de usuario es más compleja.
-Cypress realmente es una herramienta para hacer test E2E y depende del navegador. Quizás en un futuro se podría usar para hacer test E2E, pero no para test unitarios.
+AVA al igual que Mocha necesita una configuración especial para emplearlo junto a TypeScript. Jasmine es en general buena opción, pero es la interfaz de usuario es más compleja.
+Cypress realmente es una herramienta para hacer test E2E y depende del navegador. Quizás en un futuro se podría utilizar para hacer test E2E, no obstante no para test unitarios.
 Jest tiene una gran comunidad, buena documentación, fácil integración con Typescript, ayuda a mockear los datos necesarios para los tests y trae espiadores integrados.
-Además tiene una cobertura integrada en el código para saber cuánto porcentaje del código está testeado.
+Además, tiene una cobertura integrada en el código para saber cuánto porcentaje del código está testado.
 
 \subsubsection*{Framework de desarrollo}
-Durante el desarrollo del proyecto se ha tomado la decisión de usar un framework de desarrollo para facilitar la creación de la aplicación web.
+Durante el desarrollo del proyecto se ha tomado la decisión de emplear un framework de desarrollo para facilitar la creación de la aplicación web.
 Utilizar un framework acelera el desarrollo al proporcionar una estructura predefinida, buenas prácticas y herramientas integradas, lo que mejora la calidad del código, la seguridad y la mantenibilidad.
 Además, reduce el tiempo de desarrollo y facilita la escalabilidad, haciendo el proceso más eficiente y organizado.
-Los criterios de búsqueda para el framework serán una configuración sencilla, fácil de usar, que soporte Typescript y Node.js, que se adapte a la situación del proyecto y que sea pragmático.
+Los criterios de búsqueda para el framework serán una configuración sencilla, fácil de utilizar, que soporte Typescript y Node.js, que se adapte a la situación del proyecto y que sea pragmático.
 He de explicar que el desarrollo del proyecto se centrará en la lógica de negocio y en la parte del backend, por lo que los framework serán orientados a este tipo de desarrollo.
-Las opciones que se han barajado son las siguientes: Express, NestJS, Koa, Hapi. Express se ha descartado por ser una framework muy sencillo y no aporta tanto como los demás.
-Hapi se descarta ya que está enfocado a los plugins, lo que no se ajusta a las necesidades del proyecto. Koa se descarta ya que utiliza una arquitectura de middleware y lo mejor sería una arquitectura modular.
+Las opciones que se han barajado son las siguientes: Express, NestJS, Koa, Hapi. Express se ha descartado por ser un framework muy sencillo y no aporta tanto como los demás.
+Hapi se descarta, ya que, está enfocado a los plugins, lo que no se ajusta a las necesidades del proyecto. Koa se descarta, puesto que, utiliza una arquitectura de middleware y lo mejor sería una arquitectura modular.
 Finalmente, se ha escogido NestJS por ser el framework que mejor se amolda a nuestro proyecto.
 
+
+\subsubsection*{Base de datos}
+Con la intención de continuar con el paradigma de la calidad y las buenas prácticas claves para el desarrollo ágil, se ha optado
+por implementar una base de datos en el proyecto. La persistencia de los datos, garantiza que los datos no se pierdan y se puedan recuperar en cualquier momento.
+Además, ayuda a que el proyecto sea más escalable y eficiente. Los criterios que se han escogido para seleccionar la base de datos han sido facilidad de configuración.
+La elección de una base de datos es algo que no debería hacerse a la ligera, ya que implica un nuevo conjunto de tecnologías y herramientas que pueden ser complicadas de manejar.
+Las opciones que se han barajado son las siguientes: MySQL, PostgreSQL, MongoDB, SQLite. Finalmente, se ha escogido PostgreSQL.
+PostgreSQL es generalmente la opción más versátil y poderosa si buscas un equilibrio entre rendimiento, escalabilidad, y funcionalidad avanzada.
