@@ -9,13 +9,25 @@ import { TriageQueueService } from "./emergencyTriage/service/triageQueue.servic
 import { PatientController } from "./emergencyTriage/controller/patient.controller";
 import { MedicalFormController } from "./emergencyTriage/controller/medicarForm.controller";
 import { TurnController } from "./emergencyTriage/controller/turn.controller";
+import { TypeOrmModule } from "@nestjs/typeorm";
 
 
 @Module({
-    imports: [ConfigModule.forRoot({
+    imports: [
+            ConfigModule.forRoot({
                 isGlobal: true,
                 envFilePath: '.env',
             }),
+            TypeOrmModule.forRoot({
+                type: process.env.DB_TYPE as 'postgres',
+                host: process.env.DB_HOST,
+                port: parseInt(process.env.DB_PORT || '5432', 10),
+                username: process.env.DB_USERNAME,
+                password: process.env.DB_PASSWORD,
+                database: process.env.DB_DATABASE,
+                entities: [], // Las entidades a usar con TypeORM
+                synchronize: true, // Sincroniza el esquema de la base de datos
+              }),
             PatientModule,
             MedicalFormModule,
             TurnModule,
