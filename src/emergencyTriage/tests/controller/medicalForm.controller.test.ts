@@ -4,7 +4,6 @@ import { MedicalFormController } from "../../controller/medicarForm.controller";
 import { MedicalFormService } from "../../service/medicalForm.service";
 import { CreateMedicalFormDto } from "../../dto/medicalForm.dto";
 import { MedicalFormMapper } from '../../mapper/medicalForm.mapper';
-import { MedicalFormModule } from '../../module/medicalForm.module';
 
 describe('MedicalForm Controller', () => {
     let medicalFormController: MedicalFormController;

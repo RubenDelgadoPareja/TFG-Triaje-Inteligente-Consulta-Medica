@@ -1,6 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { MedicalForm, MedicalFormProps } from '../../domain/medicalForm';
-import { getMedicalForm } from '../../mocks/getMedicalForm.mock';
 import { MedicalFormService } from './../../service/medicalForm.service';
 
 

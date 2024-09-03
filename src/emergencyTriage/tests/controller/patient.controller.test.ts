@@ -4,7 +4,6 @@ import { PatientService } from '../../service/patient.service';
 import { GenreEnum, Patient, PatientProps } from '../../domain/patient';
 import { CreatePatientDto } from '../../dto/patient.dto';
 import { getDni } from '../../mocks/getPatient.mock';
-import { PatientModule } from '../../module/patient.module';
 import { PatientMapper } from '../../mapper/patient.mapper';
 
 describe('Patient Controller', () => {

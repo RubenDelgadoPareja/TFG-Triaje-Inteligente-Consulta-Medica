@@ -1,6 +1,6 @@
 import { Test, TestingModule } from "@nestjs/testing";
 import { GenreEnum, Patient, PatientProps } from "../../domain/patient";
-import { getDni, getPatient } from "../../mocks/getPatient.mock";
+import { getDni } from "../../mocks/getPatient.mock";
 import { PatientService } from "../../service/patient.service";
 
 

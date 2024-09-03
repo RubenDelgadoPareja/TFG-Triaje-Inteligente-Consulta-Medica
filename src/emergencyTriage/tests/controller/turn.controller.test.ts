@@ -3,7 +3,6 @@ import { TurnController } from "../../controller/turn.controller";
 import { RiskEnum, Turn } from "../../domain/turn";
 import { TurnService } from "../../service/turn.service";
 import { CreateTurnDto } from "../../dto/turn.dto";
-import { TurnModule } from "../../module/turn.module";
 import { TurnMapper } from "../../mapper/turn.mapper";
 
 describe('Turn Controller', () => {
