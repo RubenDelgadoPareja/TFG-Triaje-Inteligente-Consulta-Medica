@@ -6,6 +6,7 @@ import { MedicalFormMapper } from "../mapper/medicalForm.mapper";
 
 @Module({
     controllers: [MedicalFormController],
-    providers: [MedicalFormService, MedicalFormMapper]
+    providers: [MedicalFormService, MedicalFormMapper],
+    exports: [MedicalFormService, MedicalFormMapper]
 })
 export class MedicalFormModule {}
