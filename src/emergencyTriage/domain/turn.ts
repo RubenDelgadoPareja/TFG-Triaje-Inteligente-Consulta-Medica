@@ -10,7 +10,7 @@ export interface TurnProps {
   id?: number;
   patientId: number;
   startedAt: Date;
-  risk: RiskEnum;
+  risk?: RiskEnum;
   priority: number;
 }
 
@@ -33,7 +33,7 @@ export class Turn {
     return this._props.startedAt;
   }
 
-  get risk(): RiskEnum {
+  get risk(): RiskEnum | undefined{
     return this._props.risk;
   }
 

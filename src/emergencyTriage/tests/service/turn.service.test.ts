@@ -3,13 +3,18 @@ import { Turn } from "../../domain/turn";
 import { getTurn } from "../../mocks/getTurn.mock";
 import { TurnService } from "../../service/turn.service";
 import { faker } from '@faker-js/faker';
+import { Test, TestingModule } from '@nestjs/testing';
 
 
 describe('Turn Service', () => {
     let turnService: TurnService;
 
-    beforeEach(() => {
-        turnService = new TurnService();
+    beforeEach(async () => {
+        const module: TestingModule = await Test.createTestingModule({
+            providers: [TurnService],
+        }).compile();
+
+        turnService = module.get<TurnService>(TurnService);
     });
 
     test('should create a turn', () => {

@@ -3,7 +3,7 @@ import { Patient } from "../domain/patient";
 import { faker } from '@faker-js/faker';
 import { Dni } from '../domain/dni';
 
-const getDni = (dni?: Dni): Dni => {
+export const getDni = (dni?: Dni): Dni => {
     // Generar 8 dígitos aleatorios
     const numeroDni = faker.number.int({ min: 10000000, max: 99999999 });
 
