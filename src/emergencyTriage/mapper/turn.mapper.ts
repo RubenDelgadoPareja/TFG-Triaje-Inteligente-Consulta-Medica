@@ -1,5 +1,5 @@
 import { Turn, TurnProps } from "../domain/turn";
-import { CreateTurnDto, TurnDto } from "../dto/turn.dto";
+import { CreateTurnDto, TurnDto, UpdateTurnDto } from "../dto/turn.dto";
 import { PatientEntity } from "../infrastructure/orm/patient.entity";
 import { TurnEntity } from "../infrastructure/orm/turn.entity";
 
@@ -49,8 +49,9 @@ export class TurnMapper {
         }
     }
 
-    mapUpdateDtoToTurnProps(updateTurnDto: TurnDto): TurnProps {
+    mapUpdateDtoToTurnProps(updateTurnDto: UpdateTurnDto): TurnProps {
         return {
+            id: updateTurnDto.id,
             patientId: updateTurnDto.patientId,
             startedAt: updateTurnDto.startedAt,
             priority: updateTurnDto.priority,

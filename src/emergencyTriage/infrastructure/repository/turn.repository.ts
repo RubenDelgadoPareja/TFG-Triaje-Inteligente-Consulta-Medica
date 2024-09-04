@@ -39,15 +39,17 @@ export class TurnRepository extends Repository<TurnEntity>{
         if (!patient) {
         throw new NotFoundException(`Patient with ID ${turn.patient.id} does not exist`);
         }
+
+        if(turn.id){
         const existingTurn = await this.repository.findOne({
             where: {
-            patient: turn.patient,
-            startedAt: turn.startedAt,
+            id: turn.id,
             },
         });
 
         if (existingTurn) {
             throw new ConflictException('Turn already exists');
+        }
         }
 
         // Guardar el nuevo turno
