@@ -19,3 +19,12 @@ export class CreateTurnDto {
     @IsEnum(RiskEnum)
     readonly risk?: RiskEnum;
 }
+
+export class TurnDto extends CreateTurnDto {
+    @IsNumber()
+    @IsNotEmpty()
+    readonly id!: number;
+}
+
+export class UpdateTurnDto extends TurnDto {
+}

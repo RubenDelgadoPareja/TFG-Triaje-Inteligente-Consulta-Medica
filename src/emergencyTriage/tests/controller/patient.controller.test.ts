@@ -15,11 +15,11 @@ describe('Patient Controller', () => {
     const patientDto: CreatePatientDto = {
         name: 'John Doe',
         age: 30,
-        dni: getDni(),
+        dni: getDni().value,
         genre: GenreEnum.MALE
     };
 
-    const newDni = new Dni(patientDto.dni.value);
+    const newDni = new Dni(patientDto.dni);
     const patientProps: PatientProps = {
         name: patientDto.name,
         age: patientDto.age,
@@ -50,8 +50,8 @@ describe('Patient Controller', () => {
         expect(patientController).toBeDefined();
     });
 
-    it('should create a new Patient', () => {
-        const result = patientController.create(patientDto);
+    it('should create a new Patient', async () => {
+        const result = await patientController.create(patientDto);
 
         expect(mockPatientMapper.mapCreateDtoToPatientProps).toHaveBeenCalledWith(patientDto);
         expect(mockPatientService.createPatient).toHaveBeenCalledWith(patientProps);

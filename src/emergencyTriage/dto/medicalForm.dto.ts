@@ -26,3 +26,12 @@ export class CreateMedicalFormDto {
     @IsString()
     readonly diagnosis!: string;
 }
+
+export class MedicalFormDto extends CreateMedicalFormDto {
+    @IsNumber()
+    @IsNotEmpty()
+    readonly id!: number;
+}
+
+export class UpdateMedicalFormDto extends MedicalFormDto {
+}
