@@ -50,8 +50,8 @@ describe('Patient Controller', () => {
         expect(patientController).toBeDefined();
     });
 
-    it('should create a new Patient', () => {
-        const result = patientController.create(patientDto);
+    it('should create a new Patient', async () => {
+        const result = await patientController.create(patientDto);
 
         expect(mockPatientMapper.mapCreateDtoToPatientProps).toHaveBeenCalledWith(patientDto);
         expect(mockPatientService.createPatient).toHaveBeenCalledWith(patientProps);

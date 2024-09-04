@@ -50,12 +50,12 @@ describe('MedicalForm Controller', () => {
         expect(medicalFormController).toBeDefined();
     });
 
-    it('should create a new MedicalForm', () => {
+    it('should create a new MedicalForm', async () => {
 
 
         jest.spyOn(mockMedicalFormService, 'createMedicalForm').mockReturnValue(medicalForm);
         jest.spyOn(mockMedicalFormMapper, 'mapCreateDtoToMedicalFormProps').mockReturnValue(medicalFormProps);
-        const result = medicalFormController.create(medicalFormDto);
+        const result = await medicalFormController.create(medicalFormDto);
 
         expect(mockMedicalFormMapper.mapCreateDtoToMedicalFormProps).toHaveBeenCalledWith(medicalFormDto);
         expect(mockMedicalFormService.createMedicalForm).toHaveBeenCalledWith(medicalFormProps);

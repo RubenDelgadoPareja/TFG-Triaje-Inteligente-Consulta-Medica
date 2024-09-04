@@ -46,13 +46,13 @@ describe('Turn Controller', () => {
         expect(turnController).toBeDefined();
     });
 
-    it('should create a new Turn', () => {
+    it('should create a new Turn', async () => {
 
 
         jest.spyOn(mockTurnService, 'createTurn').mockReturnValue(turn);
         jest.spyOn(mockTurnMapper, 'mapCreateDtoToTurnProps').mockReturnValue(turnProps);
 
-        const result = turnController.create(turnDto);
+        const result = await turnController.create(turnDto);
 
         expect(mockTurnMapper.mapCreateDtoToTurnProps).toHaveBeenCalledWith(turnDto);
         expect(mockTurnService.createTurn).toHaveBeenCalledWith(turnProps);
