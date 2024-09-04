@@ -1,12 +1,6 @@
-import { IsEnum, IsInt, IsNotEmpty, IsOptional, IsString, Matches, Max, Min, ValidateNested } from "class-validator";
-import { Type } from 'class-transformer';
+import { IsEnum, IsInt, IsNotEmpty, IsOptional, IsString, Matches, Max, Min } from "class-validator";
 import { GenreEnum } from "../domain/patient";
 
-export class DniDto{
-    @IsString()
-    @Matches( /^\d{8}[A-HJ-NP-TV-Z]$/, {message: 'Dni must have 8 digits'})
-    readonly value!: string;
-}
 
 
 export class CreatePatientDto{
@@ -14,10 +8,10 @@ export class CreatePatientDto{
     @IsNotEmpty()
     readonly name!: string;
 
-    @Type(() => DniDto)
-    @ValidateNested()
+    @IsString()
+    @Matches( /^\d{8}[A-HJ-NP-TV-Z]$/, {message: 'Dni must have 8 digits'})
     @IsNotEmpty()
-    readonly dni!: DniDto;
+    readonly dni!: string;
 
     @IsNotEmpty()
     @IsInt()
@@ -30,3 +24,13 @@ export class CreatePatientDto{
     readonly genre?: GenreEnum;
 
 }
+
+export class PatientDto extends CreatePatientDto{
+    @IsInt()
+    @IsNotEmpty()
+    readonly id!: number;
+}
+
+export class UpdatePatientDto extends PatientDto{
+}
+

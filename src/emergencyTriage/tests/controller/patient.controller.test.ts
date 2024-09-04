@@ -15,11 +15,11 @@ describe('Patient Controller', () => {
     const patientDto: CreatePatientDto = {
         name: 'John Doe',
         age: 30,
-        dni: getDni(),
+        dni: getDni().value,
         genre: GenreEnum.MALE
     };
 
-    const newDni = new Dni(patientDto.dni.value);
+    const newDni = new Dni(patientDto.dni);
     const patientProps: PatientProps = {
         name: patientDto.name,
         age: patientDto.age,
