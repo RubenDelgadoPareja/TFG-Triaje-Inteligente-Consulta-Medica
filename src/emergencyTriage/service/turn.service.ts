@@ -1,36 +1,30 @@
+import { TurnMapper } from './../mapper/turn.mapper';
 import { MedicalForm } from './../domain/medicalForm';
 import { Injectable } from "@nestjs/common";
 import { RiskEnum, Turn, TurnProps } from "../domain/turn";
+import { TurnRepository } from '../infrastructure/repository/turn.repository';
+import { PatientRepository } from '../infrastructure/repository/patient.repository';
 
 
 @Injectable()
 export class TurnService {
-    constructor() {}
+    constructor(
+        private readonly turnMapper: TurnMapper,
+        private readonly turnRepository: TurnRepository,
+        private readonly patientRepository: PatientRepository,
+    ) {}
 
-    createTurn(props: TurnProps): Turn{
-        const riskEnum = this.evaluateRisk(props.priority);
+    async createTurn(props: TurnProps): Promise<Turn>{
+        const riskEnum = evaluateRisk(props.priority);
 
-        return new Turn({
-            patientId: props.patientId,
-            priority: props.priority,
-            startedAt: props.startedAt,
+        const turnProps = {
+            ...props,
             risk: riskEnum,
-        });
-    }
-
-    evaluateRisk(priority: number): RiskEnum {
-        switch (true) {
-            case (priority > 75):
-                return RiskEnum.CRITICAL;
-            case (50 < priority && priority <= 75):
-                return RiskEnum.HIGH;
-            case (25 < priority && priority <= 50):
-                return RiskEnum.MEDIUM;
-            case (priority <= 25):
-                return RiskEnum.LOW;
-            default:
-                return RiskEnum.LOW;
         }
+        const patient = await this.patientRepository.getPatientById(turnProps.patientId);
+        const turnEntity = this.turnMapper.mapTurnPropsToEntity(turnProps, patient);
+        const turnResult = await this.turnRepository.createTurn(turnEntity);
+        return this.turnMapper.mapTurnEntityToDomain(turnResult);
     }
 
     estimatePriority(medicalForm: MedicalForm): number {
@@ -72,4 +66,19 @@ export class TurnService {
     return Math.min(priority, 100);
     }
 
+}
+
+export function evaluateRisk(priority: number): RiskEnum {
+    switch (true) {
+        case (priority > 75):
+            return RiskEnum.CRITICAL;
+        case (50 < priority && priority <= 75):
+            return RiskEnum.HIGH;
+        case (25 < priority && priority <= 50):
+            return RiskEnum.MEDIUM;
+        case (priority <= 25):
+            return RiskEnum.LOW;
+        default:
+            return RiskEnum.LOW;
+    }
 }

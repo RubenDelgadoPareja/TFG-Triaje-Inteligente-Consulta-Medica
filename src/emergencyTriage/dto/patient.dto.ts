@@ -1,11 +1,10 @@
-import { IsEnum, IsInt, IsNotEmpty, IsObject, IsOptional, IsString, Matches, Max, Min, ValidateNested } from "class-validator";
-import { Dni } from "../domain/dni";
+import { IsEnum, IsInt, IsNotEmpty, IsOptional, IsString, Matches, Max, Min, ValidateNested } from "class-validator";
 import { Type } from 'class-transformer';
 import { GenreEnum } from "../domain/patient";
 
 export class DniDto{
     @IsString()
-    @Matches(/^[0-9]{8}$/, {message: 'Dni must have 8 digits'})
+    @Matches( /^\d{8}[A-HJ-NP-TV-Z]$/, {message: 'Dni must have 8 digits'})
     readonly value!: string;
 }
 
@@ -15,11 +14,10 @@ export class CreatePatientDto{
     @IsNotEmpty()
     readonly name!: string;
 
-    @IsObject()
     @Type(() => DniDto)
     @ValidateNested()
     @IsNotEmpty()
-    readonly dni!: Dni;
+    readonly dni!: DniDto;
 
     @IsNotEmpty()
     @IsInt()

@@ -20,16 +20,16 @@ export class EmergencyTriageService {
         return 'Emergency Triage';
     }
 
-    createEmergencyTriage(){
+    async createEmergencyTriage(){
         // New patient arrives the emergency room
-        const patient = this.patientService.createPatient(getPatient(1));
+        const patient = await this.patientService.createPatient(getPatient(1));
 
         // The patient fills out the medical form
-        const medicalForm = this.medicalFormService.createMedicalForm(getMedicalForm(1, patient.id));
+        const medicalForm = await this.medicalFormService.createMedicalForm(getMedicalForm(1, patient.id));
 
         const priority = this.turnService.estimatePriority(medicalForm);
         // The patient is assigned a turn
-        const turn = this.turnService.createTurn(getTurn(1, patient.id, priority));
+        const turn = await this.turnService.createTurn(getTurn(1, patient.id, priority));
 
         // The patient is added to the triage queue
         const triageQueue = this.triageQueueService.instanceTriageQueue();
