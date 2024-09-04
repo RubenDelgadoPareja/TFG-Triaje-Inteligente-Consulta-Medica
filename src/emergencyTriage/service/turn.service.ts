@@ -1,6 +1,6 @@
 import { TurnMapper } from './../mapper/turn.mapper';
 import { MedicalForm } from './../domain/medicalForm';
-import { Injectable } from "@nestjs/common";
+import { Injectable, NotFoundException } from "@nestjs/common";
 import { RiskEnum, Turn, TurnProps } from "../domain/turn";
 import { TurnRepository } from '../infrastructure/repository/turn.repository';
 import { PatientRepository } from '../infrastructure/repository/patient.repository';
@@ -14,6 +14,19 @@ export class TurnService {
         private readonly patientRepository: PatientRepository,
     ) {}
 
+    async findAll(): Promise<Turn[]> {
+        const turnEntities = await this.turnRepository.getAll();
+        return turnEntities.map(turnEntity => this.turnMapper.mapTurnEntityToDomain(turnEntity));
+    }
+
+    async findOne(id: number): Promise<Turn> {
+        const turnEntity = await this.turnRepository.getTurnById(id);
+        if (!turnEntity) {
+            throw new NotFoundException(`Turn with ID ${id} not found`);
+        }
+        return this.turnMapper.mapTurnEntityToDomain(turnEntity);
+    }
+
     async createTurn(props: TurnProps): Promise<Turn>{
         const riskEnum = evaluateRisk(props.priority);
 
@@ -25,6 +38,29 @@ export class TurnService {
         const turnEntity = this.turnMapper.mapTurnPropsToEntity(turnProps, patient);
         const turnResult = await this.turnRepository.createTurn(turnEntity);
         return this.turnMapper.mapTurnEntityToDomain(turnResult);
+    }
+
+    async update(id: number, props: TurnProps): Promise<Turn> {
+        const existingTurn = await this.turnRepository.getTurnById(id);
+        if (!existingTurn) {
+            throw new NotFoundException(`Turn with ID ${id} not found`);
+        }
+
+        const riskEnum = evaluateRisk(props.priority);
+        const updatedProps = { ...props, id: id, risk: riskEnum };
+
+        const patient = await this.patientRepository.getPatientById(updatedProps.patientId);
+        if (!patient) {
+            throw new NotFoundException(`Patient with ID ${updatedProps.patientId} not found`);
+        }
+
+        const turnEntity = this.turnMapper.mapTurnPropsToEntity(updatedProps, patient);
+        const updatedTurnEntity = await this.turnRepository.updateTurn(id, turnEntity);
+        return this.turnMapper.mapTurnEntityToDomain(updatedTurnEntity);
+    }
+
+    async remove(id: number): Promise<void> {
+        return await this.turnRepository.removeTurn(id);
     }
 
     estimatePriority(medicalForm: MedicalForm): number {
