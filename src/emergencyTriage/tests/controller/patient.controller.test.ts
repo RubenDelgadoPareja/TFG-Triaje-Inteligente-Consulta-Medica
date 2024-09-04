@@ -19,7 +19,7 @@ describe('Patient Controller', () => {
         genre: GenreEnum.MALE
     };
 
-    const newDni = new Dni(patientDto.dni.toString());
+    const newDni = new Dni(patientDto.dni.value);
     const patientProps: PatientProps = {
         name: patientDto.name,
         age: patientDto.age,
