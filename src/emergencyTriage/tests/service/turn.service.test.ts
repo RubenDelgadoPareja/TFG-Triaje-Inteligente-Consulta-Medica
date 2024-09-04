@@ -1,7 +1,7 @@
 import { getMedicalForm } from './../../mocks/getMedicalForm.mock';
 import { Turn } from "../../domain/turn";
 import { getTurn } from "../../mocks/getTurn.mock";
-import { TurnService } from "../../service/turn.service";
+import { evaluateRisk, TurnService } from "../../service/turn.service";
 import { faker } from '@faker-js/faker';
 import { Test, TestingModule } from '@nestjs/testing';
 
@@ -26,7 +26,7 @@ describe('Turn Service', () => {
     });
 
     test('should evaluate risk', () => {
-        const riskEnum = turnService.evaluateRisk(80);
+        const riskEnum = evaluateRisk(80);
         expect(riskEnum).toBe('CRITICAL');
     });
 

@@ -1,18 +1,22 @@
 import { Injectable } from "@nestjs/common";
 import { MedicalForm, MedicalFormProps } from "../domain/medicalForm";
+import { MedicalFormMapper } from "../mapper/medicalForm.mapper";
+import { MedicalFormRepository } from "../infrastructure/repository/medicalForm.repository";
+import { PatientRepository } from "../infrastructure/repository/patient.repository";
 
 @Injectable()
 export class MedicalFormService {
-    constructor() {}
+    constructor(
+        private readonly medicalFormMapper: MedicalFormMapper,
+        private readonly medicalFormRepository: MedicalFormRepository,
+        private readonly patientRepository: PatientRepository,
+    ) {}
 
-    createMedicalForm(props: MedicalFormProps): MedicalForm{
-        return new MedicalForm({
-            patientId: props.patientId,
-            reason: props.reason,
-            discriminators: props.discriminators,
-            symptoms: props.symptoms,
-            vitalSigns: props.vitalSigns,
-            diagnosis: props.diagnosis
-        });
+    async createMedicalForm(props: MedicalFormProps): Promise<MedicalForm>{
+
+        const patientEntity = await this.patientRepository.getPatientById(props.patientId);
+        const medicalFormEntity = this.medicalFormMapper.mapMedicalFormPropsToEntity(props, patientEntity);
+        const medicalFormResult  = await this.medicalFormRepository.createMedicalForm(medicalFormEntity);
+        return this.medicalFormMapper.mapMedicalFormEntityToDomain(medicalFormResult);
     }
 }

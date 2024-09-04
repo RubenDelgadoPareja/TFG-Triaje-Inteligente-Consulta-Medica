@@ -1,10 +1,10 @@
 import { Body, Controller, Post } from '@nestjs/common';
-import { MedicalFormService } from './../service/medicalForm.service';
+import { MedicalFormService } from '../service/medicalForm.service';
 import { CreateMedicalFormDto } from '../dto/medicalForm.dto';
 import { MedicalFormProps } from '../domain/medicalForm';
 import { MedicalFormMapper } from '../mapper/medicalForm.mapper';
 
-@Controller('medicalForms')
+@Controller('medical-forms')
 export class MedicalFormController {
     constructor(
         private readonly medicalFormService: MedicalFormService,
@@ -16,5 +16,4 @@ export class MedicalFormController {
         const medicalFormProps: MedicalFormProps = this.medicalFormMapper.mapCreateDtoToMedicalFormProps(createMedicalFormDto);
         return this.medicalFormService.createMedicalForm(medicalFormProps);
     }
-
 }

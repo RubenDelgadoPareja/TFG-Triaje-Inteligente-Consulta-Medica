@@ -25,11 +25,11 @@ export class EmergencyTriageService {
         const patient = await this.patientService.createPatient(getPatient(1));
 
         // The patient fills out the medical form
-        const medicalForm = this.medicalFormService.createMedicalForm(getMedicalForm(1, patient.id));
+        const medicalForm = await this.medicalFormService.createMedicalForm(getMedicalForm(1, patient.id));
 
         const priority = this.turnService.estimatePriority(medicalForm);
         // The patient is assigned a turn
-        const turn = this.turnService.createTurn(getTurn(1, patient.id, priority));
+        const turn = await this.turnService.createTurn(getTurn(1, patient.id, priority));
 
         // The patient is added to the triage queue
         const triageQueue = this.triageQueueService.instanceTriageQueue();

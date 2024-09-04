@@ -1,6 +1,6 @@
 import { MedicalForm, MedicalFormProps } from './../../domain/medicalForm';
 import { Test, TestingModule } from "@nestjs/testing";
-import { MedicalFormController } from "../../controller/medicarForm.controller";
+import { MedicalFormController } from "../../controller/medicalForm.controller";
 import { MedicalFormService } from "../../service/medicalForm.service";
 import { CreateMedicalFormDto } from "../../dto/medicalForm.dto";
 import { MedicalFormMapper } from '../../mapper/medicalForm.mapper';

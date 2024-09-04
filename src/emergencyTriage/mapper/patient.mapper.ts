@@ -18,22 +18,22 @@ export class PatientMapper {
     }
 
     mapPatientPropsToEntity(patientProps: PatientProps): PatientEntity {
-        const patientOrm = new PatientEntity();
+        const patientEntity = new PatientEntity();
 
-        patientOrm.name = patientProps.name;
-        patientOrm.dni = patientProps.dni.value;
-        patientOrm.age = patientProps.age;
-        patientOrm.genre = patientProps.genre;
-        return patientOrm;
+        patientEntity.name = patientProps.name;
+        patientEntity.dni = patientProps.dni.value;
+        patientEntity.age = patientProps.age;
+        patientEntity.genre = patientProps.genre;
+        return patientEntity;
     }
 
-    mapPatientEntityToDomain(patientOrm: PatientEntity): Patient {
+    mapPatientEntityToDomain(patientEntity: PatientEntity): Patient {
         return new Patient({
-            id: patientOrm.id,
-            name: patientOrm.name,
-            dni: new Dni(patientOrm.dni),
-            age: patientOrm.age,
-            genre: patientOrm.genre,
+            id: patientEntity.id,
+            name: patientEntity.name,
+            dni: new Dni(patientEntity.dni),
+            age: patientEntity.age,
+            genre: patientEntity.genre,
         });
     }
 }
