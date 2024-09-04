@@ -5,6 +5,7 @@ import { GenreEnum, Patient, PatientProps } from '../../domain/patient';
 import { CreatePatientDto } from '../../dto/patient.dto';
 import { getDni } from '../../mocks/getPatient.mock';
 import { PatientMapper } from '../../mapper/patient.mapper';
+import { Dni } from '../../domain/dni';
 
 describe('Patient Controller', () => {
     let patientController: PatientController;
@@ -18,10 +19,11 @@ describe('Patient Controller', () => {
         genre: GenreEnum.MALE
     };
 
+    const newDni = new Dni(patientDto.dni.toString());
     const patientProps: PatientProps = {
         name: patientDto.name,
         age: patientDto.age,
-        dni: patientDto.dni,
+        dni: newDni,
         genre: patientDto.genre ?? GenreEnum.OTHER
     };
 

@@ -1,12 +1,16 @@
+import { PatientMapper } from './mapper/patient.mapper';
 import { TurnService } from './service/turn.service';
 import { PatientService } from './service/patient.service';
 import { EmergencyTriageController } from "./emergencyTriage.controller";
 import { EmergencyTriageService } from "./emergencyTriage.service";
 import { MedicalFormService } from './service/medicalForm.service';
 import { TriageQueueService } from './service/triageQueue.service';
+import { PatientRepository } from './infrastructure/repository/patient.repository';
 
 
 describe('Emergency Triage Controller', () => {
+    let patientMapper: PatientMapper;
+    let patientRepository: PatientRepository
     let patientService: PatientService;
     let medicalFormService: MedicalFormService;
     let turnService: TurnService;
@@ -15,7 +19,8 @@ describe('Emergency Triage Controller', () => {
     let emergencyTriageService: EmergencyTriageService;
 
     beforeEach(() => {
-        patientService = new PatientService();
+        patientMapper = new PatientMapper();
+        patientService = new PatientService(patientMapper, patientRepository);
         medicalFormService = new MedicalFormService();
         turnService = new TurnService();
         triageQueueService = new TriageQueueService();
