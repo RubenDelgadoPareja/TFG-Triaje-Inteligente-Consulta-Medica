@@ -96,9 +96,18 @@ Para aceptar el PMV la memoria debe de recoger una sección específica sobre c�
 \end{itemize}
 
 
-\subsection*{\href{https://github.com/RubenDelgadoPareja/TFG-Triage-Inteligente-Consulta-Medica/milestone/2}{Hito 2: Arquitectura básica del sistema de colas de citas}}
+\subsection*{\href{https://github.com/RubenDelgadoPareja/TFG-Triage-Inteligente-Consulta-Medica/milestone/2}{Hito 2: Arquitectura básica del sistema de colas de citas - API Rest}}
 
-Este PMV consiste en diseñar las clases y funciones necesarias para crear citas, almacenarlas en colas y priorizarlas mediante una heurística.
+Este PMV consiste en diseñar las clases y funciones necesarias para crear los turnos, priorizarla los turnos y meterlos en una cola.
+A nivel de producto se ha de tener una API Rest que permita la creación de turnos y la priorización de los mismos.
+
+\begin{itemize}
+    \item {Configurar y crear los tests necesarios}
+    \item {Crear los servicios necesarios para el dominio}
+    \item {Crear los controladores necesarios para la API Rest}
+    \item {Configurar y conectar una base de datos}
+    \item {Crear los repositorios para acceder a la base de datos}
+\end{itemize}
 
 Los criterios de aceptación de este PMV son los tests de cada clase y sus funciones, además de reflejar en la memoria las decisiones tomadas
 
@@ -165,3 +174,13 @@ Esto es fundamental para el desarrollo ágil, ya que permite adaptarse a los cam
 Para modelar el dominio y la lógica se ha requerido conocer conceptos y datos del dominio, por lo que se ha requerido de la colaboración de expertos en el dominio.
 En este caso, contaba con un experto cercano al dominio, mi hermana que es enfermera. Además, he conseguido información de expertos en este \href{https://scielo.isciii.es/scielo.php?script=sci_arttext&pid=S1137-66272010000200008}{artículo de un sistema de triage navarro}.
 
+\subsection*{Metodología de diseño de la API}
+La arquitectura de una aplicación backend puede separarse en diferentes capas de abstracción, en este caso se ha decidido separar en cuatro capas: dominio, aplicación, presentación e infraestructura.
+Una vez que tenemos la capa del dominio modelada, debemos de pasar a la capa de aplicación, en la que principalmente se ejecuta la lógica de negocio. En mi código esta capa
+corresponde a todos los services que se han desarrollado para el dominio. Además, esta capa va a conectar las otras 2 restantes, la capa de presentación y la capa de infraestructura.
+La capa de presentación es la que recibe las peticiones externas, las controla y llama las funciones de la capa de aplicación. En mi código esta capa corresponde a los controladores de la API Rest.
+La capa de infraestructura es la que se encarga de la conexión con la base de datos, en mi código esta capa corresponde a los repositorios de la base de datos.
+Durante todo este proceso se ha ido asegurando la calidad del código con los tests y la integración continua. Aunque no se haya podido desarrollar test para todos los endpoints.
+
+Inicialmente, solo iban a ser las funciones de creación, pero decidí terminar toda la API para aportar más valor a los usuarios como pide la metodología ágil.
+Este es la etapa del proyecto en la que más me he separado de la metodología ágil, ya que he desarrollado más de lo necesario para cumplir con las historias de usuario.
