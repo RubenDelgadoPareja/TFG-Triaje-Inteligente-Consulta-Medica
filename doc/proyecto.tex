@@ -4,14 +4,14 @@
 % Original author:  Frits Wenneker (http://www.howtotex.com)
 % License: CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\UseRawInputEncoding
+
 % \documentclass[paper=a4, fontsize=11pt]{scrartcl} % A4 paper and 11pt font size
 \documentclass[11pt, a4paper]{book}
-\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
 \usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\usepackage[spanish, es-tabla]{babel} % Selecciona el español para palabras introducidas automáticamente, p.ej. "septiembre" en la fecha y especifica que se use la palabra Tabla en vez de Cuadro
 \usepackage{fourier} % Use the Adobe Utopia font for the document - comment this line to return to the LaTeX default
 \usepackage{listings} % para insertar código con formato similar al editor
-\usepackage[spanish, es-tabla]{babel} % Selecciona el español para palabras introducidas automáticamente, p.ej. "septiembre" en la fecha y especifica que se use la palabra Tabla en vez de Cuadro
 \usepackage{url} % ,href} %para incluir URLs e hipervínculos dentro del texto (aunque hay que instalar href)
 \usepackage{graphics,graphicx, float} %para incluir imágenes y colocarlas
 \usepackage[gen]{eurosym} %para incluir el símbolo del euro
@@ -74,26 +74,19 @@
 \input{secciones/01_introduccion}
 
 % Descripción del problema y hasta donde se llega
-\input{secciones/02_descripcion}
-
 % Estado del arte
 % 	1. Crítica al estado del arte
 % 	2. Propuesta
+\input{secciones/02_estado_del_arte}
 
-\input{secciones/03_estado_del_arte}
-
-\input{secciones/04_metodologia.tex}
+% Metodología y planificación y presupuesto
+\input{secciones/03_metodologia}
 
 % Implementación
-\input{secciones/05_implementacion}
+\input{secciones/04_implementacion}
 
-% Presupuesto
-
-% Conclusiones
-\input{secciones/06_conclusiones}
-
-% Trabajos futuros
-
+% Conclusiones y trabajos futuros
+\input{secciones/05_conclusiones}
 
 
 \newpage
