@@ -1,0 +1,64 @@
+
+\chapter{Descripción del problema y estado del arte}
+
+\section*{Descripción del problema}
+
+Desde el inicio de la pandemia, atender telemáticamente es fundamental para no saturar las consultas médicas, sin embargo, esto no resuelve el problema de las urgencias saturadas.
+El problema que se busca resolver en este TFG es la saturación en las colas de espera de los servicios de urgencias, que provoca largas esperas,
+retrasos en la atención y posibles empeoramientos en la salud de los pacientes. Para mitigar estas consecuencias, se propone desarrollar una API Rest que
+permita registrar pacientes, almacenar su información médica a través de un formulario basado en el protocolo de triage y asignarles un turno en función de
+su nivel de prioridad. Esto optimizará el flujo de pacientes, asegurando que los casos más graves sean atendidos con mayor rapidez y mejorando la eficiencia
+del servicio de urgencias.
+
+\section{Estado del arte}
+
+\subsection{Sistemas de triage en urgencias}
+
+Para analizar cómo se gestionan las colas en urgencias, se han revisado los sistemas de triage utilizados en hospitales y los métodos de priorización de pacientes basados en la gravedad de sus condiciones.
+
+\begin{table}[h!]
+    \centering
+    \caption{Sistemas de triaje utilizados en hospitales.}
+    \begin{tabular}{ |p{4.5cm}|p{5cm}|p{5cm}| }
+        \hline
+        \textbf{Sistema de triaje}              & \textbf{Países donde se usa}          & \textbf{Clasificación de prioridad}      \\
+        \hline
+        Manchester Triage System (MTS)          & Reino Unido, España, Brasil, Portugal & Basado en síntomas y signos              \\
+        Emergency Severity Index (ESI)          & EE. UU., Canadá, Alemania             & Basado en recursos necesarios y gravedad \\
+        Australian Triage Scale (ATS)           & Australia, Nueva Zelanda              & Basado en tiempo de espera objetivo      \\
+        Canadian Triage and Acuity Scale (CTAS) & Canadá, varios países de Europa       & Basado en condición médica               \\
+        \hline
+    \end{tabular}
+\end{table}
+
+El análisis muestra que los sistemas de triage más comunes (MTS, ESI, ATS y CTAS) comparten un enfoque similar: clasifican a los pacientes en cinco niveles de gravedad, desde casos críticos que requieren atención inmediata, hasta situaciones menos urgentes.
+Estos sistemas priorizan la atención médica, optimizando el uso de recursos y reduciendo los tiempos de espera para los pacientes más graves.
+
+\subsection{Automatización en la gestión de urgencias}
+
+Los sistemas actuales de triage son efectivos, pero la automatización del proceso de gestión y asignación de turnos en urgencias aún está en desarrollo.
+Varias iniciativas están orientadas a integrar soluciones tecnológicas que mejoren la eficiencia.
+Por ejemplo, plataformas como \textit{EHR (Electronic Health Records)} permiten registrar y gestionar información médica en tiempo real, lo que agiliza el acceso a datos importantes y facilita la toma de decisiones en emergencias.
+
+Entre las herramientas destacadas se encuentran:
+
+\begin{itemize}
+    \item \textit{Sistemas de información hospitalaria (HIS)}, que integran el historial médico con algoritmos de triage para asignar prioridades de forma automática.
+    \item \textit{APIs REST} que permiten la conexión entre distintos sistemas de salud y bases de datos, facilitando la comunicación entre departamentos y mejorando el flujo de pacientes.
+\end{itemize}
+
+Sin embargo, la integración de estos sistemas no siempre es eficiente, ya que muchos hospitales operan con soluciones tecnológicas propietarias que no siempre permiten la interoperabilidad entre sistemas.
+
+\section{Mejoras al estado del arte}
+
+Actualmente, los hospitales enfrentan desafíos significativos para gestionar la saturación en urgencias, en parte debido a la falta de sistemas de triage automatizados que se integren eficientemente con los sistemas de gestión de pacientes. Para avanzar en este campo, se proponen las siguientes mejoras:
+
+\begin{itemize}
+    \item Desarrollar una API REST que se conecte directamente con los sistemas de triage y los registros médicos, permitiendo asignar automáticamente prioridades y gestionar los tiempos de espera en función de la gravedad de los pacientes. Esta API debe ser capaz de proporcionar información en tiempo real para una toma de decisiones más ágil.
+    \item Asegurar que la API sea interoperable con una amplia gama de sistemas de información hospitalaria, facilitando su integración en diversos entornos de salud y garantizando su adaptabilidad a diferentes configuraciones de infraestructura.
+    \item Optimizar los algoritmos de priorización basados en datos en tiempo real, con el objetivo de reducir el tiempo de espera para los pacientes en situación crítica y mejorar la precisión en la asignación de recursos.
+    \item Extender la aplicación del sistema de triage a otros tipos de citologías, además de urgencias. Esto incluye, por ejemplo, la gestión de citas en consultas especializadas y procedimientos programados, permitiendo una planificación más eficiente y una mejor asignación de recursos en distintas áreas del hospital.
+    \item Implementar el sistema utilizando software libre, lo que no solo reduce los costos, sino que también facilita su integración con la mayoría de los sistemas hospitalarios existentes y fomenta la colaboración y personalización a través de la comunidad de código abierto.
+\end{itemize}
+
+Estos avances no solo buscan mejorar la eficiencia operativa de las urgencias, sino también asegurar una atención más rápida y adecuada para los pacientes más graves, reduciendo el riesgo de complicaciones y optimizando la gestión de recursos en el entorno hospitalario.
